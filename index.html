@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head class = 'header'>
+
+    <meta charset="UTF-8">
+    <title>NHL Shift Charts</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <body>
+    
+    <header style="height: 30px;">
+      <h1 style="text-align:left" id = 'top5D'>Game Stats Inspired by Olha: analysis of NHL F lines and D pairs</h1>
+      <button class = 'yearEntry' style = "background-image: url('./assets/Stars-logo.png');" onclick ="window.location.href = './assets/index_SVG.html';">Click here</button>
+    </header>
+    
+    <div class="main">
+      <p>Date: <input type="text" id="datepicker" onchange = 'getInputValue();'></p>
+      <div id = 'schedule'></div>
+    </div>
+
+    <!--<table>
+     
+    </table>-->
+
+    <table>
+      <tr id = 'lineByLineXY1'>
+        <td id = 'lineByLine001'></td>
+        <td id = 'lineByLine011'></td>
+        <td id = 'lineByLine021'></td>
+        <td id = 'lineByLine031'></td>
+        <td id = 'lineByLine041'></td>
+        <td id = 'lineByLine081'></td>
+        <td id = 'lineByLine051'></td>
+        <td id = 'lineByLine091'></td>
+        <td id = 'lineByLine061'></td>
+        <td id = 'lineByLine091a'></td>
+        <td id = 'lineByLine071'></td>
+        <td id = 'lineByLine091b'></td>
+      </tr>
+      <tr id = 'lineByLineYZ'>
+        <td id = 'lineByLine101'></td>
+        <td id = 'lineByLine111'></td>
+        <td id = 'lineByLine121'></td>
+        <td id = 'lineByLine131'></td>
+        <td id = 'lineByLine141'></td>
+        <td id = 'lineByLine181'></td>
+        <td id = 'lineByLine151'></td>
+        <td id = 'lineByLine191'></td>
+        <td id = 'lineByLine161'></td>
+        <td id = 'lineByLine191a'></td>
+        <td id = 'lineByLine171'></td>
+        <td id = 'lineByLine191b'></td>
+      </tr>
+      <tr id = 'lineByLineAB'>
+        <td id = 'lineByLine201'></td>
+        <td id = 'lineByLine211'></td>
+        <td id = 'lineByLine221'></td>
+        <td id = 'lineByLine231'></td>
+        <td id = 'lineByLine241'></td>
+        <td id = 'lineByLine281'></td>
+        <td id = 'lineByLine251'></td>
+        <td id = 'lineByLine291'></td>
+        <td id = 'lineByLine261'></td>
+        <td id = 'lineByLine291a'></td>
+        <td id = 'lineByLine271'></td>
+        <td id = 'lineByLine291b'></td>
+      </tr>
+      <tr id = 'lineByLineAB'>
+        <td id = 'lineByLine601'></td>
+        <td id = 'lineByLine611'></td>
+        <td id = 'lineByLine621'></td>
+        <td id = 'lineByLine631'></td>
+        <td id = 'lineByLine641'></td>
+        <td id = 'lineByLine681'></td>
+        <td id = 'lineByLine651'></td>
+        <td id = 'lineByLine691'></td>
+        <td id = 'lineByLine661'></td>
+        <td id = 'lineByLine691a'></td>
+        <td id = 'lineByLine671'></td>
+        <td id = 'lineByLine691b'></td>
+      </tr>
+      <tr id = 'lineByLineAC1'>
+        <td id = 'lineByLine301'></td>
+        <td id = 'lineByLine311'></td>
+        <td id = 'lineByLine321'></td>
+        <td id = 'lineByLine331'></td>
+        <td id = 'lineByLine341'></td>
+        <td id = 'lineByLine381'></td>
+        <td id = 'lineByLine351'></td>
+        <td id = 'lineByLine391'></td>
+        <td id = 'lineByLine361'></td>
+        <td id = 'lineByLine391a'></td>
+        <td id = 'lineByLine371'></td>
+        <td id = 'lineByLine391b'></td>
+      </tr>
+      <tr id = 'lineByLineAB'>
+        <td id = 'lineByLine701'></td>
+        <td id = 'lineByLine711'></td>
+        <td id = 'lineByLine721'></td>
+        <td id = 'lineByLine731'></td>
+        <td id = 'lineByLine741'></td>
+        <td id = 'lineByLine781'></td>
+        <td id = 'lineByLine751'></td>
+        <td id = 'lineByLine791'></td>
+        <td id = 'lineByLine761'></td>
+        <td id = 'lineByLine791a'></td>
+        <td id = 'lineByLine771'></td>
+        <td id = 'lineByLine791b'></td>
+      </tr>
+      <tr id = 'lineByLineAD1'>
+        <td id = 'lineByLine401'></td>
+        <td id = 'lineByLine411'></td>
+        <td id = 'lineByLine421'></td>
+        <td id = 'lineByLine431'></td>
+        <td id = 'lineByLine441'></td>
+        <td id = 'lineByLine481'></td>
+        <td id = 'lineByLine451'></td>
+        <td id = 'lineByLine491'></td>
+        <td id = 'lineByLine461'></td>
+        <td id = 'lineByLine491a'></td>
+        <td id = 'lineByLine471'></td>
+        <td id = 'lineByLine491b'></td>
+      </tr>
+      <tr id = 'lineByLineAB'>
+        <td id = 'lineByLine801'></td>
+        <td id = 'lineByLine811'></td>
+        <td id = 'lineByLine821'></td>
+        <td id = 'lineByLine831'></td>
+        <td id = 'lineByLine841'></td>
+        <td id = 'lineByLine881'></td>
+        <td id = 'lineByLine851'></td>
+        <td id = 'lineByLine891'></td>
+        <td id = 'lineByLine861'></td>
+        <td id = 'lineByLine891a'></td>
+        <td id = 'lineByLine871'></td>
+        <td id = 'lineByLine891b'></td>
+      </tr>
+      <tr id = 'lineByLineAE1'>
+        <td id = 'lineByLine501'></td>
+        <td id = 'lineByLine511'></td>
+        <td id = 'lineByLine521'></td>
+        <td id = 'lineByLine531'></td>
+        <td id = 'lineByLine541'></td>
+        <td id = 'lineByLine581'></td>
+        <td id = 'lineByLine551'></td>
+        <td id = 'lineByLine591'></td>
+        <td id = 'lineByLine561'></td>
+        <td id = 'lineByLine591a'></td>
+        <td id = 'lineByLine571'></td>
+        <td id = 'lineByLine591b'></td>
+      </tr>
+      <tr id = 'lineByLineAB'>
+        <td id = 'lineByLine901'></td>
+        <td id = 'lineByLine911'></td>
+        <td id = 'lineByLine921'></td>
+        <td id = 'lineByLine931'></td>
+        <td id = 'lineByLine941'></td>
+        <td id = 'lineByLine981'></td>
+        <td id = 'lineByLine951'></td>
+        <td id = 'lineByLine991'></td>
+        <td id = 'lineByLine961'></td>
+        <td id = 'lineByLine991a'></td>
+        <td id = 'lineByLine971'></td>
+        <td id = 'lineByLine991b'></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr id = 'lineByLineXY3'>
+        <td id = 'lineByLine003'></td>
+        <td id = 'lineByLine013'></td>
+        <td id = 'lineByLine023'></td>
+        <td id = 'lineByLine033'></td>
+        <td id = 'lineByLine043'></td>
+        <td id = 'lineByLine053'></td>
+        <td id = 'lineByLine063'></td>
+        <td id = 'lineByLine073'></td>
+      </tr>
+      <tr id = 'lineByLineYZ3'>
+        <td id = 'lineByLine103'></td>
+        <td id = 'lineByLine113'></td>
+        <td id = 'lineByLine123'></td>
+        <td id = 'lineByLine133'></td>
+        <td id = 'lineByLine143'></td>
+        <td id = 'lineByLine153'></td>
+        <td id = 'lineByLine163'></td>
+        <td id = 'lineByLine173'></td>
+      </tr>
+      <tr id = 'lineByLineAB3'>
+        <td id = 'lineByLine203'></td>
+        <td id = 'lineByLine213'></td>
+        <td id = 'lineByLine223'></td>
+        <td id = 'lineByLine233'></td>
+        <td id = 'lineByLine243'></td>
+        <td id = 'lineByLine253'></td>
+        <td id = 'lineByLine263'></td>
+        <td id = 'lineByLine273'></td>
+      </tr>
+      <tr id = 'lineByLineAC3'>
+        <td id = 'lineByLine303'></td>
+        <td id = 'lineByLine313'></td>
+        <td id = 'lineByLine323'></td>
+        <td id = 'lineByLine333'></td>
+        <td id = 'lineByLine343'></td>
+        <td id = 'lineByLine353'></td>
+        <td id = 'lineByLine363'></td>
+        <td id = 'lineByLine373'></td>
+      </tr>
+      <tr id = 'lineByLineAD3'>
+        <td id = 'lineByLine403'></td>
+        <td id = 'lineByLine413'></td>
+        <td id = 'lineByLine423'></td>
+        <td id = 'lineByLine433'></td>
+        <td id = 'lineByLine443'></td>
+        <td id = 'lineByLine453'></td>
+        <td id = 'lineByLine463'></td>
+        <td id = 'lineByLine473'></td>
+      </tr>
+      <tr id = 'lineByLineAE3'>
+        <td id = 'lineByLine503'></td>
+        <td id = 'lineByLine513'></td>
+        <td id = 'lineByLine523'></td>
+        <td id = 'lineByLine533'></td>
+        <td id = 'lineByLine543'></td>
+        <td id = 'lineByLine553'></td>
+        <td id = 'lineByLine563'></td>
+        <td id = 'lineByLine573'></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td id = 'firstDNumber'></td>
+        <td id = 'firstD1'></td>
+        <td id = 'firstD2'></td>
+        <td id = 'firstD3'></td>
+        <td id = 'firstD4'></td>
+        <td id = 'firstD5'></td>
+        <td id = 'firstD6'></td>
+        <td id = 'firstD7'></td>
+      </tr>
+      <tr>
+        <td id = 'secondDNumber'></td>
+        <td id = 'secondD1'></td>
+        <td id = 'secondD2'></td>
+        <td id = 'secondD3'></td>
+        <td id = 'secondD4'></td>
+        <td id = 'secondD5'></td>
+        <td id = 'secondD6'></td>
+        <td id = 'secondD7'></td>
+      </tr>
+      <tr>
+        <td id = 'thirdDNumber'></td>
+        <td id = 'thirdD1'></td>
+        <td id = 'thirdD2'></td>
+        <td id = 'thirdD3'></td>
+        <td id = 'thirdD4'></td>
+        <td id = 'thirdD5'></td>
+        <td id = 'thirdD6'></td>
+        <td id = 'thirdD7'></td>
+      </tr>
+      <tr>
+        <td id = 'forthDNumber'></td>
+        <td id = 'forthD1'></td>
+        <td id = 'forthD2'></td>
+        <td id = 'forthD3'></td>
+        <td id = 'forthD4'></td>
+        <td id = 'forthD5'></td>
+        <td id = 'forthD6'></td>
+        <td id = 'forthD7'></td>
+      </tr>
+      <tr>
+        <td id = 'fifthDNumber'></td>
+        <td id = 'fifthD1'></td>
+        <td id = 'fifthD2'></td>
+        <td id = 'fifthD3'></td>
+        <td id = 'fifthD4'></td>
+        <td id = 'fifthD5'></td>
+        <td id = 'fifthD6'></td>
+        <td id = 'fifthD7'></td>
+      </tr>
+      <tr>
+        <td id = 'sixthDNumber'></td>
+        <td id = 'sixthD1'></td>
+        <td id = 'sixthD2'></td>
+        <td id = 'sixthD3'></td>
+        <td id = 'sixthD4'></td>
+        <td id = 'sixthD5'></td>
+        <td id = 'sixthD6'></td>
+        <td id = 'sixthD7'></td>
+      </tr>
+      <tr>
+        <td id = 'seventhDNumber'></td>
+        <td id = 'seventhD1'></td>
+        <td id = 'seventhD2'></td>
+        <td id = 'seventhD3'></td>
+        <td id = 'seventhD4'></td>
+        <td id = 'seventhD5'></td>
+        <td id = 'seventhD6'></td>
+        <td id = 'seventhD7'></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <!--<th>Number, Shoots, Name</th> in case i need column names later
+        style = "background-image: url('./assets/background.jpg');"-->
+      </tr>
+      <tr>
+        <td id = 'firstDNumberA'></td>
+        <td id = 'firstD1A'></td>
+        <td id = 'firstD2A'></td>
+        <td id = 'firstD3A'></td>
+        <td id = 'firstD4A'></td>
+        <td id = 'firstD5A'></td>
+        <td id = 'firstD6A'></td>
+        <td id = 'firstD7A'></td>
+      </tr>
+      <tr>
+        <td id = 'secondDNumberA'></td>
+        <td id = 'secondD1A'></td>
+        <td id = 'secondD2A'></td>
+        <td id = 'secondD3A'></td>
+        <td id = 'secondD4A'></td>
+        <td id = 'secondD5A'></td>
+        <td id = 'secondD6A'></td>
+        <td id = 'secondD7A'></td>
+      </tr>
+      <tr>
+        <td id = 'thirdDNumberA'></td>
+        <td id = 'thirdD1A'></td>
+        <td id = 'thirdD2A'></td>
+        <td id = 'thirdD3A'></td>
+        <td id = 'thirdD4A'></td>
+        <td id = 'thirdD5A'></td>
+        <td id = 'thirdD6A'></td>
+        <td id = 'thirdD7A'></td>
+      </tr>
+      <tr>
+        <td id = 'forthDNumberA'></td>
+        <td id = 'forthD1A'></td>
+        <td id = 'forthD2A'></td>
+        <td id = 'forthD3A'></td>
+        <td id = 'forthD4A'></td>
+        <td id = 'forthD5A'></td>
+        <td id = 'forthD6A'></td>
+        <td id = 'forthD7A'></td>
+      </tr>
+      <tr>
+        <td id = 'fifthDNumberA'></td>
+        <td id = 'fifthD1A'></td>
+        <td id = 'fifthD2A'></td>
+        <td id = 'fifthD3A'></td>
+        <td id = 'fifthD4A'></td>
+        <td id = 'fifthD5A'></td>
+        <td id = 'fifthD6A'></td>
+        <td id = 'fifthD7A'></td>
+      </tr>
+      <tr>
+        <td id = 'sixthDNumberA'></td>
+        <td id = 'sixthD1A'></td>
+        <td id = 'sixthD2A'></td>
+        <td id = 'sixthD3A'></td>
+        <td id = 'sixthD4A'></td>
+        <td id = 'sixthD5A'></td>
+        <td id = 'sixthD6A'></td>
+        <td id = 'sixthD7A'></td>
+      </tr>
+      <tr>
+        <td id = 'seventhDNumberA'></td>
+        <td id = 'seventhD1A'></td>
+        <td id = 'seventhD2A'></td>
+        <td id = 'seventhD3A'></td>
+        <td id = 'seventhD4A'></td>
+        <td id = 'seventhD5A'></td>
+        <td id = 'seventhD6A'></td>
+        <td id = 'seventhD7A'></td>
+      </tr>
+    </table>
+    
+              <!--
+                <section id = 'forwardLines', style = 'width: 95%;'>
+                <th>Number, Shoots, Name</th> in case i need column names later
+        style = "background-image: url('./assets/background.jpg');"
+      <table>
+        <tr>
+          <td id = 'headerHome'></td>
+          <td id = 'headerHome2'></td>
+          <td id = 'headerHome3'></td>
+          <td id = 'headerHome4'></td>
+        </tr>
+        <tr>
+          <td id = 'firstLine'></td>
+          <td id = 'firstLineTime'></td>
+          <td id = 'firstLineTime2'></td>
+          <td id = 'firstLineTime3'></td>
+        </tr>
+        <tr>
+          <td id = 'secondLine'></td>
+          <td id = 'secondLineTime'></td>
+          <td id = 'secondLineTime2'></td>
+          <td id = 'secondLineTime3'></td>
+        </tr>
+        <tr>
+          <td id = 'thirdLine'></td>
+          <td id = 'thirdLineTime'></td>
+          <td id = 'thirdLineTime2'></td>
+          <td id = 'thirdLineTime3'></td>
+        </tr>
+        <tr>
+          <td id = 'fourthLine'></td>
+          <td id = 'fourthLineTime'></td>
+          <td id = 'fourthLineTime2'></td>
+          <td id = 'fourthLineTime3'></td>
+        </tr>
+      </table>
+      -->
+
+      <!--
+      <table style = 'float: right'>
+
+        <tr>
+          <td id = 'headerAway'></td>
+          <td id = 'headerAway2'></td>
+          <td id = 'headerAway3'></td>
+          <td id = 'headerAway4'></td>
+        </tr>
+        <tr>
+          <td id = 'firstLineAway'></td>
+          <td id = 'firstLineTimeAway'></td>
+          <td id = 'firstLineTime2Away'></td>
+          <td id = 'firstLineTime3Away'></td>
+        </tr>
+        <tr>
+          <td id = 'secondLineAway'></td>
+          <td id = 'secondLineTimeAway'></td>
+          <td id = 'secondLineTime2Away'></td>
+          <td id = 'secondLineTime3Away'></td>
+        </tr>
+        <tr>
+          <td id = 'thirdLineAway'></td>
+          <td id = 'thirdLineTimeAway'></td>
+          <td id = 'thirdLineTime2Away'></td>
+          <td id = 'thirdLineTime3Away'></td>
+        </tr>
+        <tr>
+          <td id = 'fourthLineAway'></td>
+          <td id = 'fourthLineTimeAway'></td>
+          <td id = 'fourthLineTime2Away'></td>
+          <td id = 'fourthLineTime3Away'></td>
+        </tr>
+      </table> </section>-->
+  </section>
+  <br>
+  <div>
+    
+  </div>
+    <script src = "./assets/script.js"></script>
+  </body>
+
+</html>
