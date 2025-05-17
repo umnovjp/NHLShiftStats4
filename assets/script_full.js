@@ -2,14 +2,12 @@ var scheduleContent = document.getElementById('schedule'); var gameId; var input
 // lines below will allow user to select date then to select game on that date
 function getInputValue() {
   var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
-  var formatted = date[2]+'-'+date[0]+'-'+date[1]; console.log(inputVal, formatted)
+  var formatted = date[2]+'-'+date[0]+'-'+date[1]; 
   var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
   fetch(requestURL, {"method": "GET", "headers": {}
   })
-    .then(function (response) {return response.json();
-    })
+    .then(function (response) {return response.json()})
     .then(function (data) {console.log('I am in schedule then');
-      console.log(data.gameWeek[0]);
       var numberOfGames = data.gameWeek[0].games.length; scheduleContent.textContent = '';
       for (var i = 0; i < numberOfGames; i++) {
         var gameName = document.createElement('button');
@@ -18,33 +16,25 @@ function getInputValue() {
         document.getElementById('schedule').appendChild(gameName); gameName.addEventListener('click', displayGameData);
       }
 
-      function displayGameData(event) {
-        idx = event.currentTarget; idxString = event.currentTarget.textContent;
-        idxArray = idxString.split(':'); idxNumber = idxArray[0].split(' ');
-        gameNumber = idxNumber[1];
+      function displayGameData(event) {idx = event.currentTarget; idxString = event.currentTarget.textContent;
+        idxArray = idxString.split(':'); idxNumber = idxArray[0].split(' '); gameNumber = idxNumber[1];
         const gameId = data.gameWeek[0].games[gameNumber].id; console.log(gameId);
         var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
         fetch(requestURL, {
           "method": "GET", "headers": {}
         })
-          .then(function (response) {
-            return response.json();
-          })
+          .then(function (response) { return response.json() })
           .then(function (data) {const gameInfo = document.createElement('section'); gameInfo.setAttribute('id', 'gameInfo');
             document.getElementById('schedule').appendChild(gameInfo);
             var standingsURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/standings/' + formatted;
             fetch(standingsURL, {
               "method": "GET", "headers": {}
             })
-              .then(function (response) {
-                return response.json();
-              })
+              .then(function (response) { return response.json() })
               .then(function (data_standings) { console.log(data_standings.standings);
-                for (i = 0; i < data_standings.standings.length; i++) {
-                  if (data_standings.standings[i].teamAbbrev.default === data.awayTeam.abbrev) {
+                for (i = 0; i < data_standings.standings.length; i++) { if (data_standings.standings[i].teamAbbrev.default === data.awayTeam.abbrev) {
                     standingsArray.push(data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)
-                    console.log(i, data.awayTeam.abbrev, data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)
-                  }
+                    console.log(i, data.awayTeam.abbrev, data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)}
                   else if (data_standings.standings[i].teamAbbrev.default === data.homeTeam.abbrev) {
                     standingsArray.push(data.homeTeam.abbrev, data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)
                     console.log(i, data.homeTeam.abbrev, data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)
@@ -75,7 +65,7 @@ function getInputValue() {
                 var obj = data.playerByGameStats.awayTeam.goalies; var keys = Object.keys(obj);
                 for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayG.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
                   keyId = val.playerId; playerIdeObject[keyId] = []}
-                console.log(homeF, homeD, homeG, awayF, awayD, awayG, playerIdArray)
+                // console.log(homeF, homeD, homeG, awayF, awayD, awayG, playerIdArray)
 
                 var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
                 fetch(shiftsURL, { "method": "GET", "headers": {} })
@@ -368,7 +358,7 @@ function getInputValue() {
       else if (finalLineup2[h+4][i].length===0) {  tempIndex9=i; tempIndex10=h;
      tempIndex=Math.max(...linesArray[3*h+i]); tempIndex2=linesArray[3*h+i].indexOf(tempIndex)
       console.log('Zero lines', 'team', h, 'period', i, linesArray[3*h+i], 'tempIndex ', tempIndex, 'tempIndex2 ', tempIndex2)
-    tempArray4=[]; // tempIndex5=i; tempIndex6=h;
+    tempArray4=[];
       console.log(linesArray7[h][i]);
       for (j=0;j<linesArray7[h][i].length/5;j++)
               {tempArray4.push(linesArray7[h][i][5*j])}
@@ -380,8 +370,7 @@ function getInputValue() {
         for (j=3*h;j<3*h+3;j++) {for (k=0;k<linesArray[j].length/5;k++) {
           if((finalLineup2[h+4][i].includes(linesArray[j][5*k+2]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+3]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+4]))) {}
           else {linesArray8.push(linesArray[j][5*k], linesArray[j][5*k+1], linesArray[j][5*k+2], linesArray[j][5*k+3], linesArray[j][5*k+4])}
-        }
-      }
+        }}
       const start = i*linesArray8.length/3; const end = (i+1)*linesArray8.length/3;
       tempIndex = Math.max(...linesArray8.slice(start,end)); tempIndex2 =linesArray8.indexOf(Math.max(...linesArray8.slice(start,end)));
       console.log(linesArray8, 'tempIndex', tempIndex, 'tempIndex2', tempIndex2, 'i', i, 'h', h);
@@ -394,7 +383,7 @@ function getInputValue() {
     } // end if length === 0
       else {console.log('case to be added it is not 0 or 1 or 2 or 3 or 4 lines', 'h', h, 'i', i)}
       }} // i, h loops end finalLineup2      
-      // console.log(typeof linesArray9);
+      
       if (typeof linesArray9 != 'undefined') {
       tempIndex7 = Math.max(...linesArray9); tempIndex8 =linesArray9.indexOf(Math.max(...linesArray9));
       console.log('linesArray9', linesArray9, 'tempIndex7', tempIndex7, 'tempIndex8', tempIndex8, 'i', tempIndex9, 'h', tempIndex10);
@@ -416,7 +405,7 @@ function getInputValue() {
           else {newLines[h-4].push(finalLineup2[h][2][3*k], finalLineup2[h][2][3*k+1], finalLineup2[h][2][3*k+2])}
         }}}
     }}
-      console.log(oldLines, newLines)
+      console.log(oldLines, newLines);
             
             tempArray3=[]; // home
             for (i=0;i<finalLineup2[4][0].length/3;i++) {tempArray3.push(finalLineup2[4][0][3*i])}
@@ -459,24 +448,40 @@ function getInputValue() {
           newLine2.line=[finalLineup2[h+4][0][3*i], finalLineup2[h+4][0][3*i+1], finalLineup2[5][0][3*i+2]]
           linesNewAndOld[h].push(newLine2)
           }}
+          console.log(linesNewAndOld, tempArray3)
           
           for (h=0;h<2;h++) {
-          for (i=0;i<finalLineup2[h+4][0].length/3;i++) {if (tempArray3[h].includes(finalLineup2[h+4][2][3*i])) { 
+          for (i=0;i<finalLineup2[h+4][0].length/3;i++) {if (tempArray3[h].includes(finalLineup2[h+4][2][3*i])) {
             tempIndex56=finalLineup2[h+4][0].indexOf(finalLineup2[h+4][2][3*i]);
             if ((finalLineup2[h+4][2][3*i+1]===finalLineup2[h+4][0][tempIndex56+1])&&(finalLineup2[h+4][2][3*i+2]===finalLineup2[h+4][0][tempIndex56+2])) 
             {console.log('old line again', tempIndex56, h);
             linesNewAndOld[h][tempIndex56/3].position='old'}
-            else {newLine2=new Object();
-              // newLine2.lineNumber=i;
-              newLine2.line=[finalLineup2[h+4][0][3*i], finalLineup2[h+4][2][3*i+1], finalLineup2[5][2][3*i+2]];
+            else { console.log('tempIndex56', tempIndex56, finalLineup2[h+4][2][3*i])
+              newLine2=new Object();
+              newLine2.line=[finalLineup2[h+4][2][3*i], finalLineup2[h+4][2][3*i+1], finalLineup2[h+4][2][3*i+2]];
               newLine2.position='new';
               linesNewAndOld[h].push(newLine2)
-              linesNewAndOld[h][tempIndex56].position='updated'
+              linesNewAndOld[h][tempIndex56/3].position='updated'
             }
           }
-          }
-        }
-        console.log(linesNewAndOld)
+        else if (!tempArray3[h].includes(finalLineup2[h+4][2][3*i])) 
+        {console.log('to update', finalLineup2[h+4][2][3*i])
+        // temporary deleted lines from next to 481
+        //   newLine2=new Object();
+        // // newLine2.lineNumber=i;
+        // newLine2.line=[finalLineup2[h+4][2][3*i], finalLineup2[h+4][2][3*i+1], finalLineup2[h+4][2][3*i+2]];
+        // newLine2.position='new';
+        // linesNewAndOld[h].push(newLine2)
+        // linesNewAndOld[h][tempIndex56/3].position='updated'
+        // for (j=0;j<finalLineup2[h+4][0].length;j++) {
+        //   tempIndex57=finalLineup2[h+4][0].indexOf(finalLineup2[h+4][2][3*i])
+        //   tempIndex58=Math.floor(tempIndex57/3);
+        //   console.log(tempIndex57, tempIndex58);
+        //   linesNewAndOld[h][tempIndex58].position='updated'          
+        // }
+      }
+        }}
+        console.log(linesNewAndOld);
             
             // script to be added here to plot only new lines in 3rd to monitor 5 is away team 4 is home team
             for (i=0;i<finalLineup2[5][0].length/3;i++) {for (j=0;j<finalLineup2[5][0].length/3;j++) {if((finalLineup2[5][0][3*i]===finalLineup2[5][0][3*j])&&(finalLineup2[5][0][3*i+1]===finalLineup2[5][0][3*j+1])&&(finalLineup2[5][0][3*i+2]===finalLineup2[5][0][3*j+2])) {}
@@ -547,10 +552,7 @@ function getInputValue() {
                     shiftsLine1[13][1].push(lineVsLineTime, lineVsLineShifts)
                     } // end n loop
                     return shiftsLine1[13]} // end function lineByLine1
-                    console.log(lineByLine1(1,0,0,0))
-                    console.log(lineByLine1(1,0,0,1))
-                    console.log(lineByLine1(1,0,0,2))
-
+              
                     // h is team, i is period number qrs are players on h team tuv are players on 1-h team
                     // shiftsLine2 structure: [0...2] F pair q,r, [3...5] F line q,r,s played together time for home team over 3 periods, [6...8] F pair t,u, [9...11] F line t,u,v away team played together away team
                     // [12] shifts by period line q,r,s played against line t,u,v, [13] total time and number of shifts
@@ -611,14 +613,10 @@ function getInputValue() {
                     } // end n loop
                     return shiftsLine2[13]} // end function lineByLine2
 
-                    console.log(finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2], fArray[0])
+                    // console.log(finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2], fArray[0])
                     console.log(lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2]))
                     console.log(shiftsLine2)
-                    // console.log(lineByLine2(finalLineup2[4][1][0],finalLineup2[4][1][1],finalLineup2[4][1][2],finalLineup2[5][1][0],finalLineup2[5][1][1],finalLineup2[5][1][2]))
-                    // console.log(shiftsLine2)
-                    // console.log(lineByLine2(finalLineup2[4][2][0],finalLineup2[4][2][1],finalLineup2[4][2][2],finalLineup2[5][2][0],finalLineup2[5][2][1],finalLineup2[5][2][2]))
-                    // console.log(shiftsLine2)
-
+         
                     lineByLine001.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |'
                     lineByLine041.innerHTML=awayF[1+3*finalLineup2[5][0][0]]+' '+awayF[2+3*finalLineup2[5][0][0]]+'<br>'+awayF[1+3*finalLineup2[5][0][1]]+' '+awayF[2+3*finalLineup2[5][0][1]]+'<br>'+awayF[1+3*finalLineup2[5][0][2]]+' '+awayF[2+3*finalLineup2[5][0][2]];
                     lineByLine051.innerHTML=awayF[1+3*finalLineup2[5][0][3]]+' '+awayF[2+3*finalLineup2[5][0][3]]+'<br>'+awayF[1+3*finalLineup2[5][0][4]]+' '+awayF[2+3*finalLineup2[5][0][4]]+'<br>'+awayF[1+3*finalLineup2[5][0][5]]+' '+awayF[2+3*finalLineup2[5][0][5]];
