@@ -33,19 +33,54 @@ function getInputValue() {
             var gameTitle = document.createElement('h2'); gameTitle.textContent = '';
             gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on' + formatted;
             document.getElementById('gameInfo').appendChild(gameTitle);
-            shiftsArray = [[],[],[],[],[],[]]
+            shiftsArray = [];
 
             console.log(data.playerByGameStats.homeTeam); console.log(data.playerByGameStats.homeTeam.goalies);
 
-            for (i=0; i<data.playerByGameStats.homeTeam.goalies.length;i++) { shiftsArray[0].push(data.playerByGameStats.homeTeam.goalies[i].playerId) }
-            for (i=0; i<data.playerByGameStats.homeTeam.defense.length;i++) { shiftsArray[1].push(data.playerByGameStats.homeTeam.defense[i].playerId) }
-            for (i=0; i<data.playerByGameStats.homeTeam.forwards.length;i++) { shiftsArray[2].push(data.playerByGameStats.homeTeam.goalies[i].playerId) }
-            for (i=0; i<data.playerByGameStats.awayTeam.goalies.length;i++) { shiftsArray[3].push(data.playerByGameStats.awayTeam.goalies[i].playerId) }
-            for (i=0; i<data.playerByGameStats.awayTeam.defense.length;i++) { shiftsArray[4].push(data.playerByGameStats.awayTeam.defense[i].playerId) }
-            for (i=0; i<data.playerByGameStats.awayTeam.forwards.length;i++) { shiftsArray[5].push(data.playerByGameStats.awayTeam.goalies[i].playerId) }
+            function Shifts(playerId, jerseyNumber, name, position, team, shiftsArray) {
+              this.playerId = playerId;
+              this.jerseyNumber = jerseyNumber;
+              this.name = name;
+              this.position = position;
+              this.team = team;
+              this.shiftsArray = []
+            }
+
+            for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) {
+              const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.goalies[i].playerId, data.playerByGameStats.homeTeam.goalies[i].sweaterNumber, data.playerByGameStats.homeTeam.goalies[i].name, 'G', 'H');
+              shiftsArray.push(CurrentPlayer)
+            }
+            for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) {
+              const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.defense[i].playerId, data.playerByGameStats.homeTeam.defense[i].sweaterNumber, data.playerByGameStats.homeTeam.defense[i].name, 'D', 'H');
+              shiftsArray.push(CurrentPlayer)
+            }
+            for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) {
+              const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.forwards[i].playerId, data.playerByGameStats.homeTeam.forwards[i].sweaterNumber, data.playerByGameStats.homeTeam.forwards[i].name, 'F', 'H');
+              shiftsArray.push(CurrentPlayer)
+            }
+            for (i = 0; i < data.playerByGameStats.awayTeam.goalies.length; i++) {
+              const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.goalies[i].playerId, data.playerByGameStats.awayTeam.goalies[i].sweaterNumber, data.playerByGameStats.awayTeam.goalies[i].name, 'G', 'A');
+              shiftsArray.push(CurrentPlayer)
+            }
+            for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) {
+              const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.defense[i].playerId, data.playerByGameStats.awayTeam.defense[i].sweaterNumber, data.playerByGameStats.awayTeam.defense[i].name, 'D', 'A');
+              shiftsArray.push(CurrentPlayer)
+            }
+            for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) {
+              const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.forwards[i].playerId, data.playerByGameStats.awayTeam.forwards[i].sweaterNumber, data.playerByGameStats.awayTeam.forwards[i].name, 'F', 'A');
+              shiftsArray.push(CurrentPlayer)
+            }
+
+
+            // for (i=0; i<data.playerByGameStats.homeTeam.goalies.length;i++) { shiftsArray[0].push(data.playerByGameStats.homeTeam.goalies[i].playerId) }
+            // for (i=0; i<data.playerByGameStats.homeTeam.defense.length;i++) { shiftsArray[1].push(data.playerByGameStats.homeTeam.defense[i].playerId) }
+            // for (i=0; i<data.playerByGameStats.homeTeam.forwards.length;i++) { shiftsArray[2].push(data.playerByGameStats.homeTeam.forwards[i].playerId) }
+            // for (i=0; i<data.playerByGameStats.awayTeam.goalies.length;i++) { shiftsArray[3].push(data.playerByGameStats.awayTeam.goalies[i].playerId) }
+            // for (i=0; i<data.playerByGameStats.awayTeam.defense.length;i++) { shiftsArray[4].push(data.playerByGameStats.awayTeam.defense[i].playerId) }
+            // for (i=0; i<data.playerByGameStats.awayTeam.forwards.length;i++) { shiftsArray[5].push(data.playerByGameStats.awayTeam.forwards[i].playerId) }
             console.log(shiftsArray)
 
-     
+
 
             var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
