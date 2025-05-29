@@ -3,7 +3,7 @@ var scheduleContent = document.getElementById('schedule'); var gameId; var input
 function getInputValue() {
   var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
   var formatted = date[2] + '-' + date[0] + '-' + date[1];
-  var requestURL = 'https://corsproxy.io/https://api-web.nhle.com/v1/schedule/' + formatted;
+  var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
   fetch(requestURL, {
     "method": "GET", "headers": {}
   })
@@ -22,7 +22,7 @@ function getInputValue() {
         idx = event.currentTarget; idxString = event.currentTarget.textContent;
         idxArray = idxString.split(':'); idxNumber = idxArray[0].split(' '); gameNumber = idxNumber[1];
         const gameId = data.gameWeek[0].games[gameNumber].id; console.log(gameId);
-        var requestURL = 'https://corsproxy.io/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
         fetch(requestURL, {
           "method": "GET", "headers": {}
         })
@@ -31,7 +31,7 @@ function getInputValue() {
             const gameInfo = document.createElement('section'); gameInfo.setAttribute('id', 'gameInfo');
             document.getElementById('schedule').appendChild(gameInfo);
             var gameTitle = document.createElement('h2'); gameTitle.textContent = '';
-            gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on ' + formatted;
+            gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on' + formatted;
             document.getElementById('gameInfo').appendChild(gameTitle);
             shiftsArray = [];
 
@@ -80,9 +80,9 @@ function getInputValue() {
             // for (i=0; i<data.playerByGameStats.awayTeam.forwards.length;i++) { shiftsArray[5].push(data.playerByGameStats.awayTeam.forwards[i].playerId) }
             console.log(shiftsArray)
 
-           //  var shiftsURL = 'https://corsproxy.io/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
-           var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
-           //  var shiftsURL = 'https://corsproxy.io/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
+
+
+            var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
               .then(function (data_shifts) {
