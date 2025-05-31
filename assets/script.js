@@ -71,23 +71,16 @@ function getInputValue() {
               shiftsArray.push(CurrentPlayer)
             }
 
-
-            // for (i=0; i<data.playerByGameStats.homeTeam.goalies.length;i++) { shiftsArray[0].push(data.playerByGameStats.homeTeam.goalies[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.homeTeam.defense.length;i++) { shiftsArray[1].push(data.playerByGameStats.homeTeam.defense[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.homeTeam.forwards.length;i++) { shiftsArray[2].push(data.playerByGameStats.homeTeam.forwards[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.awayTeam.goalies.length;i++) { shiftsArray[3].push(data.playerByGameStats.awayTeam.goalies[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.awayTeam.defense.length;i++) { shiftsArray[4].push(data.playerByGameStats.awayTeam.defense[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.awayTeam.forwards.length;i++) { shiftsArray[5].push(data.playerByGameStats.awayTeam.forwards[i].playerId) }
-            console.log(shiftsArray)
-
-           //  var shiftsURL = 'https://corsproxy.io/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
-           var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
-           //  var shiftsURL = 'https://corsproxy.io/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
+           var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
               .then(function (data_shifts) {
-                console.log('I am in second shift then', data_shifts);
+                console.log('I am in second shift then', data_shifts.data, data_shifts.data.length, data_shifts.data[1].playerId, shiftsArray[0], shiftsArray[0].playerId, typeof shiftsArray[0].shiftsArray);
                 // to add script here
+                for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
+                  for (j=0;j<shiftsArray.length;j++) {if (data_shifts.data[i].playerId===shiftsArray[j].playerId) {shiftsArray[j].shiftsArray.add(data_shifts.data[i].startTime), shiftsArray[j].shiftsArray.add(data_shifts.data[i].endTime)}}
+                }}
+                console.log(shiftsArray);
 
               }); // end second .then shifts
 
