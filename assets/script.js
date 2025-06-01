@@ -3,7 +3,8 @@ var scheduleContent = document.getElementById('schedule'); var gameId; var input
 function getInputValue() {
   var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
   var formatted = date[2] + '-' + date[0] + '-' + date[1];
-  var requestURL = 'https://corsproxy.io/https://api-web.nhle.com/v1/schedule/' + formatted;
+  // var requestURL = 'https://corsproxy.io/https://api-web.nhle.com/v1/schedule/' + formatted;
+  var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
   fetch(requestURL, {
     "method": "GET", "headers": {}
   })
@@ -22,7 +23,8 @@ function getInputValue() {
         idx = event.currentTarget; idxString = event.currentTarget.textContent;
         idxArray = idxString.split(':'); idxNumber = idxArray[0].split(' '); gameNumber = idxNumber[1];
         const gameId = data.gameWeek[0].games[gameNumber].id; console.log(gameId);
-        var requestURL = 'https://corsproxy.io/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        // var requestURL = 'https://corsproxy.io/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
         fetch(requestURL, {
           "method": "GET", "headers": {}
         })
@@ -37,13 +39,13 @@ function getInputValue() {
 
             console.log(data.playerByGameStats.homeTeam); console.log(data.playerByGameStats.homeTeam.goalies);
 
-            function Shifts(playerId, jerseyNumber, name, position, team, shiftsArray) {
+            function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
               this.playerId = playerId;
               this.jerseyNumber = jerseyNumber;
               this.name = name;
               this.position = position;
               this.team = team;
-              this.shiftsArray = []
+              this.shiftsObject = {startTime: [], endTime: []}
             }
 
             for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) {
@@ -75,12 +77,12 @@ function getInputValue() {
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
               .then(function (data_shifts) {
-                console.log('I am in second shift then', data_shifts.data, data_shifts.data.length, data_shifts.data[1].playerId, shiftsArray[0], shiftsArray[0].playerId, typeof shiftsArray[0].shiftsArray);
+                console.log('I am in second shift then', data_shifts.data, data_shifts.data.length, data_shifts.data[1].playerId, shiftsArray[0], shiftsArray[0].playerId, typeof shiftsArray[0].shiftsObject.startTime);
                 // to add script here
                 for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
-                  for (j=0;j<shiftsArray.length;j++) {if (data_shifts.data[i].playerId===shiftsArray[j].playerId) {shiftsArray[j].shiftsArray.add(data_shifts.data[i].startTime), shiftsArray[j].shiftsArray.add(data_shifts.data[i].endTime)}}
+                  for (j=0;j<shiftsArray.length;j++) {if (data_shifts.data[i].playerId===shiftsArray[j].playerId) {shiftsArray[j].shiftsObject.startTime = shiftsArray[j].shiftsObject.startTime + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime = shiftsArray[j].shiftsObject.endTime + ', ' + data_shifts.data[i].endTime}}
                 }}
-                console.log(shiftsArray);
+                console.log(shiftsArray, shiftsArray[2].shiftsObject);
 
               }); // end second .then shifts
 
