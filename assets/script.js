@@ -45,7 +45,7 @@ function getInputValue() {
               this.name = name;
               this.position = position;
               this.team = team;
-              this.shiftsObject = {startTime: [], endTime: []}
+              this.shiftsObject = {startTime1: [], endTime1: [], startTime2: [], endTime2: [], startTime3: [], endTime3: []}
             }
 
             for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) {
@@ -77,10 +77,13 @@ function getInputValue() {
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
               .then(function (data_shifts) {
-                console.log('I am in second shift then', data_shifts.data, data_shifts.data.length, data_shifts.data[1].playerId, shiftsArray[0], shiftsArray[0].playerId, typeof shiftsArray[0].shiftsObject.startTime);
-                // to add script here
+                console.log('I am in second shift then', data_shifts.data, shiftsArray[0]);
                 for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
-                  for (j=0;j<shiftsArray.length;j++) {if (data_shifts.data[i].playerId===shiftsArray[j].playerId) {shiftsArray[j].shiftsObject.startTime = shiftsArray[j].shiftsObject.startTime + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime = shiftsArray[j].shiftsObject.endTime + ', ' + data_shifts.data[i].endTime}}
+                  for (j=0;j<shiftsArray.length;j++) {if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===1)) {shiftsArray[j].shiftsObject.startTime1 = shiftsArray[j].shiftsObject.startTime1 + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime1 = shiftsArray[j].shiftsObject.endTime1 + ', ' + data_shifts.data[i].endTime}
+                  else if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===2)) {shiftsArray[j].shiftsObject.startTime2 = shiftsArray[j].shiftsObject.startTime2 + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime2 = shiftsArray[j].shiftsObject.endTime2 + ', ' + data_shifts.data[i].endTime}
+                  else if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===3)) {shiftsArray[j].shiftsObject.startTime3 = shiftsArray[j].shiftsObject.startTime3 + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime3 = shiftsArray[j].shiftsObject.endTime3 + ', ' + data_shifts.data[i].endTime}
+                  else (console.log ('only three periods count, now it is period ', data_shifts.data[i].period))
+                }
                 }}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
 
