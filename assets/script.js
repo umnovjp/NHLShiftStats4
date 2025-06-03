@@ -3,8 +3,8 @@ var scheduleContent = document.getElementById('schedule'); var gameId; var input
 function getInputValue() {
   var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
   var formatted = date[2] + '-' + date[0] + '-' + date[1];
-  // var requestURL = 'https://corsproxy.io/https://api-web.nhle.com/v1/schedule/' + formatted;
-  var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
+  var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/schedule/' + formatted;
+  // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
   fetch(requestURL, {
     "method": "GET", "headers": {}
   })
@@ -23,8 +23,8 @@ function getInputValue() {
         idx = event.currentTarget; idxString = event.currentTarget.textContent;
         idxArray = idxString.split(':'); idxNumber = idxArray[0].split(' '); gameNumber = idxNumber[1];
         const gameId = data.gameWeek[0].games[gameNumber].id; console.log(gameId);
-        // var requestURL = 'https://corsproxy.io/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
-        var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
         fetch(requestURL, {
           "method": "GET", "headers": {}
         })
@@ -37,7 +37,7 @@ function getInputValue() {
             document.getElementById('gameInfo').appendChild(gameTitle);
             shiftsArray = [];
 
-            console.log(data.playerByGameStats.homeTeam); console.log(data.playerByGameStats.homeTeam.goalies);
+            console.log(data.playerByGameStats.homeTeam);
 
             function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
               this.playerId = playerId;
@@ -76,16 +76,16 @@ function getInputValue() {
            var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
-              .then(function (data_shifts) {
-                console.log('I am in second shift then', data_shifts.data, shiftsArray[0]);
+              .then(function (data_shifts) { console.log('I am in second shift then', data_shifts.data, shiftsArray[0]);
                 for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
                   for (j=0;j<shiftsArray.length;j++) {if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===1)) {shiftsArray[j].shiftsObject.startTime1 = shiftsArray[j].shiftsObject.startTime1 + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime1 = shiftsArray[j].shiftsObject.endTime1 + ', ' + data_shifts.data[i].endTime}
                   else if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===2)) {shiftsArray[j].shiftsObject.startTime2 = shiftsArray[j].shiftsObject.startTime2 + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime2 = shiftsArray[j].shiftsObject.endTime2 + ', ' + data_shifts.data[i].endTime}
                   else if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===3)) {shiftsArray[j].shiftsObject.startTime3 = shiftsArray[j].shiftsObject.startTime3 + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime3 = shiftsArray[j].shiftsObject.endTime3 + ', ' + data_shifts.data[i].endTime}
-                  else (console.log ('only three periods count, now it is period ', data_shifts.data[i].period))
+                  // else (console.log ('only three periods count, now it is period ', data_shifts.data[i].period))
                 }
                 }}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
+                // attempting to write code but not a lot of time today checking lines before 102 and then before 116
 
               }); // end second .then shifts
 

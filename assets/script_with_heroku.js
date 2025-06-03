@@ -71,16 +71,7 @@ function getInputValue() {
               shiftsArray.push(CurrentPlayer)
             }
 
-
-            // for (i=0; i<data.playerByGameStats.homeTeam.goalies.length;i++) { shiftsArray[0].push(data.playerByGameStats.homeTeam.goalies[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.homeTeam.defense.length;i++) { shiftsArray[1].push(data.playerByGameStats.homeTeam.defense[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.homeTeam.forwards.length;i++) { shiftsArray[2].push(data.playerByGameStats.homeTeam.forwards[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.awayTeam.goalies.length;i++) { shiftsArray[3].push(data.playerByGameStats.awayTeam.goalies[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.awayTeam.defense.length;i++) { shiftsArray[4].push(data.playerByGameStats.awayTeam.defense[i].playerId) }
-            // for (i=0; i<data.playerByGameStats.awayTeam.forwards.length;i++) { shiftsArray[5].push(data.playerByGameStats.awayTeam.forwards[i].playerId) }
             console.log(shiftsArray)
-
-
 
             var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
