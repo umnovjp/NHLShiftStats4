@@ -90,6 +90,13 @@ function getInputValue() {
                 // then I created an array of 3 x 1200 0s. that was dArrayTemp2 and fArrayTemp2 in line 105. 
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
+                for (i=1;i<4;i++) { startTimeX='startTime'+i;
+                  console.log(typeof startTimeX, startTimeX, shiftsArray[4].shiftsObject.startTimeX, shiftsArray[4].shiftsObject.startTime1)}
+                  for (i=0;i<shiftsArray.length;i++) {if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {startTimeArray=shiftsArray[4].shiftsObject.startTime1.split(',');
+                    endTimeArray=shiftsArray[4].shiftsObject.endTime1.split(',');
+                    tempArray=[]
+                    for (j=0;j<1200;j++) {tempArray.push(0)}
+                  }}
 
               }); // end second .then shifts
 
