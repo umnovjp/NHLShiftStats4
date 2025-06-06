@@ -92,11 +92,20 @@ function getInputValue() {
                 // then I ran cycle to eliminate end shift start shift pairs ???
                 for (i=1;i<4;i++) { startTimeX='startTime'+i;
                   console.log(typeof startTimeX, startTimeX, shiftsArray[4].shiftsObject.startTimeX, shiftsArray[4].shiftsObject.startTime1)}
+                  tempArrayDH=[]; tempArrayFH=[];tempArrayDA=[];tempArrayFA=[];
+                  for (i=0;i<1200;i++) {tempArrayFH.push(0), tempArrayDH.push(0), tempArrayDA.push(0); tempArrayFA.push(0)}
                   for (i=0;i<shiftsArray.length;i++) {if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {startTimeArray=shiftsArray[4].shiftsObject.startTime1.split(',');
                     endTimeArray=shiftsArray[4].shiftsObject.endTime1.split(',');
-                    tempArray=[]
-                    for (j=0;j<1200;j++) {tempArray.push(0)}
-                  }}
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=startTimeArray[j].split(':')[0]*60+startTimeArray[j].split(':')[1];
+                    endSeconds=endTimeArray[j].split(':')[0]*60+endTimeArray[j].split(':')[1];
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayDH[k]=tempArrayDH[k]+1}
+
+                  }                    
+                    
+                  }
+                console.log(tempArrayDH)
+                }
+                  console.log(startTimeArray, endTimeArray, tempArrayDH)
 
               }); // end second .then shifts
 
