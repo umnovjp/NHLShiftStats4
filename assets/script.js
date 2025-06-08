@@ -92,21 +92,25 @@ function getInputValue() {
                 // then I ran cycle to eliminate end shift start shift pairs ???
                 for (i=1;i<4;i++) { startTimeX='startTime'+i;
                   console.log(typeof startTimeX, startTimeX, shiftsArray[4].shiftsObject.startTimeX, shiftsArray[4].shiftsObject.startTime1)}
-                  tempArrayDH=[]; tempArrayFH=[];tempArrayDA=[];tempArrayFA=[];
+                  tempArrayDH=[]; tempArrayFH=[];tempArrayDA=[];tempArrayFA=[];tempArrayDH1=[];
                   for (i=0;i<1200;i++) {tempArrayFH.push(0), tempArrayDH.push(0), tempArrayDA.push(0); tempArrayFA.push(0)}
                   for (i=0;i<shiftsArray.length;i++) {if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
                     endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
-                  for (j=1;j<startTimeArray.length;j++) {startSeconds=startTimeArray[j].split(':')[0]*60+startTimeArray[j].split(':')[1];
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    for (k=startSeconds;k<endSeconds;k++) {tempArrayDH[k]=tempArrayDH[k]+1}
-
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayDH[k]=tempArrayDH[k]+1;
+                      
+                    }
+                    console.log(startSeconds, endSeconds, startTimeArray.length, startTimeArray[j].split(':')[0]*60)
                   }                    
                     
                   }
-                console.log(tempArrayDH, tempArrayFH)
-                }
-                  console.log(startTimeArray, endTimeArray, tempArrayDH)
-
+                console.log(tempArrayDH)
+                } // end i cycle 
+                  for (i=0;i<1200;i++) {if (tempArrayDH[i]===tempArrayDH[i+1]) {delete(tempArrayDH[i])}}
+                  for (i=0;i<1200;i++) {if (!tempArrayDH[i]) {} else {tempArrayDH1.push(tempArrayDH[i],i)}}
+                  // tempArrayDH1.unshift(0,tempArrayDH[0])
+                console.log(tempArrayDH, tempArrayDH1)
               }); // end second .then shifts
 
           }); // end second .then gamecenter;
