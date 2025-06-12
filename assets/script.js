@@ -110,12 +110,19 @@ function getInputValue() {
                     for (k=startSeconds;k<endSeconds;k++) {tempArrayFH[k]=tempArrayFH[k]+1;                      
                     }}}
                     //start GH 
-                  else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
+                  else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {if (shiftsArray[i].shiftsObject.startTime1.length>1) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
                     endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
                   for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[k]=tempArrayGH[k]+1;  
-                    }}}
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[k]=tempArrayGH[k]+1}
+                  }}
+                  else if (shiftsArray[i].shiftsObject.startTime1.length===0) {}
+                  else {console.log(shiftsArray[i].shiftsObject)
+                    tempIndex1=shiftsArray[i].shiftsObject.startTime1[0].slice(1); tempIndex2=shiftsArray[i].shiftsObject.endTime1[0].slice(1);
+                    startSeconds=Number(tempIndex1.split(':')[0])*60+tempIndex1.split(':')[1];
+                    endSeconds=Number(tempIndex2.split(':')[0])*60+tempIndex1.split(':')[1];
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[k]=tempArrayGH[k]+1}
+                  }}
                     if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
                       endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
                     for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
@@ -130,12 +137,18 @@ function getInputValue() {
                     for (k=startSeconds;k<endSeconds;k++) {tempArrayFA[k]=tempArrayFA[k]+1;                      
                     }}}
                     //start GA
-                  else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
-                    endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
-                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    for (k=startSeconds;k<endSeconds;k++) {tempArrayGA[k]=tempArrayGA[k]+1
-                    }}}
+                    else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {if (shiftsArray[i].shiftsObject.startTime1.length>1) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
+                      endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
+                    for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                      endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                      for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[k]=tempArrayGH[k]+1}
+                    }}
+                    else if (shiftsArray[i].shiftsObject.startTime1.length===0) {}
+                    else {tempIndex1=shiftsArray[i].shiftsObject.startTime1[0].slice(1); tempIndex2=shiftsArray[i].shiftsObject.endTime1[0].slice(1);
+                      startSeconds=Number(tempIndex1.split(':')[0])*60+tempIndex.split(':')[1];
+                      endSeconds=Number(tempIndex2.split(':')[0])*60+tempIndex.split(':')[1];
+                      for (k=startSeconds;k<endSeconds;k++) {tempArrayGA[k]=tempArrayGA[k]+1}
+                    }}
                 } // end i cycle
                   for (i=0;i<1200;i++) {if (tempArrayDH[i]===tempArrayDH[i+1]) {delete(tempArrayDH[i])}
                   if (tempArrayFH[i]===tempArrayFH[i+1]) {delete(tempArrayFH[i])}
@@ -151,7 +164,7 @@ function getInputValue() {
                   if (!tempArrayFA[i]) {} else {tempArrayFA1.push(tempArrayFA[i],i)}
                   if (!tempArrayGA[i]) {} else {tempArrayGA1.push(tempArrayGA[i],i)}
                 }
-                console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA1, tempArrayFA1, tempArrayGA1)
+                console.log(tempArrayDH1, tempArrayFH1, tempArrayGH, tempArrayDA1, tempArrayFA1, tempArrayGA)
               }); // end second .then shifts
 
           }); // end second .then gamecenter;
