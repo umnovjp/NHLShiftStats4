@@ -12,29 +12,3 @@ fetch(shiftsURL, { "method": "GET", "headers": {} })
         playerIdArray[playerOrder + 1][data_shifts.data[i].period - 1].push(shiftStart2, shiftEnd2)}}
     // 
   }); // end second .then shifts
-
-  if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {if (shiftsArray[i].shiftsObject.startTime1.length>1) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
-    endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
-  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-    for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[k]=tempArrayGH[k]+1}
-  }}
-  else {tempIndex1=shiftsArray[i].shiftsObject.startTime1[0].slice(2); tempIndex2=shiftsArray[i].shiftsObject.endTime1[0].slice(2);
-    startSeconds=Number(tempIndex1.split(':')[0])*60+tempIndex.split(':')[1];
-    endSeconds=Number(tempIndex2.split(':')[0])*60+tempIndex.split(':')[1];
-    for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[k]=tempArrayGH[k]+1}
-  }}
-
-  //start GA
-  else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {if (shiftsArray[i].shiftsObject.startTime1.length>1) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
-    endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
-  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-    for (k=startSeconds;k<endSeconds;k++) {tempArrayGA[k]=tempArrayGA[k]+1}
-  }}
-  else if (shiftsArray[i].shiftsObject.startTime1.length===0) {}
-  else {tempIndex1=shiftsArray[i].shiftsObject.startTime1[0].slice(1); tempIndex2=shiftsArray[i].shiftsObject.endTime1[0].slice(1);
-    startSeconds=Number(tempIndex1.split(':')[0])*60+tempIndex.split(':')[1];
-    endSeconds=Number(tempIndex2.split(':')[0])*60+tempIndex.split(':')[1];
-    for (k=startSeconds;k<endSeconds;k++) {tempArrayGA[k]=tempArrayGA[k]+1}
-  }}

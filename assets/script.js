@@ -91,8 +91,8 @@ function getInputValue() {
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
                 // next cycle to be deleted two lines
-                for (i=1;i<4;i++) { startTimeX='startTime'+i;
-                  console.log(typeof startTimeX, startTimeX, shiftsArray[4].shiftsObject.keys(), shiftsArray[4].shiftsObject.startTime1)}
+                for (i=1;i<4;i++) { startTimeX='startTime'+i; tempObject = shiftsArray[4].shiftsObject
+                  console.log(typeof startTimeX, startTimeX, tempObject.startTimeX, shiftsArray[4].shiftsObject.startTime1)}
                   tempArrayDH=[]; tempArrayFH=[];tempArrayGH=[];tempArrayDA=[];tempArrayFA=[];tempArrayGA=[];tempArrayGH1=[];tempArrayDH1=[];tempArrayFH1=[];tempArrayDA1=[];tempArrayFA1=[];tempArrayGA1=[];
                   for (i=0;i<1200;i++) {tempArrayFH.push(0); tempArrayDH.push(0); tempArrayGH.push(0); tempArrayDA.push(0); tempArrayFA.push(0); tempArrayGA.push(0)}
                   // start DH
@@ -103,12 +103,21 @@ function getInputValue() {
                     for (k=startSeconds;k<endSeconds;k++) {tempArrayDH[k]=tempArrayDH[k]+1;                      
                     }}}                    
                     //start FH 
-                  else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
-                    endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
-                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                  else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {startTimeArray1=shiftsArray[i].shiftsObject.startTime1.split(',');
+                    startTimeArray2=shiftsArray[i].shiftsObject.startTime2.split(',');
+                    startTimeArray3=shiftsArray[i].shiftsObject.startTime3.split(',');
+                    endTimeArray1=shiftsArray[i].shiftsObject.endTime1.split(',');
+                    endTimeArray2=shiftsArray[i].shiftsObject.endTime2.split(',');
+                    endTimeArray3=shiftsArray[i].shiftsObject.endTime3.split(',');
+                    console.log(startTimeArray1.length, startTimeArray2.length, startTimeArray3.length)
+                  for (j=1;j<startTimeArray1.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    for (k=startSeconds;k<endSeconds;k++) {tempArrayFH[k]=tempArrayFH[k]+1;                      
-                    }}}
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayFH[k]=tempArrayFH[k]+1}}
+                    for (j=1;j<4;j++) {startTimeArrayX='startTimeArray'+j;
+                      console.log(startTimeArrayX.length, startTimeArray1.length, startTimeArray2.length, startTimeArray3.length)
+                    }
+                  
+                  }
                     //start GH 
                   else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {if (shiftsArray[i].shiftsObject.startTime1.length>1) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
                     endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
@@ -165,6 +174,7 @@ function getInputValue() {
                   if (!tempArrayGA[i]) {} else {tempArrayGA1.push(tempArrayGA[i],i)}
                 }
                 console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA1, tempArrayFA1, tempArrayGA1)
+                // for (i=0;i<tempArrayFH1.length/2;i++) {if (tempArrayFH1[2*i+2]-tempArrayFH1[2*i]<4 {})}
               }); // end second .then shifts
 
           }); // end second .then gamecenter;
