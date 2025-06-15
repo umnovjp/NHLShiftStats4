@@ -93,7 +93,7 @@ function getInputValue() {
                 // next cycle to be deleted two lines
                 for (i=1;i<4;i++) { startTimeX='startTime'+i; tempObject = shiftsArray[4].shiftsObject
                   console.log(typeof startTimeX, startTimeX, tempObject.startTimeX, shiftsArray[4].shiftsObject.startTime1)}
-                  tempArrayDH=[]; tempArrayFH=[];tempArrayGH=[];tempArrayDA=[];tempArrayFA=[];tempArrayGA=[];tempArrayGH1=[];tempArrayDH1=[];tempArrayFH1=[];tempArrayDA1=[];tempArrayFA1=[];tempArrayGA1=[];
+                  tempArrayDH=[]; tempArrayFH=[];tempArrayGH=[];tempArrayDA=[];tempArrayFA=[];tempArrayGA=[];tempArrayGH1=[[],[],[]];tempArrayDH1=[[],[],[]];tempArrayFH1=[[],[],[]];tempArrayDA1=[[],[],[]];tempArrayFA1=[[],[],[]];tempArrayGA1=[[],[],[]];
                   for (i=0;i<1200;i++) {tempArrayFH.push(0); tempArrayDH.push(0); tempArrayGH.push(0); tempArrayDA.push(0); tempArrayFA.push(0); tempArrayGA.push(0)}
                   // start DH
                   for (i=0;i<shiftsArray.length;i++) {if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
@@ -113,9 +113,12 @@ function getInputValue() {
                   for (j=1;j<startTimeArray1.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
                     for (k=startSeconds;k<endSeconds;k++) {tempArrayFH[k]=tempArrayFH[k]+1}}
-                    for (j=1;j<4;j++) {startTimeArrayX='startTimeArray'+j;
-                      console.log(startTimeArrayX.length, startTimeArray1.length, startTimeArray2.length, startTimeArray3.length)
-                    }
+                    for (j=1;j<startTimeArray2.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                      endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                      for (k=startSeconds;k<endSeconds;k++) {tempArrayFH[k]=tempArrayFH[k]+1}}
+                    // for (j=1;j<4;j++) {startTimeArrayX='startTimeArray'+j;
+                    //   console.log(startTimeArrayX.length, startTimeArray1.length, startTimeArray2.length, startTimeArray3.length)
+                    // }
                   
                   }
                     //start GH 
@@ -166,12 +169,12 @@ function getInputValue() {
                   if (tempArrayFA[i]===tempArrayFA[i+1]) {delete(tempArrayFA[i])}
                   if (tempArrayGA[i]===tempArrayGA[i+1]) {delete(tempArrayGA[i])}
                 }
-                  for (i=0;i<1200;i++) {if (!tempArrayDH[i]) {} else {tempArrayDH1.push(tempArrayDH[i],i)}
-                  if (!tempArrayFH[i]) {} else {tempArrayFH1.push(tempArrayFH[i],i)}
-                  if (!tempArrayGH[i]) {} else {tempArrayGH1.push(tempArrayGH[i],i)}
-                  if (!tempArrayDA[i]) {} else {tempArrayDA1.push(tempArrayDA[i],i)}
-                  if (!tempArrayFA[i]) {} else {tempArrayFA1.push(tempArrayFA[i],i)}
-                  if (!tempArrayGA[i]) {} else {tempArrayGA1.push(tempArrayGA[i],i)}
+                  for (i=0;i<1200;i++) {if (!tempArrayDH[i]) {} else {tempArrayDH1[0].push(tempArrayDH[i],i)}
+                  if (!tempArrayFH[i]) {} else {tempArrayFH1[0].push(tempArrayFH[i],i)}
+                  if (!tempArrayGH[i]) {} else {tempArrayGH1[0].push(tempArrayGH[i],i)}
+                  if (!tempArrayDA[i]) {} else {tempArrayDA1[0].push(tempArrayDA[i],i)}
+                  if (!tempArrayFA[i]) {} else {tempArrayFA1[0].push(tempArrayFA[i],i)}
+                  if (!tempArrayGA[i]) {} else {tempArrayGA1[0].push(tempArrayGA[i],i)}
                 }
                 console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA1, tempArrayFA1, tempArrayGA1)
                 // for (i=0;i<tempArrayFH1.length/2;i++) {if (tempArrayFH1[2*i+2]-tempArrayFH1[2*i]<4 {})}
