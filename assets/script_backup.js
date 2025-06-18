@@ -90,69 +90,123 @@ function getInputValue() {
                 // then I created an array of 3 x 1200 0s. that was dArrayTemp2 and fArrayTemp2 in line 105. 
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
+                // next cycle to be deleted two lines
+                // for (i=1;i<4;i++) { startTimeX='startTime'+i; tempObject = shiftsArray[4].shiftsObject
+                //   console.log(typeof startTimeX, startTimeX, tempObject.startTimeX, shiftsArray[4].shiftsObject.startTime1)}
                   tempArrayDH=[[],[],[]]; tempArrayFH=[[],[],[]];tempArrayGH=[[],[],[]];tempArrayDA=[[],[],[]];tempArrayFA=[[],[],[]];tempArrayGA=[[],[],[]];tempArrayGH1=[[],[],[]];tempArrayDH1=[[],[],[]];tempArrayFH1=[[],[],[]];tempArrayDA1=[[],[],[]];tempArrayFA1=[[],[],[]];tempArrayGA1=[[],[],[]];
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {
                     tempArrayFH[j].push(0); tempArrayDH[j].push(0); tempArrayGH[j].push(1); tempArrayDA[j].push(0); tempArrayFA[j].push(0); tempArrayGA[j].push(1)
                   }}
-                  // start DH, FH, GA, GH, DA, FA
-                  for (i=0;i<shiftsArray.length;i++) {// if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) 
-                    
-                    {if (shiftsArray[i].shiftsObject.startTime1.length>0) {
-                      startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
+                  // start DH
+                  for (i=0;i<shiftsArray.length;i++) {if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) 
+                    {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
                     endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
                   for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    for (k=startSeconds;k<endSeconds;k++) {
-                      if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayDH[0][k]=tempArrayDH[0][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayFH[0][k]=tempArrayFH[0][k]+1}
-                      else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayGH[0][k]=tempArrayGH[0][k]+1}
-                      else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[0][k]=tempArrayDA[0][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[0][k]=tempArrayFA[0][k]+1}
-                      else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayGA[0][k]=tempArrayGA[0][k]+1}
-                    }}}
-                    if (shiftsArray[i].shiftsObject.startTime2.length>0) {
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayDH[0][k]=tempArrayDH[0][k]+1}}
                     startTimeArray=shiftsArray[i].shiftsObject.startTime2.split(',');
                     endTimeArray=shiftsArray[i].shiftsObject.endTime2.split(',');
                   for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    for (k=startSeconds;k<endSeconds;k++) {
-                      if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayDH[1][k]=tempArrayDH[1][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayFH[1][k]=tempArrayFH[1][k]+1}
-                      else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayGH[1][k]=tempArrayGH[1][k]+1}
-                      else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[1][k]=tempArrayDA[1][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[1][k]=tempArrayFA[1][k]+1}
-                      else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayGA[1][k]=tempArrayGA[1][k]+1}
-                    }}}
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayDH[1][k]=tempArrayDH[1][k]+1}}
+                    startTimeArray=shiftsArray[i].shiftsObject.startTime3.split(',');
+                    endTimeArray=shiftsArray[i].shiftsObject.endTime3.split(',');
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayDH[2][k]=tempArrayDH[2][k]+1}}}                    
+                    //start FH 
+                  else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) 
+                  {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
+                    endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayFH[0][k]=tempArrayFH[0][k]+1}}
+                    startTimeArray=shiftsArray[i].shiftsObject.startTime2.split(',');
+                    endTimeArray=shiftsArray[i].shiftsObject.endTime2.split(',');
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayFH[1][k]=tempArrayFH[1][k]+1}}
+                    startTimeArray=shiftsArray[i].shiftsObject.startTime3.split(',');
+                    endTimeArray=shiftsArray[i].shiftsObject.endTime3.split(',');
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayFH[2][k]=tempArrayFH[2][k]+1}}
+                  }
+                    //start GH 
+                  else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) 
+                  {
+                    if (shiftsArray[i].shiftsObject.startTime1.length>0) {
+                    startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
+                    endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',')
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[0][k]=tempArrayGH[0][k]+1}}}
+                    if(shiftsArray[i].shiftsObject.startTime2.length>0) {
+                    startTimeArray=shiftsArray[i].shiftsObject.startTime2.split(',');
+                    endTimeArray=shiftsArray[i].shiftsObject.endTime2.split(',');
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[1][k]=tempArrayGH[1][k]+1}}}
                     if (shiftsArray[i].shiftsObject.startTime3.length>0) {
                     startTimeArray=shiftsArray[i].shiftsObject.startTime3.split(',');
                     endTimeArray=shiftsArray[i].shiftsObject.endTime3.split(',');
                   for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    for (k=startSeconds;k<endSeconds;k++) {
-                      if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayDH[2][k]=tempArrayDH[2][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayFH[2][k]=tempArrayFH[2][k]+1}
-                      else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayGH[2][k]=tempArrayGH[2][k]+1}
-                      else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[2][k]=tempArrayDA[2][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[2][k]=tempArrayFA[2][k]+1}
-                      else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayGA[2][k]=tempArrayGA[2][k]+1}
-                    }}}}                    
-                    
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayGH[2][k]=tempArrayGH[2][k]+1}}}
+                  }
+                  // start DA
+                    if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) 
+                      {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
+                        endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
+                      for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                        endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                        for (k=startSeconds;k<endSeconds;k++) {tempArrayDA[0][k]=tempArrayDA[0][k]+1}}
+                        startTimeArray=shiftsArray[i].shiftsObject.startTime2.split(',');
+                        endTimeArray=shiftsArray[i].shiftsObject.endTime2.split(',');
+                      for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                        endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                        for (k=startSeconds;k<endSeconds;k++) {tempArrayDA[1][k]=tempArrayDA[1][k]+1}}
+                        startTimeArray=shiftsArray[i].shiftsObject.startTime3.split(',');
+                        endTimeArray=shiftsArray[i].shiftsObject.endTime3.split(',');
+                      for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                        endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                        for (k=startSeconds;k<endSeconds;k++) {tempArrayDA[2][k]=tempArrayDA[2][k]+1}}} 
+                  //start FA
+                  else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
+                    endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
+                  for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    for (k=startSeconds;k<endSeconds;k++) {tempArrayFA[k]=tempArrayFA[k]+1;                      
+                    }}}
+                    //start GA
+                    else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {if (shiftsArray[i].shiftsObject.startTime1.length>1) {startTimeArray=shiftsArray[i].shiftsObject.startTime1.split(',');
+                      endTimeArray=shiftsArray[i].shiftsObject.endTime1.split(',');
+                    for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                      endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                      for (k=startSeconds;k<endSeconds;k++) {tempArrayGA[k]=tempArrayGA[k]+1}
+                    }}
+                    else if (shiftsArray[i].shiftsObject.startTime1.length===0) {}
+                    else {tempIndex1=shiftsArray[i].shiftsObject.startTime1[0].slice(1); tempIndex2=shiftsArray[i].shiftsObject.endTime1[0].slice(1);
+                      startSeconds=Number(tempIndex1.split(':')[0])*60+tempIndex.split(':')[1];
+                      endSeconds=Number(tempIndex2.split(':')[0])*60+tempIndex.split(':')[1];
+                      for (k=startSeconds;k<endSeconds;k++) {tempArrayGA[k]=tempArrayGA[k]+1}
+                    }}
                 } // end i cycle
                 
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {if (tempArrayDH[j][i]===tempArrayDH[j][i+1]) {delete(tempArrayDH[j][i])}
                   if (tempArrayFH[j][i]===tempArrayFH[j][i+1]) {delete(tempArrayFH[j][i])}
                   if (tempArrayGH[j][i]===tempArrayGH[j][i+1]) {delete(tempArrayGH[j][i])}
-                  if (tempArrayDA[j][i]===tempArrayDA[j][i+1]) {delete(tempArrayDA[j][i])}
-                  if (tempArrayFA[j][i]===tempArrayFA[j][i+1]) {delete(tempArrayFA[j][i])}
-                  if (tempArrayGA[j][i]===tempArrayGA[j][i+1]) {delete(tempArrayGA[j][i])}
+                  if (tempArrayDA[j][i]===tempArrayDA[i+1]) {delete(tempArrayDA[j][i])}
+                  if (tempArrayFA[i]===tempArrayFA[i+1]) {delete(tempArrayFA[i])}
+                  if (tempArrayGA[i]===tempArrayGA[i+1]) {delete(tempArrayGA[i])}
                 }}
                 console.log(tempArrayGH, tempArrayDH)
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {if (!tempArrayDH[j][i]) {} else {tempArrayDH1[j].push(tempArrayDH[j][i],i)}
                   if (!tempArrayFH[j][i]) {} else {tempArrayFH1[j].push(tempArrayFH[j][i],i)}
                   if (!tempArrayGH[j][i]) {} else {tempArrayGH1[j].push(tempArrayGH[j][i],i)}
-                  if (!tempArrayDA[j][i]) {} else {tempArrayDA1[j].push(tempArrayDA[j][i],i)}
-                  if (!tempArrayFA[j][i]) {} else {tempArrayFA1[j].push(tempArrayFA[j][i],i)}
-                  if (!tempArrayGA[j][i]) {} else {tempArrayGA1[j].push(tempArrayGA[j][i],i)}
+                  if (!tempArrayDA[j][i]) {} else {tempArrayDA1[0].push(tempArrayDA[j][i],i)}
+                  if (!tempArrayFA[i]) {} else {tempArrayFA1[0].push(tempArrayFA[i],i)}
+                  if (!tempArrayGA[i]) {} else {tempArrayGA1[0].push(tempArrayGA[i],i)}
                 }}
                 console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA1, tempArrayFA1, tempArrayGA1)
                 // for (i=0;i<tempArrayFH1.length/2;i++) {if (tempArrayFH1[2*i+2]-tempArrayFH1[2*i]<4 {})}
