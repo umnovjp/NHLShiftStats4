@@ -80,13 +80,9 @@ function getInputValue() {
                 for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
                   for (j=0;j<shiftsArray.length;j++) { for (k=0;k<3;k++) {
                     if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===k+1)) {shiftsArray[j].shiftsObject.startTime[k] = shiftsArray[j].shiftsObject.startTime[k] + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime}}
-                  // else if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===2)) {shiftsArray[j].shiftsObject.startTime[1] = shiftsArray[j].shiftsObject.startTime[1] + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime[1] = shiftsArray[j].shiftsObject.endTime[1] + ', ' + data_shifts.data[i].endTime}
-                  // else if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===3)) {shiftsArray[j].shiftsObject.startTime[2] = shiftsArray[j].shiftsObject.startTime[2] + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime[2] = shiftsArray[j].shiftsObject.endTime[2] + ', ' + data_shifts.data[i].endTime}
-                  // else (console.log ('only three periods count, now it is period ', data_shifts.data[i].period))
-                }
+                      }
                 }}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
-                // attempting to write code but not a lot of time today checking lines before 102 and then before 116
                 // reading old script it is quite difficult. ok I have analog of dArray and fArray. Then I created dArrayTemp and fArayTemp in lines 100, 101. Just combined all d shifts and all f shifts. 
                 // then I created an array of 3 x 1200 0s. that was dArrayTemp2 and fArrayTemp2 in line 105. 
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
@@ -109,35 +105,7 @@ function getInputValue() {
                       else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[h][k]=tempArrayDA[h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[h][k]=tempArrayFA[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayGA[h][k]=tempArrayGA[h][k]+1}
-                    }}}
-                    // if (shiftsArray[i].shiftsObject.startTime2.length>0) {
-                    // startTimeArray=shiftsArray[i].shiftsObject.startTime2.split(',');
-                    // endTimeArray=shiftsArray[i].shiftsObject.endTime2.split(',');
-                    // for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-                    // endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    // for (k=startSeconds;k<endSeconds;k++) {
-                    //   if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayDH[1][k]=tempArrayDH[1][k]+1}
-                    //   else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayFH[1][k]=tempArrayFH[1][k]+1}
-                    //   else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayGH[1][k]=tempArrayGH[1][k]+1}
-                    //   else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[1][k]=tempArrayDA[1][k]+1}
-                    //   else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[1][k]=tempArrayFA[1][k]+1}
-                    //   else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayGA[1][k]=tempArrayGA[1][k]+1}
-                    // }}}
-                    // if (shiftsArray[i].shiftsObject.startTime3.length>0) {
-                    // startTimeArray=shiftsArray[i].shiftsObject.startTime3.split(',');
-                    // endTimeArray=shiftsArray[i].shiftsObject.endTime3.split(',');
-                    // for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-                    // endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    // for (k=startSeconds;k<endSeconds;k++) {
-                    //   if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayDH[2][k]=tempArrayDH[2][k]+1}
-                    //   else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayFH[2][k]=tempArrayFH[2][k]+1}
-                    //   else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayGH[2][k]=tempArrayGH[2][k]+1}
-                    //   else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[2][k]=tempArrayDA[2][k]+1}
-                    //   else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[2][k]=tempArrayFA[2][k]+1}
-                    //   else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayGA[2][k]=tempArrayGA[2][k]+1}
-                    // }}}
-                  }                    
-                    
+                    }}}}
                 }} // end i,h cycle
                 
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {if (tempArrayDH[j][i]===tempArrayDH[j][i+1]) {delete(tempArrayDH[j][i])}
@@ -147,7 +115,7 @@ function getInputValue() {
                   if (tempArrayFA[j][i]===tempArrayFA[j][i+1]) {delete(tempArrayFA[j][i])}
                   if (tempArrayGA[j][i]===tempArrayGA[j][i+1]) {delete(tempArrayGA[j][i])}
                 }}
-                console.log(tempArrayDA, tempArrayFA)
+                // console.log(tempArrayDA, tempArrayFA)
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {if (!tempArrayDH[j][i]) {} else {tempArrayDH1[j].push(tempArrayDH[j][i],i)}
                   if (!tempArrayFH[j][i]) {} else {tempArrayFH1[j].push(tempArrayFH[j][i],i)}
                   if (!tempArrayGH[j][i]) {} else {tempArrayGH1[j].push(tempArrayGH[j][i],i)}
@@ -155,8 +123,21 @@ function getInputValue() {
                   if (!tempArrayFA[j][i]) {} else {tempArrayFA1[j].push(tempArrayFA[j][i],i)}
                   if (!tempArrayGA[j][i]) {} else {tempArrayGA1[j].push(tempArrayGA[j][i],i)}
                 }}
-                console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA1, tempArrayFA1, tempArrayGA1)
-                // for (i=0;i<tempArrayFH1.length/2;i++) {if (tempArrayFH1[2*i+2]-tempArrayFH1[2*i]<4 {})}
+                console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA1, tempArrayFA1, tempArrayGA1);
+                fiveOnFive=[[],[],[]]
+                for (i=0;i<3;i++) {
+                  if (tempArrayDH1[i][0]===2) {fiveOnFive[i].push(0)}
+                  // else condition is not really clean because 2 may be 2nd second as well but for D it is unlikely that penalty expires on 2nd second and they started with 4F and 1D
+                  else {tempIndex=tempArrayDH1[i].indexOf(2)
+                    fiveOnFive[i].push(tempArrayDA1[tempIndex+1])
+                  }
+                  for (j=0;j<tempArrayDA1[i].length/2-1;j++) {
+                    if ((tempArrayDA1[i][2*j+3]-tempArrayDA1[i][2*j+1]<4)&&(tempArrayDA1[i][2*j]===2)) {}
+                      else {fiveOnFive[i].push(tempArrayDA1[i][2*j+1])}
+                    
+                  }
+                }
+                console.log(fiveOnFive)
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
