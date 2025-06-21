@@ -34,10 +34,8 @@ function getInputValue() {
             document.getElementById('schedule').appendChild(gameInfo);
             var gameTitle = document.createElement('h2'); gameTitle.textContent = '';
             gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on ' + formatted;
-            document.getElementById('gameInfo').appendChild(gameTitle);
-            shiftsArray = [];
-
-            console.log(data.playerByGameStats.homeTeam);
+            document.getElementById('gameInfo').appendChild(gameTitle); shiftsArray = [];
+            // console.log(data.playerByGameStats.homeTeam);
 
             function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
               this.playerId = playerId;
@@ -83,7 +81,7 @@ function getInputValue() {
                       }
                 }}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
-                // reading old script it is quite difficult. ok I have analog of dArray and fArray. Then I created dArrayTemp and fArayTemp in lines 100, 101. Just combined all d shifts and all f shifts. 
+                // ok I have analog of dArray and fArray. Then I created dArrayTemp and fArayTemp in lines 100, 101. Just combined all d shifts and all f shifts. 
                 // then I created an array of 3 x 1200 0s. that was dArrayTemp2 and fArrayTemp2 in line 105. 
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
@@ -132,12 +130,11 @@ function getInputValue() {
                     fiveOnFive[i].push(tempArrayDA1[tempIndex+1])
                   }
                   for (j=0;j<tempArrayDA1[i].length/2-1;j++) {
-                    if ((tempArrayDA1[i][2*j+3]-tempArrayDA1[i][2*j+1]<4)&&(tempArrayDA1[i][2*j]===2)) {}
+                    if (tempArrayDA1[i][2*j+3]-tempArrayDA1[i][2*j+1]<4) {}
                       else {fiveOnFive[i].push(tempArrayDA1[i][2*j+1])}
-                    
                   }
                 }
-                console.log(fiveOnFive)
+                console.log(fiveOnFive);
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
