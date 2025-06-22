@@ -122,19 +122,25 @@ function getInputValue() {
                   if (!tempArrayGA[j][i]) {} else {tempArrayGA1[j].push(tempArrayGA[j][i],i)}
                 }}
                 console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA1, tempArrayFA1, tempArrayGA1);
-                fiveOnFive=[[],[],[]]
-                for (i=0;i<3;i++) {
-                  if (tempArrayDH1[i][0]===2) {fiveOnFive[i].push(0)}
-                  // else condition is not really clean because 2 may be 2nd second as well but for D it is unlikely that penalty expires on 2nd second and they started with 4F and 1D
-                  else {tempIndex=tempArrayDH1[i].indexOf(2)
-                    fiveOnFive[i].push(tempArrayDA1[tempIndex+1])
-                  }
-                  for (j=0;j<tempArrayDA1[i].length/2-1;j++) {
-                    if (tempArrayDA1[i][2*j+3]-tempArrayDA1[i][2*j+1]<4) {}
-                      else {fiveOnFive[i].push(tempArrayDA1[i][2*j+1])}
-                  }
-                }
-                console.log(fiveOnFive);
+                fiveOnFive=[[],[],[]]; fiveOnFive3=[[],[],[]]
+                for (i=0;i<3;i++) {for (j=tempArrayDA1[i].length/2-1; j>0; j--) {if (tempArrayDA1[i][2*j+1]-tempArrayDA1[i][2*j-1]<4) {
+                  tempArray1=tempArrayDA1[i].slice(0,2*j-2); tempArray2=tempArrayDA1[i].slice(2*j+2);
+                  if (i===0) {console.log(tempArray1, tempArray2)}
+                     fiveOnFive3[i]=tempArray1.concat(tempArray2)
+                }}}
+                console.log(fiveOnFive3)
+                // for (i=0;i<3;i++) {
+                //   if (tempArrayDH1[i][0]===2) {fiveOnFive[i].push(0)}
+                //   // else condition is not really clean because 2 may be 2nd second as well but for D it is unlikely that penalty expires on 2nd second and they started with 4F and 1D
+                //   else {tempIndex=tempArrayDH1[i].indexOf(2)
+                //     fiveOnFive[i].push(tempArrayDA1[tempIndex+1])
+                //   }
+                //   for (j=0;j<tempArrayDA1[i].length/2-1;j++) {
+                //     if (tempArrayDA1[i][2*j+3]-tempArrayDA1[i][2*j+1]<4) {}
+                //       else {fiveOnFive[i].push(tempArrayDA1[i][2*j+1])}
+                //   }
+                // }
+                // console.log(fiveOnFive);
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
