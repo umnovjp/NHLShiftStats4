@@ -85,7 +85,7 @@ function getInputValue() {
                 // then I created an array of 3 x 1200 0s. that was dArrayTemp2 and fArrayTemp2 in line 105. 
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
-                  tempArrayDH=[[],[],[]]; tempArrayFH=[[],[],[]];tempArrayGH=[[],[],[]];tempArrayDA=[[],[],[]];tempArrayFA=[[],[],[]];tempArrayGA=[[],[],[]];tempArrayGH1=[[],[],[]];tempArrayDH1=[[],[],[]];tempArrayFH1=[[],[],[]];tempArrayDA1=[[],[],[]];tempArrayFA1=[[],[],[]];tempArrayGA1=[[],[],[]];
+                  tempArrayDH=[[],[],[]]; tempArrayFH=[[],[],[]];tempArrayGH=[[],[],[]];tempArrayDA=[[],[],[]];tempArrayFA=[[],[],[]];tempArrayGA=[[],[],[]];tempArrayGH1=[[],[],[]];tempArrayDH1=[[],[],[]];tempArrayFH1=[[],[],[]];tempArrayDA1=[[],[],[]];tempArrayDA2=[[],[],[]];tempArrayFA1=[[],[],[]];tempArrayGA1=[[],[],[]];
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {
                     tempArrayFH[j].push(0); tempArrayDH[j].push(0); tempArrayGH[j].push(1); tempArrayDA[j].push(0); tempArrayFA[j].push(0); tempArrayGA[j].push(1)
                   }}
@@ -117,30 +117,20 @@ function getInputValue() {
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {if (!tempArrayDH[j][i]) {} else {tempArrayDH1[j].push(tempArrayDH[j][i],i)}
                   if (!tempArrayFH[j][i]) {} else {tempArrayFH1[j].push(tempArrayFH[j][i],i)}
                   if (!tempArrayGH[j][i]) {} else {tempArrayGH1[j].push(tempArrayGH[j][i],i)}
-                  if (!tempArrayDA[j][i]) {} else {tempArrayDA1[j].push(tempArrayDA[j][i],i)}
+                  if (!tempArrayDA[j][i]) {} else {tempArrayDA1[j].push(tempArrayDA[j][i],i); tempArrayDA2[j].push(tempArrayDA[j][i],i)}
                   if (!tempArrayFA[j][i]) {} else {tempArrayFA1[j].push(tempArrayFA[j][i],i)}
                   if (!tempArrayGA[j][i]) {} else {tempArrayGA1[j].push(tempArrayGA[j][i],i)}
                 }}
-                console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA1, tempArrayFA1, tempArrayGA1);
-                fiveOnFive=[[],[],[]]; fiveOnFive3=[[],[],[]]
-                for (i=0;i<3;i++) {for (j=tempArrayDA1[i].length/2-1; j>0; j--) {if (tempArrayDA1[i][2*j+1]-tempArrayDA1[i][2*j-1]<4) {
-                  tempArray1=tempArrayDA1[i].slice(0,2*j-2); tempArray2=tempArrayDA1[i].slice(2*j+2);
+                console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA2, tempArrayFA1, tempArrayGA1);
+                fiveOnFive=[[],[],[]]; fiveOnFive3=tempArrayDA1;
+                // fiveOnFive3=fiveOnFive2;
+                for (i=0;i<3;i++) {for (j=tempArrayDA1[i].length/2-1; j>0; j--) {if (fiveOnFive3[i][2*j+1]-fiveOnFive3[i][2*j-1]<4) {
+                  tempArray1=fiveOnFive3[i].slice(0,2*j-2); tempArray2=fiveOnFive3[i].slice(2*j+2);
                   if (i===0) {console.log(tempArray1, tempArray2)}
                      fiveOnFive3[i]=tempArray1.concat(tempArray2)
                 }}}
                 console.log(fiveOnFive3)
-                // for (i=0;i<3;i++) {
-                //   if (tempArrayDH1[i][0]===2) {fiveOnFive[i].push(0)}
-                //   // else condition is not really clean because 2 may be 2nd second as well but for D it is unlikely that penalty expires on 2nd second and they started with 4F and 1D
-                //   else {tempIndex=tempArrayDH1[i].indexOf(2)
-                //     fiveOnFive[i].push(tempArrayDA1[tempIndex+1])
-                //   }
-                //   for (j=0;j<tempArrayDA1[i].length/2-1;j++) {
-                //     if (tempArrayDA1[i][2*j+3]-tempArrayDA1[i][2*j+1]<4) {}
-                //       else {fiveOnFive[i].push(tempArrayDA1[i][2*j+1])}
-                //   }
-                // }
-                // console.log(fiveOnFive);
+
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
