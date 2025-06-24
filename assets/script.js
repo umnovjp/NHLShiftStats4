@@ -122,14 +122,21 @@ function getInputValue() {
                   if (!tempArrayGA[j][i]) {} else {tempArrayGA1[j].push(tempArrayGA[j][i],i)}
                 }}
                 console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA2, tempArrayFA1, tempArrayGA1);
-                fiveOnFive=[[],[],[]]; fiveOnFive3=tempArrayDA1;
+                fiveOnFive=[[],[],[]]; fiveOnFive3=tempArrayDA1; fiveOnFive4=tempArrayFA1;
                 // fiveOnFive3=fiveOnFive2;
                 for (i=0;i<3;i++) {for (j=tempArrayDA1[i].length/2-1; j>0; j--) {if (fiveOnFive3[i][2*j+1]-fiveOnFive3[i][2*j-1]<4) {
                   tempArray1=fiveOnFive3[i].slice(0,2*j-2); tempArray2=fiveOnFive3[i].slice(2*j+2);
                   if (i===0) {console.log(tempArray1, tempArray2)}
                      fiveOnFive3[i]=tempArray1.concat(tempArray2)
-                }}}
-                console.log(fiveOnFive3)
+                }}
+                for (j=tempArrayFA1[i].length/2-1; j>0; j--) {if (fiveOnFive4[i][2*j+1]-fiveOnFive4[i][2*j-1]<4) {
+                  tempArray1=fiveOnFive4[i].slice(0,2*j-2); tempArray2=fiveOnFive4[i].slice(2*j+2);
+                  if (i===0) {console.log(tempArray1, tempArray2)}
+                     fiveOnFive4[i]=tempArray1.concat(tempArray2)
+                }}
+              }
+          
+                console.log(fiveOnFive3, fiveOnFive4)
 
               }); // end second .then shifts
           }); // end second .then gamecenter;
