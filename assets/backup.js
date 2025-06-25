@@ -126,3 +126,4 @@ length
 
 // Shifts Harley 12:41-13:35 and Ceci 13:35-13:45 not counted 1st period game 5/29
 // then script shows stars played with 3d at 241-250 in 2nd but 44 played 4:03-5:58 Miro played 3:16-4:26 no 3D before that EDM penalty just expired we played with 1D they played with 1D previous 2 minutes on PP
+// players around 241-250 in 2nd it was a PP: EDM 92 3:16-4:08 42 2:59-4:07 96 3:15-4:11 2 3:16-4:08 DAL 64 3:03-4:09 21 3:18-4:03 91 2:59-4:06 27 3:00-4:09 4 3:16-4:26

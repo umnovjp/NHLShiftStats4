@@ -3,8 +3,8 @@ var scheduleContent = document.getElementById('schedule'); var gameId; var input
 function getInputValue() {
   var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
   var formatted = date[2] + '-' + date[0] + '-' + date[1];
-  var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/schedule/' + formatted;
-  // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
+  // var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/schedule/' + formatted;
+  var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
   fetch(requestURL, {
     "method": "GET", "headers": {}
   })
@@ -23,8 +23,8 @@ function getInputValue() {
         idx = event.currentTarget; idxString = event.currentTarget.textContent;
         idxArray = idxString.split(':'); idxNumber = idxArray[0].split(' '); gameNumber = idxNumber[1];
         const gameId = data.gameWeek[0].games[gameNumber].id; console.log(gameId);
-        var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
-        // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        // var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
         fetch(requestURL, {
           "method": "GET", "headers": {}
         })
@@ -71,7 +71,9 @@ function getInputValue() {
               shiftsArray.push(CurrentPlayer)
             }
 
-           var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
+           // var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
+           // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+           var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
               .then(function (data_shifts) { console.log('I am in second shift then', data_shifts.data, shiftsArray[0]);
@@ -86,8 +88,10 @@ function getInputValue() {
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
                   tempArrayDH=[[],[],[]]; tempArrayFH=[[],[],[]];tempArrayGH=[[],[],[]];tempArrayDA=[[],[],[]];tempArrayFA=[[],[],[]];tempArrayGA=[[],[],[]];tempArrayGH1=[[],[],[]];tempArrayDH1=[[],[],[]];tempArrayFH1=[[],[],[]];tempArrayDA1=[[],[],[]];tempArrayDA2=[[],[],[]];tempArrayFA1=[[],[],[]];tempArrayGA1=[[],[],[]];
+                  tempArrayDA2=[[],[],[]]; tempArrayFA2=[[],[],[]]; 
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {
                     tempArrayFH[j].push(0); tempArrayDH[j].push(0); tempArrayGH[j].push(1); tempArrayDA[j].push(0); tempArrayFA[j].push(0); tempArrayGA[j].push(1)
+                    tempArrayDA2[j].push(0), tempArrayFA2.push(0)
                   }}
                   // start DH, FH, GA, GH, DA, FA
                   for (i=0;i<shiftsArray.length;i++) { for (h=0;h<3;h++) { // i is players but h is 3 periods                    
@@ -100,8 +104,8 @@ function getInputValue() {
                       if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayDH[h][k]=tempArrayDH[h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayFH[h][k]=tempArrayFH[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayGH[h][k]=tempArrayGH[h][k]+1}
-                      else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[h][k]=tempArrayDA[h][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[h][k]=tempArrayFA[h][k]+1}
+                      else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[h][k]=tempArrayDA[h][k]+1; tempArrayDA2[h][k]=tempArrayDA2[h][k]+1}
+                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[h][k]=tempArrayFA[h][k]+1; tempArrayFA2[h][k]=tempArrayFA2[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayGA[h][k]=tempArrayGA[h][k]+1}
                     }}}}
                 }} // end i,h cycle
@@ -136,7 +140,7 @@ function getInputValue() {
                 }}
               }
           
-                console.log(fiveOnFive3, fiveOnFive4)
+                console.log(fiveOnFive3, fiveOnFive4, tempArrayDA2, tempArrayFA2)
 
               }); // end second .then shifts
           }); // end second .then gamecenter;
