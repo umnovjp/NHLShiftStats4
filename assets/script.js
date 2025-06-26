@@ -46,18 +46,12 @@ function getInputValue() {
               this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}
             }
 
-            for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) {
-              const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.goalies[i].playerId, data.playerByGameStats.homeTeam.goalies[i].sweaterNumber, data.playerByGameStats.homeTeam.goalies[i].name, 'G', 'H');
-              shiftsArray.push(CurrentPlayer)
-            }
-            for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) {
-              const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.defense[i].playerId, data.playerByGameStats.homeTeam.defense[i].sweaterNumber, data.playerByGameStats.homeTeam.defense[i].name, 'D', 'H');
-              shiftsArray.push(CurrentPlayer)
-            }
-            for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) {
-              const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.forwards[i].playerId, data.playerByGameStats.homeTeam.forwards[i].sweaterNumber, data.playerByGameStats.homeTeam.forwards[i].name, 'F', 'H');
-              shiftsArray.push(CurrentPlayer)
-            }
+            for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.goalies[i].playerId, data.playerByGameStats.homeTeam.goalies[i].sweaterNumber, data.playerByGameStats.homeTeam.goalies[i].name, 'G', 'H');
+              shiftsArray.push(CurrentPlayer)}
+            for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.defense[i].playerId, data.playerByGameStats.homeTeam.defense[i].sweaterNumber, data.playerByGameStats.homeTeam.defense[i].name, 'D', 'H');
+              shiftsArray.push(CurrentPlayer)}
+            for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.forwards[i].playerId, data.playerByGameStats.homeTeam.forwards[i].sweaterNumber, data.playerByGameStats.homeTeam.forwards[i].name, 'F', 'H');
+              shiftsArray.push(CurrentPlayer)}
             for (i = 0; i < data.playerByGameStats.awayTeam.goalies.length; i++) {
               const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.goalies[i].playerId, data.playerByGameStats.awayTeam.goalies[i].sweaterNumber, data.playerByGameStats.awayTeam.goalies[i].name, 'G', 'A');
               shiftsArray.push(CurrentPlayer)
@@ -88,10 +82,10 @@ function getInputValue() {
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
                   tempArrayDH=[[],[],[]]; tempArrayFH=[[],[],[]];tempArrayGH=[[],[],[]];tempArrayDA=[[],[],[]];tempArrayFA=[[],[],[]];tempArrayGA=[[],[],[]];tempArrayGH1=[[],[],[]];tempArrayDH1=[[],[],[]];tempArrayFH1=[[],[],[]];tempArrayDA1=[[],[],[]];tempArrayDA2=[[],[],[]];tempArrayFA1=[[],[],[]];tempArrayGA1=[[],[],[]];
-                  tempArrayDA2=[[],[],[]]; tempArrayFA2=[[],[],[]]; 
+                  tempArrayDA3=[[],[],[]]; tempArrayFA2=[[],[],[]]; 
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) {
                     tempArrayFH[j].push(0); tempArrayDH[j].push(0); tempArrayGH[j].push(1); tempArrayDA[j].push(0); tempArrayFA[j].push(0); tempArrayGA[j].push(1)
-                    tempArrayDA2[j].push(0), tempArrayFA2.push(0)
+                    tempArrayDA3[j].push(0); tempArrayFA2[j].push(0)
                   }}
                   // start DH, FH, GA, GH, DA, FA
                   for (i=0;i<shiftsArray.length;i++) { for (h=0;h<3;h++) { // i is players but h is 3 periods                    
@@ -104,7 +98,7 @@ function getInputValue() {
                       if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayDH[h][k]=tempArrayDH[h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayFH[h][k]=tempArrayFH[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayGH[h][k]=tempArrayGH[h][k]+1}
-                      else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[h][k]=tempArrayDA[h][k]+1; tempArrayDA2[h][k]=tempArrayDA2[h][k]+1}
+                      else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayDA[h][k]=tempArrayDA[h][k]+1; tempArrayDA3[h][k]=tempArrayDA2[h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayFA[h][k]=tempArrayFA[h][k]+1; tempArrayFA2[h][k]=tempArrayFA2[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayGA[h][k]=tempArrayGA[h][k]+1}
                     }}}}
@@ -140,7 +134,7 @@ function getInputValue() {
                 }}
               }
           
-                console.log(fiveOnFive3, fiveOnFive4, tempArrayDA2, tempArrayFA2)
+                console.log(fiveOnFive3, fiveOnFive4, tempArrayDA3, tempArrayFA2)
 
               }); // end second .then shifts
           }); // end second .then gamecenter;
