@@ -3,8 +3,8 @@ var scheduleContent = document.getElementById('schedule'); var gameId; var input
 function getInputValue() {
   var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
   var formatted = date[2] + '-' + date[0] + '-' + date[1];
-  var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/schedule/' + formatted;
-  // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
+  // var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/schedule/' + formatted;
+  var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
   fetch(requestURL, {
     "method": "GET", "headers": {}
   })
@@ -16,12 +16,12 @@ function getInputValue() {
         gameName.innerHTML = 'Game ' + i + ': ' + data.gameWeek[0].games[i].awayTeam.abbrev + ' vs ' + data.gameWeek[0].games[i].homeTeam.abbrev;
         document.getElementById('schedule').appendChild(gameName); gameName.addEventListener('click', displayGameData);
       }
-
+      
       function displayGameData(event) { idx = event.currentTarget; idxString = event.currentTarget.textContent;
         idxArray = idxString.split(':'); idxNumber = idxArray[0].split(' '); gameNumber = idxNumber[1];
         const gameId = data.gameWeek[0].games[gameNumber].id; console.log(gameId);
-        var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
-        // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        // var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
+        var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
         fetch(requestURL, {
           "method": "GET", "headers": {}
         })
@@ -56,9 +56,9 @@ function getInputValue() {
             for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.forwards[i].playerId, data.playerByGameStats.awayTeam.forwards[i].sweaterNumber, data.playerByGameStats.awayTeam.forwards[i].name, 'F', 'A');
               shiftsArray.push(CurrentPlayer)}
 
-           var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
+           // var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
            // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
-           // var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
+           var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
               .then(function (data_shifts) { console.log('I am in second shift then', data_shifts.data, shiftsArray[0]);
@@ -111,7 +111,7 @@ function getInputValue() {
                   if (!tempArrayGA[j][i]) {} else {tempArrayGA1[j].push(tempArrayGA[j][i],i)}
                 }}
                 console.log(tempArrayDH1, tempArrayFH1, tempArrayGH1, tempArrayDA2, tempArrayFA1, tempArrayGA1);
-                fiveOnFive=[[],[],[]]; fiveOnFive3=tempArrayDA1; fiveOnFive4=tempArrayFA1;
+                fiveOnFive=[[],[],[]]; fiveOnFive3=tempArrayDA1; fiveOnFive4=tempArrayFA1; fiveOnFive5=tempArrayGA1;
                 // fiveOnFive3=fiveOnFive2;
                 for (i=0;i<3;i++) {for (j=tempArrayDA1[i].length/2-1; j>0; j--) {if (fiveOnFive3[i][2*j+1]-fiveOnFive3[i][2*j-1]<4) {
                   tempArray1=fiveOnFive3[i].slice(0,2*j-2); tempArray2=fiveOnFive3[i].slice(2*j+2);
@@ -123,9 +123,14 @@ function getInputValue() {
                   if (i===0) {console.log(tempArray1, tempArray2)}
                      fiveOnFive4[i]=tempArray1.concat(tempArray2)
                 }}
+                for (j=tempArrayGA1[i].length/2-1; j>0; j--) {if (fiveOnFive5[i][2*j+1]-fiveOnFive5[i][2*j-1]<4) {
+                  tempArray1=fiveOnFive5[i].slice(0,2*j-2); tempArray2=fiveOnFive5[i].slice(2*j+2);
+                  if (i===0) {console.log(tempArray1, tempArray2)}
+                     fiveOnFive5[i]=tempArray1.concat(tempArray2)
+                }}
               }
           
-                console.log(fiveOnFive3, fiveOnFive4, tempArrayDA3, tempArrayFA2)
+                console.log(fiveOnFive3, fiveOnFive4, fiveOnFive5)
 
               }); // end second .then shifts
           }); // end second .then gamecenter;
