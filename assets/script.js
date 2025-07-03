@@ -124,10 +124,10 @@ function getInputValue() {
                 // if (i===0) {console.log(tempArray1, tempArray2)}
                    fiveOnFive5[i]=tempArray1.concat(tempArray2)
               }}
-
+              // to add script here
             }
           
-                console.log(fiveOnFive3, fiveOnFive4, fiveOnFive5)
+                 console.log(fiveOnFive3, fiveOnFive4, fiveOnFive5)
 
               }); // end second .then shifts
           }); // end second .then gamecenter;
