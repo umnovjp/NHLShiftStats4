@@ -127,8 +127,7 @@ function getInputValue() {
               // to add script here
             }
           
-                 console.log(fiveOnFive3, fiveOnFive4, fiveOnFive5)
-
+                 console.log(fiveOnFive3, fiveOnFive4, fiveOnFive5);
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
