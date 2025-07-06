@@ -106,7 +106,8 @@ function getInputValue() {
               }}
                 console.log(tempArrayD1, tempArrayF1, tempArrayG1);
                 // fiveOnFive3 is when team played with 2D; fiveOnFive4 is when team played with 3F; fiveOnFive5 is when team played with 1G; 
-                fiveOnFive=[[],[],[],[],[],[]]; fiveOnFive3=tempArrayD1; fiveOnFive4=tempArrayF1; fiveOnFive5=tempArrayG1;
+                fiveOnFive=[[],[],[],[],[],[]]; fiveOnFive3=tempArrayD1; fiveOnFive4=tempArrayF1; fiveOnFive5=tempArrayG1; 
+                fiveOnFive6=[[],[],[],[],[],[]]; fiveOnFive7=[[],[],[],[],[],[]]; fiveOnFive8=[[],[],[],[],[],[]]; fiveOnFive9=[[],[],[],[],[],[]]; 
                
               for (i=0;i<6;i++) { // first three periods home team then 3 periods away team
                 for (j=tempArrayD1[i].length/2-1; j>0; j--) {if (fiveOnFive3[i][2*j+1]-fiveOnFive3[i][2*j-1]<4) {
@@ -125,9 +126,23 @@ function getInputValue() {
                    fiveOnFive5[i]=tempArray1.concat(tempArray2)
               }}
               // to add script here
+              if (fiveOnFive3[i][0]===2) {fiveOnFive6[i].push(0, fiveOnFive3[i][1])}
+              if (fiveOnFive4[i][0]===3) {fiveOnFive7[i].push(0, fiveOnFive4[i][1])}
+              if (fiveOnFive5[i][0]===2) {fiveOnFive8[i].push(0, fiveOnFive5[i][1])}
+              for (j=1;j<fiveOnFive3[i].length/2;j++) { if (fiveOnFive3[i][2*j]===2) {fiveOnFive6[i].push(fiveOnFive3[i][2*j-1],fiveOnFive3[i][2*j+1])} }
+              for (j=1;j<fiveOnFive4[i].length/2;j++) { if (fiveOnFive4[i][2*j]===3) {fiveOnFive7[i].push(fiveOnFive4[i][2*j-1],fiveOnFive4[i][2*j+1])} }
+              for (j=1;j<fiveOnFive5[i].length/2;j++) { if (fiveOnFive5[i][2*j]===2) {fiveOnFive8[i].push(fiveOnFive5[i][2*j-1],fiveOnFive5[i][2*j+1])} }
+              for (j=0;j<fiveOnFive6[i].length/2;j++) {for (k=0;k<fiveOnFive7[i].length/2;k++) {
+                if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive6[i][2*j+1])}
+                else if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive7[i][2*k+1])}
+                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) { console.log(fiveOnFive9[i],fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])
+                  fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])}
+                
+                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive6[i][2*j+1])}
+              }}
             }
           
-                 console.log(fiveOnFive3, fiveOnFive4, fiveOnFive5);
+                 console.log(fiveOnFive3, fiveOnFive4, fiveOnFive5, fiveOnFive6, fiveOnFive7, fiveOnFive8);
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 

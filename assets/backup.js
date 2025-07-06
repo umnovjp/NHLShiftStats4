@@ -75,3 +75,13 @@ for (j = 0; j < 2; j++) {for (k = 0; k < fiveOnFive[i][j].length/2; k++)  {for (
   else if ((fiveOnFive[i][j][2*k]<=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k+1]>fiveOnFive3[i][j][2*l])) {fiveOnFive5[i][j].push(fiveOnFive3[i][j][2*l], fiveOnFive[i][j][2*k+1])}
 }}} 
 
+fiveOnFive3[1]=[ 2, 121, 1, 242, 2, 664, 1, 746, 2, 1199]
+fiveOnFive4[1]=[ 3, 121, 4, 242, 3, 657, 4, 746, 3, 1199]
+// 000000 1010101010 00000 202020202 30
+// 001002
+
+[0, 121, 242, 664, 746, 1199]
+[0, 121, 242, 657, 746, 1199]
+
+[0, 121, 242, 664 ]
+[0, 119, 244, 664 ] => [0,119,244,664]
