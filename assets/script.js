@@ -125,7 +125,7 @@ function getInputValue() {
                 // if (i===0) {console.log(tempArray1, tempArray2)}
                    fiveOnFive5[i]=tempArray1.concat(tempArray2)
               }}
-              // to add script here
+              // fiveOnFive6, fiveOnFive7, fiveOnFive8 are arrays when team played with 2D, 3F, 1G. Index 0-2 for home team in 3 periods, index 3-5 for away team in 3 periods 
               if (fiveOnFive3[i][0]===2) {fiveOnFive6[i].push(0, fiveOnFive3[i][1])}
               if (fiveOnFive4[i][0]===3) {fiveOnFive7[i].push(0, fiveOnFive4[i][1])}
               if (fiveOnFive5[i][0]===2) {fiveOnFive8[i].push(0, fiveOnFive5[i][1])}
@@ -142,7 +142,7 @@ function getInputValue() {
               }}
             }
           
-                 console.log(fiveOnFive3, fiveOnFive4, fiveOnFive5, fiveOnFive6, fiveOnFive7, fiveOnFive8);
+                 console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive9);
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
