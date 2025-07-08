@@ -55,7 +55,6 @@ function getInputValue() {
               shiftsArray.push(CurrentPlayer)}
             for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.forwards[i].playerId, data.playerByGameStats.awayTeam.forwards[i].sweaterNumber, data.playerByGameStats.awayTeam.forwards[i].name, 'F', 'A');
               shiftsArray.push(CurrentPlayer)}
-
               var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
@@ -77,6 +76,3 @@ for (j = 0; j < 2; j++) {for (k = 0; k < fiveOnFive[i][j].length/2; k++)  {for (
 
 [0, 121, 242, 664, 746, 1199]
 [0, 121, 242, 657, 746, 1199]
-
-[0, 121, 242, 664 ]
-[0, 119, 244, 664 ] => [0,119,244,664]

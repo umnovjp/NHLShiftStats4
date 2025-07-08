@@ -107,25 +107,23 @@ function getInputValue() {
                 console.log(tempArrayD1, tempArrayF1, tempArrayG1);
                 // fiveOnFive3 is when team played with 2D; fiveOnFive4 is when team played with 3F; fiveOnFive5 is when team played with 1G; 
                 fiveOnFive=[[],[],[],[],[],[]]; fiveOnFive3=tempArrayD1; fiveOnFive4=tempArrayF1; fiveOnFive5=tempArrayG1; 
-                fiveOnFive6=[[],[],[],[],[],[]]; fiveOnFive7=[[],[],[],[],[],[]]; fiveOnFive8=[[],[],[],[],[],[]]; fiveOnFive9=[[],[],[],[],[],[]]; 
+                fiveOnFive6=[[],[],[],[],[],[]]; fiveOnFive7=[[],[],[],[],[],[]]; fiveOnFive8=[[],[],[],[],[],[]]; fiveOnFive9=[[],[],[],[],[],[]]; fiveOnFive10=[[],[],[],[],[],[]]; 
                
               for (i=0;i<6;i++) { // first three periods home team then 3 periods away team
                 for (j=tempArrayD1[i].length/2-1; j>0; j--) {if (fiveOnFive3[i][2*j+1]-fiveOnFive3[i][2*j-1]<4) {
                   tempArray1=fiveOnFive3[i].slice(0,2*j-2); tempArray2=fiveOnFive3[i].slice(2*j+2);
-                  //if (i===0) {console.log(tempArray1, tempArray2)}
                      fiveOnFive3[i]=tempArray1.concat(tempArray2)
                 }}
               for (j=tempArrayF1[i].length/2-1; j>0; j--) {if (fiveOnFive4[i][2*j+1]-fiveOnFive4[i][2*j-1]<4) {
                 tempArray1=fiveOnFive4[i].slice(0,2*j-2); tempArray2=fiveOnFive4[i].slice(2*j+2);
-                // if (i===0) {console.log(tempArray1, tempArray2)}
                    fiveOnFive4[i]=tempArray1.concat(tempArray2)
               }}
               for (j=tempArrayG1[i].length/2-1; j>0; j--) {if (fiveOnFive5[i][2*j+1]-fiveOnFive5[i][2*j-1]<4) {
                 tempArray1=fiveOnFive5[i].slice(0,2*j-2); tempArray2=fiveOnFive5[i].slice(2*j+2);
-                // if (i===0) {console.log(tempArray1, tempArray2)}
                    fiveOnFive5[i]=tempArray1.concat(tempArray2)
               }}
               // fiveOnFive6, fiveOnFive7, fiveOnFive8 are arrays when team played with 2D, 3F, 1G. Index 0-2 for home team in 3 periods, index 3-5 for away team in 3 periods 
+              // then fiveOnFive9 is when a team played with 2D and 3F, expect that fiveOnFive10 is when a team played with 1G 2D 3F. 
               if (fiveOnFive3[i][0]===2) {fiveOnFive6[i].push(0, fiveOnFive3[i][1])}
               if (fiveOnFive4[i][0]===3) {fiveOnFive7[i].push(0, fiveOnFive4[i][1])}
               if (fiveOnFive5[i][0]===2) {fiveOnFive8[i].push(0, fiveOnFive5[i][1])}
@@ -136,8 +134,7 @@ function getInputValue() {
                 if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive6[i][2*j+1])}
                 else if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive7[i][2*k+1])}
                 else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) { console.log(fiveOnFive9[i],fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])
-                  fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])}
-                
+                  fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])}                
                 else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive6[i][2*j+1])}
               }}
             }
