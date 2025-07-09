@@ -22,9 +22,7 @@ function getInputValue() {
         const gameId = data.gameWeek[0].games[gameNumber].id; console.log(gameId);
         // var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
         var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
-        fetch(requestURL, {
-          "method": "GET", "headers": {}
-        })
+        fetch(requestURL, { "method": "GET", "headers": {}})
           .then(function (response) { return response.json() })
           .then(function (data) {
             const gameInfo = document.createElement('section'); gameInfo.setAttribute('id', 'gameInfo');
@@ -32,15 +30,10 @@ function getInputValue() {
             var gameTitle = document.createElement('h2'); gameTitle.textContent = '';
             gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on ' + formatted;
             document.getElementById('gameInfo').appendChild(gameTitle); shiftsArray = [];
-            // console.log(data.playerByGameStats.homeTeam);
 
             function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
-              this.playerId = playerId;
-              this.jerseyNumber = jerseyNumber;
-              this.name = name;
-              this.position = position;
-              this.team = team;
-              this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}
+              this.playerId = playerId; this.jerseyNumber = jerseyNumber; this.name = name; this.position = position;
+              this.team = team; this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}
             }
 
             for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.goalies[i].playerId, data.playerByGameStats.homeTeam.goalies[i].sweaterNumber, data.playerByGameStats.homeTeam.goalies[i].name, 'G', 'H');
@@ -73,12 +66,8 @@ function getInputValue() {
                 // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
                   tempArrayD=[[],[],[],[],[],[]]; tempArrayF=[[],[],[],[],[],[]];tempArrayG=[[],[],[],[],[],[]];tempArrayG1=[[],[],[],[],[],[]];tempArrayD1=[[],[],[],[],[],[]];tempArrayF1=[[],[],[],[],[],[]];tempArrayDA3=[[],[],[]]; 
-                  for (i=0;i<1200;i++) { for (j=0;j<3;j++) {
-                    tempArrayDA3[j].push(0); 
-                  }}
-                  for (i=0;i<1200;i++) { for (j=0;j<6;j++) {
-                    tempArrayF[j].push(0); tempArrayD[j].push(0); tempArrayG[j].push(1); 
-                  }}
+                  for (i=0;i<1200;i++) { for (j=0;j<3;j++) { tempArrayDA3[j].push(0) }}
+                  for (i=0;i<1200;i++) { for (j=0;j<6;j++) { tempArrayF[j].push(0); tempArrayD[j].push(0); tempArrayG[j].push(1) }}
                   // start DH, FH, GA, GH, DA, FA
                   for (i=0;i<shiftsArray.length;i++) { for (h=0;h<3;h++) { // i is players should be 40 on two teams but h is 3 periods                    
                     {if (shiftsArray[i].shiftsObject.startTime[h].length>0) {
@@ -104,7 +93,6 @@ function getInputValue() {
                 if (!tempArrayF[j][i]) {} else {tempArrayF1[j].push(tempArrayF[j][i],i)}
                 if (!tempArrayG[j][i]) {} else {tempArrayG1[j].push(tempArrayG[j][i],i)}
               }}
-                console.log(tempArrayD1, tempArrayF1, tempArrayG1);
                 // fiveOnFive3 is when team played with 2D; fiveOnFive4 is when team played with 3F; fiveOnFive5 is when team played with 1G; 
                 fiveOnFive=[[],[],[],[],[],[]]; fiveOnFive3=tempArrayD1; fiveOnFive4=tempArrayF1; fiveOnFive5=tempArrayG1; 
                 fiveOnFive6=[[],[],[],[],[],[]]; fiveOnFive7=[[],[],[],[],[],[]]; fiveOnFive8=[[],[],[],[],[],[]]; fiveOnFive9=[[],[],[],[],[],[]]; fiveOnFive10=[[],[],[],[],[],[]]; 

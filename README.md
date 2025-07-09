@@ -1,1 +1,2 @@
 # NHLShiftStats4
+This repo is update on my previous repo located here: https://github.com/umnovjp/NHLShiftsStats3. I just started doing staff in a different way. Using objects and not arrays. Started from scratch. 
