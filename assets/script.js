@@ -61,9 +61,6 @@ function getInputValue() {
                       }
                 }}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
-                // ok I have analog of dArray and fArray. Then I created dArrayTemp and fArayTemp in lines 100, 101. Just combined all d shifts and all f shifts. 
-                // then I created an array of 3 x 1200 0s. that was dArrayTemp2 and fArrayTemp2 in line 105. 
-                // then I add 1 for each second of the shift. So in the end I know when it was 2D + 3F
                 // then I ran cycle to eliminate end shift start shift pairs ???
                   tempArrayD=[[],[],[],[],[],[]]; tempArrayF=[[],[],[],[],[],[]];tempArrayG=[[],[],[],[],[],[]];tempArrayG1=[[],[],[],[],[],[]];tempArrayD1=[[],[],[],[],[],[]];tempArrayF1=[[],[],[],[],[],[]];tempArrayDA3=[[],[],[]]; 
                   for (i=0;i<1200;i++) { for (j=0;j<3;j++) { tempArrayDA3[j].push(0) }}
