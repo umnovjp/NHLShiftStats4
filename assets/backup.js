@@ -26,13 +26,11 @@ function getInputValue() {
           "method": "GET", "headers": {}
         })
           .then(function (response) { return response.json() })
-          .then(function (data) {
-            const gameInfo = document.createElement('section'); gameInfo.setAttribute('id', 'gameInfo');
+          .then(function (data) { const gameInfo = document.createElement('section'); gameInfo.setAttribute('id', 'gameInfo');
             document.getElementById('schedule').appendChild(gameInfo);
             var gameTitle = document.createElement('h2'); gameTitle.textContent = '';
             gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on ' + formatted;
             document.getElementById('gameInfo').appendChild(gameTitle); shiftsArray = [];
-            // console.log(data.playerByGameStats.homeTeam);
 
             function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
               this.playerId = playerId;
