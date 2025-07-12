@@ -48,7 +48,6 @@ function getInputValue() {
               shiftsArray.push(CurrentPlayer)}
             for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.forwards[i].playerId, data.playerByGameStats.awayTeam.forwards[i].sweaterNumber, data.playerByGameStats.awayTeam.forwards[i].name, 'F', 'A');
               shiftsArray.push(CurrentPlayer)}
-
            // var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
            // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
            var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
@@ -58,8 +57,7 @@ function getInputValue() {
                 for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
                   for (j=0;j<shiftsArray.length;j++) { for (k=0;k<3;k++) {
                     if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===k+1)) {shiftsArray[j].shiftsObject.startTime[k] = shiftsArray[j].shiftsObject.startTime[k] + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime}}
-                      }
-                }}
+                      }}}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
                 // then I ran cycle to eliminate end shift start shift pairs ???
                   tempArrayD=[[],[],[],[],[],[]]; tempArrayF=[[],[],[],[],[],[]];tempArrayG=[[],[],[],[],[],[]];tempArrayG1=[[],[],[],[],[],[]];tempArrayD1=[[],[],[],[],[],[]];tempArrayF1=[[],[],[],[],[],[]];tempArrayDA3=[[],[],[]]; 
@@ -117,8 +115,7 @@ function getInputValue() {
                 else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) { console.log(fiveOnFive9[i],fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])
                   fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])}                
                 else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive6[i][2*j+1])}
-              }}}
-          
+              }}}          
                  console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive9);
               }); // end second .then shifts
           }); // end second .then gamecenter;

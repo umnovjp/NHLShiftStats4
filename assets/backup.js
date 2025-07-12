@@ -56,14 +56,12 @@ function getInputValue() {
               var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
-              .then(function (data_shifts) { 
-
-              }); // end second .then shifts
+              .then(function (data_shifts) {  }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
     } // end second .then from getinputvalue
     );
-} // end getInput Value function 
+} // end getInput Value
 
 for (j = 0; j < 2; j++) {for (k = 0; k < fiveOnFive[i][j].length/2; k++)  {for (l = 0; l < fiveOnFive3[i][j].length/2; l++) {
   if ((fiveOnFive[i][j][2*k] >= fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1] <= fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k], fiveOnFive[i][j][2*k+1])}
