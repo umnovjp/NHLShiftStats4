@@ -103,6 +103,7 @@ function getInputValue() {
                    fiveOnFive5[i]=tempArray1.concat(tempArray2) }}
               // fiveOnFive6, fiveOnFive7, fiveOnFive8 are arrays when team played with 2D, 3F, 1G. Index 0-2 for home team in 3 periods, index 3-5 for away team in 3 periods 
               // then fiveOnFive9 is when a team played with 2D and 3F, expect that fiveOnFive10 is when a team played with 1G 2D 3F. 
+              // will add condition if a team started period with 1D or with 2F or with 4F. Other numbers are unlikelys
               if (fiveOnFive3[i][0]===2) {fiveOnFive6[i].push(0, fiveOnFive3[i][1])}
               if (fiveOnFive4[i][0]===3) {fiveOnFive7[i].push(0, fiveOnFive4[i][1])}
               if (fiveOnFive5[i][0]===2) {fiveOnFive8[i].push(0, fiveOnFive5[i][1])}
@@ -110,11 +111,17 @@ function getInputValue() {
               for (j=1;j<fiveOnFive4[i].length/2;j++) { if (fiveOnFive4[i][2*j]===3) {fiveOnFive7[i].push(fiveOnFive4[i][2*j-1],fiveOnFive4[i][2*j+1])} }
               for (j=1;j<fiveOnFive5[i].length/2;j++) { if (fiveOnFive5[i][2*j]===2) {fiveOnFive8[i].push(fiveOnFive5[i][2*j-1],fiveOnFive5[i][2*j+1])} }
               for (j=0;j<fiveOnFive6[i].length/2;j++) {for (k=0;k<fiveOnFive7[i].length/2;k++) {
-                if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive6[i][2*j+1])}
-                else if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive7[i][2*k+1])}
-                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) { console.log(fiveOnFive9[i],fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])
+                if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive6[i][2*j+1])
+                  console.log('case1',i,j,k,fiveOnFive6[i][2*j],fiveOnFive6[i][2*j+1])
+                }
+                else if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive7[i][2*k+1])
+                  console.log('case2',i,j,k,fiveOnFive6[i][2*j],fiveOnFive7[i][2*k+1])
+                }
+                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) { console.log('case3',i,j,k,fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])
                   fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])}                
-                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive6[i][2*j+1])}
+                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive6[i][2*j+1])
+                  console.log('case4',i,j,k,fiveOnFive7[i][2*k],fiveOnFive6[i][2*j+1])
+                }
               }}}          
                  console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive9);
               }); // end second .then shifts

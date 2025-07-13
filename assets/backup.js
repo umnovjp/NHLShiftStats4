@@ -56,7 +56,9 @@ function getInputValue() {
               var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
-              .then(function (data_shifts) {  }); // end second .then shifts
+              .then(function (data_shifts) { 
+                // script here
+               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
     } // end second .then from getinputvalue
