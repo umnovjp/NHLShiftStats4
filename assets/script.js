@@ -88,7 +88,7 @@ function getInputValue() {
               }}
                 // fiveOnFive3 is when team played with 2D; fiveOnFive4 is when team played with 3F; fiveOnFive5 is when team played with 1G; 
                 fiveOnFive=[[],[],[],[],[],[]]; fiveOnFive3=tempArrayD1; fiveOnFive4=tempArrayF1; fiveOnFive5=tempArrayG1; 
-                fiveOnFive6=[[],[],[],[],[],[]]; fiveOnFive7=[[],[],[],[],[],[]]; fiveOnFive8=[[],[],[],[],[],[]]; fiveOnFive9=[[],[],[],[],[],[]]; fiveOnFive10=[[],[],[],[],[],[]]; fiveOnFive11=[[],[],[],[],[],[]];
+                fiveOnFive6=[[],[],[],[],[],[]]; fiveOnFive7=[[],[],[],[],[],[]]; fiveOnFive8=[[],[],[],[],[],[]]; fiveOnFive9=[[],[],[],[],[],[]]; fiveOnFive10=[[],[],[],[],[],[]]; fiveOnFive11=[[],[],[]];
                
               for (i=0;i<6;i++) { // first three periods home team then 3 periods away team total 6
                 for (j=tempArrayD1[i].length/2-1; j>0; j--) {if (fiveOnFive3[i][2*j+1]-fiveOnFive3[i][2*j-1]<4) {
@@ -111,28 +111,34 @@ function getInputValue() {
               for (j=1;j<fiveOnFive4[i].length/2;j++) { if (fiveOnFive4[i][2*j]===3) {fiveOnFive7[i].push(fiveOnFive4[i][2*j-1],fiveOnFive4[i][2*j+1])} }
               for (j=1;j<fiveOnFive5[i].length/2;j++) { if (fiveOnFive5[i][2*j]===2) {fiveOnFive8[i].push(fiveOnFive5[i][2*j-1],fiveOnFive5[i][2*j+1])} }
               for (j=0;j<fiveOnFive6[i].length/2;j++) {for (k=0;k<fiveOnFive7[i].length/2;k++) {
-                if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive6[i][2*j+1])
-                }
-                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1])
-                }
-                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])&&(fiveOnFive6[i][2*j]<fiveOnFive7[i][2*k+1])) {
-                  fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive7[i][2*k+1])}
+                if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive6[i][2*j+1]) }
+                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1]) }
+                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])&&(fiveOnFive6[i][2*j]<fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive7[i][2*k+1])}
                 else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])&&(fiveOnFive6[i][2*j+1]>fiveOnFive7[i][2*k])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive6[i][2*j+1])
                 }}}
                 for (j=0;j<fiveOnFive9[i].length/2;j++) {for (k=0;k<fiveOnFive8[i].length/2;k++) {
-                  if ((fiveOnFive9[i][2*j]>=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]<=fiveOnFive8[i][2*k+1])) {fiveOnFive10[i].push(fiveOnFive9[i][2*j],fiveOnFive9[i][2*j+1])
-                    console.log('case1',i,j,k,fiveOnFive9[i][2*j],fiveOnFive9[i][2*j+1])
-                  }
-                  else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]>=fiveOnFive8[i][2*k+1])) {fiveOnFive10[i].push(fiveOnFive8[i][2*k],fiveOnFive8[i][2*k+1])
-                    console.log('case2',i,j,k,fiveOnFive8[i][2*k],fiveOnFive8[i][2*k+1])
-                  }
-                  else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]>=fiveOnFive8[i][2*k+1])&&(fiveOnFive9[i][2*j]<fiveOnFive8[i][2*k+1])) { console.log('case3',i,j,k,fiveOnFive9[i][2*j],fiveOnFive8[i][2*k+1])
-                    fiveOnFive10[i].push(fiveOnFive9[i][2*j],fiveOnFive8[i][2*k+1])}                
+                  if ((fiveOnFive9[i][2*j]>=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]<=fiveOnFive8[i][2*k+1])) {fiveOnFive10[i].push(fiveOnFive9[i][2*j],fiveOnFive9[i][2*j+1])}
+                  else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]>=fiveOnFive8[i][2*k+1])) {fiveOnFive10[i].push(fiveOnFive8[i][2*k],fiveOnFive8[i][2*k+1])}
+                  else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]>=fiveOnFive8[i][2*k+1])&&(fiveOnFive9[i][2*j]<fiveOnFive8[i][2*k+1])) { fiveOnFive10[i].push(fiveOnFive9[i][2*j],fiveOnFive8[i][2*k+1])}
                   else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]<=fiveOnFive8[i][2*k+1])&&(fiveOnFive9[i][2*j+1]>fiveOnFive8[i][2*k])) {fiveOnFive9[i].push(fiveOnFive8[i][2*k],fiveOnFive9[i][2*j+1])
-                    console.log('case4',i,j,k,fiveOnFive8[i][2*k],fiveOnFive9[i][2*j+1])
                   }}}            
-            } // end i=0; i<6 loop     
-                 console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10);
+            } // end i=0; i<6 loop
+            for (i=0;i<3;i++) {
+              for (j=0;j<fiveOnFive10[i].length/2;j++) {for (k=0;k<fiveOnFive10[i+3].length/2;k++) {
+                if ((fiveOnFive10[i][2*j]>=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]<=fiveOnFive10[i+3][2*k+1])) {fiveOnFive11[i].push(fiveOnFive10[i][2*j],fiveOnFive10[i][2*j+1])
+                  console.log('case1',i,j,k,fiveOnFive10[i][2*j],fiveOnFive10[i][2*j+1])
+                }
+                else if ((fiveOnFive10[i][2*j]<=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]>=fiveOnFive10[i+3][2*k+1])) {fiveOnFive11[i].push(fiveOnFive10[i+3][2*k],fiveOnFive10[i+3][2*k+1])
+                  console.log('case2',i,j,k,fiveOnFive10[i+3][2*k],fiveOnFive10[i+3][2*k+1])
+                }
+                else if ((fiveOnFive10[i][2*j]<=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]>=fiveOnFive10[i+3][2*k+1])&&(fiveOnFive10[i][2*j]<fiveOnFive10[i+3][2*k+1])) { console.log('case3',i,j,k,fiveOnFive10[i][2*j],fiveOnFive10[i+3][2*k+1])
+                  fiveOnFive11[i].push(fiveOnFive10[i][2*j],fiveOnFive10[i+3][2*k+1])}                
+                else if ((fiveOnFive10[i][2*j]<=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]<=fiveOnFive10[i+3][2*k+1])&&(fiveOnFive10[i][2*j+1]>fiveOnFive10[i+3][2*k])) {fiveOnFive11[i].push(fiveOnFive10[i+3][2*k],fiveOnFive10[i][2*j+1])
+                  console.log('case4',i,j,k,fiveOnFive11[i][2*k],fiveOnFive11[i][2*j+1])
+                }}}        
+            }
+
+                 console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11);
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
