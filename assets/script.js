@@ -1,4 +1,4 @@
-var scheduleContent = document.getElementById('schedule'); var gameId; var inputVal = '2021'; standingsArray = []; linesArray10 = []
+var scheduleContent = document.getElementById('schedule'); var gameId; var inputVal = '2021'; standingsArray = []; linesArray10 = []; lineUpCount=[0,0,0,0,0,0]
 // lines below will allow user to select date then to select game on that date
 function getInputValue() {
   var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
@@ -33,21 +33,19 @@ function getInputValue() {
 
             function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
               this.playerId = playerId; this.jerseyNumber = jerseyNumber; this.name = name; this.position = position;
-              this.team = team; this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}
-            }
-
+              this.team = team; this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}}
             for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.goalies[i].playerId, data.playerByGameStats.homeTeam.goalies[i].sweaterNumber, data.playerByGameStats.homeTeam.goalies[i].name, 'G', 'H');
-              shiftsArray.push(CurrentPlayer)}
+              shiftsArray.push(CurrentPlayer); lineUpCount[0]=lineUpCount[0]+1}
             for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.defense[i].playerId, data.playerByGameStats.homeTeam.defense[i].sweaterNumber, data.playerByGameStats.homeTeam.defense[i].name, 'D', 'H');
-              shiftsArray.push(CurrentPlayer)}
+              shiftsArray.push(CurrentPlayer); lineUpCount[1]=lineUpCount[1]+1}
             for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.forwards[i].playerId, data.playerByGameStats.homeTeam.forwards[i].sweaterNumber, data.playerByGameStats.homeTeam.forwards[i].name, 'F', 'H');
-              shiftsArray.push(CurrentPlayer)}
+              shiftsArray.push(CurrentPlayer); lineUpCount[2]=lineUpCount[2]+1}
             for (i = 0; i < data.playerByGameStats.awayTeam.goalies.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.goalies[i].playerId, data.playerByGameStats.awayTeam.goalies[i].sweaterNumber, data.playerByGameStats.awayTeam.goalies[i].name, 'G', 'A');
-              shiftsArray.push(CurrentPlayer)}
+              shiftsArray.push(CurrentPlayer); lineUpCount[3]=lineUpCount[3]+1}
             for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.defense[i].playerId, data.playerByGameStats.awayTeam.defense[i].sweaterNumber, data.playerByGameStats.awayTeam.defense[i].name, 'D', 'A');
-              shiftsArray.push(CurrentPlayer)}
+              shiftsArray.push(CurrentPlayer); lineUpCount[4]=lineUpCount[4]+1}
             for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.forwards[i].playerId, data.playerByGameStats.awayTeam.forwards[i].sweaterNumber, data.playerByGameStats.awayTeam.forwards[i].name, 'F', 'A');
-              shiftsArray.push(CurrentPlayer)}
+              shiftsArray.push(CurrentPlayer); lineUpCount[5]=lineUpCount[5]+1}
            // var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
            // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
            var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
@@ -137,8 +135,9 @@ function getInputValue() {
                   console.log('case4',i,j,k,fiveOnFive11[i][2*k],fiveOnFive11[i][2*j+1])
                 }}}        
             }
-
-                 console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11);
+                 console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount);
+                 for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]+1);j<20*(i+1);j++) {}}
+              
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
