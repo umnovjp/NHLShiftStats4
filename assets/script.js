@@ -136,7 +136,11 @@ function getInputValue() {
                 }}}        
             }
                  console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount);
-                 for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]+1);j<20*(i+1);j++) {}}
+                 for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]+1);j<20*(i+1);j++) {for (k=0;k<3;k++) {
+                  for (l=0;l<shiftsArray[j].shiftsObject.startTime.length;l++) {for (m=l+1;m<shiftsArray[j].shiftsObject.startTime.length;m++) {
+                    shiftsPair=[]
+                  }}
+                 }}}
               
               }); // end second .then shifts
           }); // end second .then gamecenter;
