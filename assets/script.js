@@ -54,7 +54,10 @@ function getInputValue() {
               .then(function (data_shifts) { console.log('I am in second shift then', data_shifts.data, shiftsArray[0]);
                 for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
                   for (j=0;j<shiftsArray.length;j++) { for (k=0;k<3;k++) {
-                    if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===k+1)) {shiftsArray[j].shiftsObject.startTime[k] = shiftsArray[j].shiftsObject.startTime[k] + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime}}
+                    if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===k+1)) {
+                      shiftsArray[j].shiftsObject.startTime[k] = shiftsArray[j].shiftsObject.startTime[k] + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime
+                    } // end if loop to add script here
+                  }
                       }}}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
                 // then I ran cycle to eliminate end shift start shift pairs ???
@@ -136,10 +139,14 @@ function getInputValue() {
                 }}}        
             }
                  console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount);
-                 for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]+1);j<20*(i+1);j++) {for (k=0;k<3;k++) {
-                  for (l=0;l<shiftsArray[j].shiftsObject.startTime.length;l++) {for (m=l+1;m<shiftsArray[j].shiftsObject.startTime.length;m++) {
-                    shiftsPair=[]
-                  }}
+                 for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]);j<20*(i+1);j++) {
+                  for (k=j+1;k<20*(i+1);k++){ 
+                  for (l=0;l<1;l++) { // to change it later to l<3
+                    // console.log('j=',j,'k=',k)
+                  for (m=0;m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {for (n=0;n<shiftsArray[j].shiftsObject.startTime[l].length;n++) {
+                    shiftsPair=[];
+                    // console.log('j=',j,'k=',k,'m=',m,'n=',n,shiftsArray[j].shiftsObject.startTime[l][m],shiftsArray[k].shiftsObject.startTime[l][n])
+                  }}}
                  }}}
               
               }); // end second .then shifts
