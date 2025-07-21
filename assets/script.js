@@ -55,8 +55,12 @@ function getInputValue() {
                 for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
                   for (j=0;j<shiftsArray.length;j++) { for (k=0;k<3;k++) {
                     if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===k+1)) {
-                      shiftsArray[j].shiftsObject.startTime[k] = shiftsArray[j].shiftsObject.startTime[k] + ', ' + data_shifts.data[i].startTime, shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime
+                       shiftsArray[j].shiftsObject.startTime[k].push(data_shifts.data[i].startTime)
+                     // shiftsArray[j].shiftsObject.startTime[k] = shiftsArray[j].shiftsObject.startTime[k] + ', ' + data_shifts.data[i].startTime, 
+                       shiftsArray[j].shiftsObject.endTime[k].push(data_shifts.data[i].endTime)
+                     // shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime
                     } // end if loop to add script here
+                    // tempArray3=shiftsArray[j].shiftsObject.startTime[k].split(',')
                   }
                       }}}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
@@ -66,18 +70,25 @@ function getInputValue() {
                   for (i=0;i<1200;i++) { for (j=0;j<6;j++) { tempArrayF[j].push(0); tempArrayD[j].push(0); tempArrayG[j].push(1) }}
                   // start DH, FH, GA, GH, DA, FA
                   for (i=0;i<shiftsArray.length;i++) { for (h=0;h<3;h++) { // i is players should be 40 on two teams but h is 3 periods                    
-                    {if (shiftsArray[i].shiftsObject.startTime[h].length>0) { startTimeArray=shiftsArray[i].shiftsObject.startTime[h].split(',');
-                    endTimeArray=shiftsArray[i].shiftsObject.endTime[h].split(',');
-                    for (j=1;j<startTimeArray.length;j++) {startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-                    endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    {if (shiftsArray[i].shiftsObject.startTime[h].length>0) { // startTimeArray=shiftsArray[i].shiftsObject.startTime[h].split(',');
+                    // endTimeArray=shiftsArray[i].shiftsObject.endTime[h].split(',');
+                     console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h])
+                    for (j=1;j<shiftsArray[j].shiftsObject.startTime[h];j++) {startSeconds=Number(shiftsArray[j].shiftsObject.startTime[h].split(':')[0])*60+Number(shiftsArray[j].shiftsObject.startTime[h].split(':')[1]);
+                      // startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
+                    endSeconds=Number(shiftsArray[j].shiftsObject.endTime[h].split(':')[0])*60+Number(shiftsArray[j].shiftsObject.endTime[h].split(':')[1]);
+                    // endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
+                    // console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h], startSeconds, endSeconds)
                     for (k=startSeconds;k<endSeconds;k++) { if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayD[h][k]=tempArrayD[h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayF[h][k]=tempArrayF[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayG[h][k]=tempArrayG[h][k]+1}
                       else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayD[3+h][k]=tempArrayD[3+h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayF[3+h][k]=tempArrayF[3+h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayG[3+h][k]=tempArrayG[3+h][k]+1}
-                    }}}}
+                    }}
+                  }
+                }
                 }} // end i,h cycle
+                console.log(tempArrayG, tempArrayF, tempArrayD)
                 
                 for (i=0;i<1200;i++) { for (j=0;j<6;j++) {if (tempArrayD[j][i]===tempArrayD[j][i+1]) {delete(tempArrayD[j][i])}
                   if (tempArrayF[j][i]===tempArrayF[j][i+1]) {delete(tempArrayF[j][i])}
