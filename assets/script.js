@@ -61,8 +61,7 @@ function getInputValue() {
                      // shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime
                     } // end if loop to add script here
                     // tempArray3=shiftsArray[j].shiftsObject.startTime[k].split(',')
-                  }
-                      }}}
+                  }}}}
                 console.log(shiftsArray, shiftsArray[2].shiftsObject);
                 // then I ran cycle to eliminate end shift start shift pairs ???
                   tempArrayD=[[],[],[],[],[],[]]; tempArrayF=[[],[],[],[],[],[]];tempArrayG=[[],[],[],[],[],[]];tempArrayG1=[[],[],[],[],[],[]];tempArrayD1=[[],[],[],[],[],[]];tempArrayF1=[[],[],[],[],[],[]];tempArrayDA3=[[],[],[]]; 
@@ -84,9 +83,7 @@ function getInputValue() {
                       else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayD[3+h][k]=tempArrayD[3+h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayF[3+h][k]=tempArrayF[3+h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayG[3+h][k]=tempArrayG[3+h][k]+1}
-                    }}
-                  }
-                }
+                    }}}}
                 }} // end i,h cycle
                 console.log(tempArrayG, tempArrayF, tempArrayD)
                 
@@ -116,8 +113,7 @@ function getInputValue() {
               // fiveOnFive6, fiveOnFive7, fiveOnFive8 are arrays when team played with 2D, 3F, 1G. Index 0-2 for home team in 3 periods, index 3-5 for away team in 3 periods 
               // then fiveOnFive9 is when a team played with 2D and 3F, fiveOnFive10 is when a team played with 1G 2D 3F. 
               // will add condition if a team started period with 1D or with 2F or with 4F. Other numbers are unlikelys
-              if (fiveOnFive3[i][0]===2) {fiveOnFive6[i].push(0, fiveOnFive3[i][1])}
-              if (fiveOnFive4[i][0]===3) {fiveOnFive7[i].push(0, fiveOnFive4[i][1])}
+              if (fiveOnFive3[i][0]===2) {fiveOnFive6[i].push(0, fiveOnFive3[i][1])}; if (fiveOnFive4[i][0]===3) {fiveOnFive7[i].push(0, fiveOnFive4[i][1])}
               if (fiveOnFive5[i][0]===2) {fiveOnFive8[i].push(0, fiveOnFive5[i][1])}
               for (j=1;j<fiveOnFive3[i].length/2;j++) { if (fiveOnFive3[i][2*j]===2) {fiveOnFive6[i].push(fiveOnFive3[i][2*j-1],fiveOnFive3[i][2*j+1])} }
               for (j=1;j<fiveOnFive4[i].length/2;j++) { if (fiveOnFive4[i][2*j]===3) {fiveOnFive7[i].push(fiveOnFive4[i][2*j-1],fiveOnFive4[i][2*j+1])} }
@@ -151,14 +147,12 @@ function getInputValue() {
             }
                  console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount);
                  for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]);j<20*(i+1);j++) {
-                  for (k=j+1;k<20*(i+1);k++){ 
-                  for (l=0;l<1;l++) { // to change it later to l<3
+                  for (k=j+1;k<20*(i+1);k++){ for (l=0;l<1;l++) { // to change it later to l<3
                     // console.log('j=',j,'k=',k)
                   for (m=0;m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {for (n=0;n<shiftsArray[j].shiftsObject.startTime[l].length;n++) {
                     shiftsPair=[];
                     // console.log('j=',j,'k=',k,'m=',m,'n=',n,shiftsArray[j].shiftsObject.startTime[l][m],shiftsArray[k].shiftsObject.startTime[l][n])
-                  }}}
-                 }}}
+                  }}}}}}
               
               }); // end second .then shifts
           }); // end second .then gamecenter;
