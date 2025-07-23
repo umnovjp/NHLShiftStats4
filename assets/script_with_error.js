@@ -1,4 +1,3 @@
-
 var scheduleContent = document.getElementById('schedule'); var gameId; var inputVal = '2021'; standingsArray = []; linesArray10 = []; lineUpCount=[0,0,0,0,0,0]
 // lines below will allow user to select date then to select game on that date
 function getInputValue() {
@@ -72,10 +71,12 @@ function getInputValue() {
                   for (i=0;i<shiftsArray.length;i++) { for (h=0;h<3;h++) { // i is players should be 40 on two teams but h is 3 periods                    
                     {if (shiftsArray[i].shiftsObject.startTime[h].length>0) { // startTimeArray=shiftsArray[i].shiftsObject.startTime[h].split(',');
                     // endTimeArray=shiftsArray[i].shiftsObject.endTime[h].split(',');
-                     console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h])
+                    console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h]
                     for (j=1;j<shiftsArray[i].shiftsObject.startTime[h];j++) {startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
                       // startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[1]);
+                    )
+                    console.log(startSeconds, endSeconds)
                     // endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
                     // console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h], startSeconds, endSeconds)
                     for (k=startSeconds;k<endSeconds;k++) { if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayD[h][k]=tempArrayD[h][k]+1}
@@ -154,7 +155,8 @@ function getInputValue() {
                   for (m=0;m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {for (n=0;n<shiftsArray[j].shiftsObject.startTime[l].length;n++) {
                     shiftsPair=[]; // sfor (o=0;o<)
                     // console.log('j=',j,'k=',k,'m=',m,'n=',n,shiftsArray[j].shiftsObject.startTime[l][m],shiftsArray[k].shiftsObject.startTime[l][n])
-                  }}}}}}              
+                  }}}}}}
+              
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
