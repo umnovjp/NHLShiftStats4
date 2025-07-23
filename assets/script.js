@@ -152,7 +152,7 @@ function getInputValue() {
                   for (k=j+1;k<20*(i+1);k++){ for (l=0;l<1;l++) { // to change it later to l<3
                     // console.log('j=',j,'k=',k)
                   for (m=0;m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {for (n=0;n<shiftsArray[j].shiftsObject.startTime[l].length;n++) {
-                    shiftsPair=[]; // sfor (o=0;o<)
+                    shiftsPair=[]; // for (o=0;o<) loop will be here
                     // console.log('j=',j,'k=',k,'m=',m,'n=',n,shiftsArray[j].shiftsObject.startTime[l][m],shiftsArray[k].shiftsObject.startTime[l][n])
                   }}}}}}              
               }); // end second .then shifts
