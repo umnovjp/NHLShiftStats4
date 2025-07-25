@@ -73,19 +73,18 @@ function getInputValue() {
                     {if (shiftsArray[i].shiftsObject.startTime[h].length>0) { // startTimeArray=shiftsArray[i].shiftsObject.startTime[h].split(',');
                     // endTimeArray=shiftsArray[i].shiftsObject.endTime[h].split(',');
                      console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h])
-                    for (j=1;j<shiftsArray[i].shiftsObject.startTime[h];j++) {startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
+                    for (j=1;j<shiftsArray[i].shiftsObject.startTime[h].length;j++) {startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
                       // startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
                     endSeconds=Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[1]);
                     // endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    // console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h], startSeconds, endSeconds)
+                    console.log(startSeconds, endSeconds)
                     for (k=startSeconds;k<endSeconds;k++) { if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayD[h][k]=tempArrayD[h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayF[h][k]=tempArrayF[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayG[h][k]=tempArrayG[h][k]+1}
                       else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayD[3+h][k]=tempArrayD[3+h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayF[3+h][k]=tempArrayF[3+h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayG[3+h][k]=tempArrayG[3+h][k]+1}
-                    }}
-                  }}
+                    }}}}
                 }} // end i,h cycle
                 console.log(tempArrayG, tempArrayF, tempArrayD)
                 
