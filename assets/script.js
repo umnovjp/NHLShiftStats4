@@ -90,11 +90,11 @@ function getInputValue() {
                 
                 for (i=0;i<1200;i++) { for (j=0;j<6;j++) {if (tempArrayD[j][i]===tempArrayD[j][i+1]) {delete(tempArrayD[j][i])}
                   if (tempArrayF[j][i]===tempArrayF[j][i+1]) {delete(tempArrayF[j][i])}
-                  if (tempArrayG[j][i]===tempArrayG[j][i+1]) {delete(tempArrayG[j][i])}
+                  if (tempArrayG[j][i]===tempArrayG[j][i+1]) {delete(tempArrayG[j][i])} 
                 }} 
                 for (i=0;i<1200;i++) { for (j=0;j<6;j++) {if (!tempArrayD[j][i]) {} else {tempArrayD1[j].push(tempArrayD[j][i],i)}
-                if (!tempArrayF[j][i]) {} else {tempArrayF1[j].push(tempArrayF[j][i],i)}
-                if (!tempArrayG[j][i]) {} else {tempArrayG1[j].push(tempArrayG[j][i],i)}
+                if (!tempArrayF[j][i]) {} else {tempArrayF1[j].push(tempArrayF[j][i],i)} 
+                if (!tempArrayG[j][i]) {} else {tempArrayG1[j].push(tempArrayG[j][i],i)} 
               }}
                 // fiveOnFive3 is when team played with 2D; fiveOnFive4 is when team played with 3F; fiveOnFive5 is when team played with 1G; 
                 fiveOnFive=[[],[],[],[],[],[]]; fiveOnFive3=tempArrayD1; fiveOnFive4=tempArrayF1; fiveOnFive5=tempArrayG1; 
