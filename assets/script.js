@@ -55,10 +55,13 @@ function getInputValue() {
               .then(function (data_shifts) { console.log('I am in second shift then', data_shifts.data, shiftsArray[0]);
                 for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
                   for (j=0;j<shiftsArray.length;j++) { for (k=0;k<3;k++) {
-                    if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===k+1)) {
-                       shiftsArray[j].shiftsObject.startTime[k].push(data_shifts.data[i].startTime)
+                    if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===k+1)) { console.log(data_shifts.data[i].startTime, typeof data_shifts.data[i].startTime)
+                       shiftsArray[j].shiftsObject.startTime[k].push(Number(data_shifts.data[i].startTime.split(':')[0]*60)+Number(data_shifts.data[i].startTime.split(':')[1]))
+                       shiftsArray[j].shiftsObject.endTime[k].push(Number(data_shifts.data[i].endTime.split(':')[0]*60)+Number(data_shifts.data[i].endTime.split(':')[1]))
+                       // shiftsArray[j].shiftsObject.endTime[k].push(Number(data_shifts.data[i].endTime).split(':')[0]*60+Number(data_shifts.data[i].endTime).split(':')[1])
+                       // startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
                      // shiftsArray[j].shiftsObject.startTime[k] = shiftsArray[j].shiftsObject.startTime[k] + ', ' + data_shifts.data[i].startTime, 
-                       shiftsArray[j].shiftsObject.endTime[k].push(data_shifts.data[i].endTime)
+                       // shiftsArray[j].shiftsObject.endTime[k].push(data_shifts.data[i].endTime)
                      // shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime
                     } // end if loop to add script here
                     // tempArray3=shiftsArray[j].shiftsObject.startTime[k].split(',')
@@ -73,12 +76,12 @@ function getInputValue() {
                     {if (shiftsArray[i].shiftsObject.startTime[h].length>0) { // startTimeArray=shiftsArray[i].shiftsObject.startTime[h].split(',');
                     // endTimeArray=shiftsArray[i].shiftsObject.endTime[h].split(',');
                      console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h])
-                    for (j=1;j<shiftsArray[i].shiftsObject.startTime[h].length;j++) {startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
+                    for (j=1;j<shiftsArray[i].shiftsObject.startTime[h].length;j++) {// startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
                       // startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-                    endSeconds=Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[1]);
+                    // endSeconds=Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[1]);
                     // endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    console.log(startSeconds, endSeconds)
-                    for (k=startSeconds;k<endSeconds;k++) { if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayD[h][k]=tempArrayD[h][k]+1}
+                    //console.log(startSeconds, endSeconds)
+                    for (k=shiftsArray[i].shiftsObject.startTime[h][k];k<shiftsArray[i].shiftsObject.endTime[h][k];k++) { if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayD[h][k]=tempArrayD[h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayF[h][k]=tempArrayF[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayG[h][k]=tempArrayG[h][k]+1}
                       else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayD[3+h][k]=tempArrayD[3+h][k]+1}
@@ -149,11 +152,22 @@ function getInputValue() {
                  console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount);
                  for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]);j<20*(i+1);j++) {
                   for (k=j+1;k<20*(i+1);k++){ for (l=0;l<1;l++) { // to change it later to l<3
-                    // console.log('j=',j,'k=',k)
-                  for (m=0;m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {for (n=0;n<shiftsArray[j].shiftsObject.startTime[l].length;n++) {
-                    shiftsPair=[]; // for (o=0;o<) loop will be here
+                    shiftsPair=[];
+                    for (m=0; m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {
+                      for (n=0; n<shiftsArray[k].shiftsObject.startTime[l].length;n++) {
+                        if ((    shiftsArray[k].shiftsObject.startTime[l][n] >= shiftsArray[j].shiftsObject.startTime[l][m]) && (shiftsArray[k].shiftsObject.startTime[l][n] <= shiftsArray[j].shiftsObject.endTime[l][m])) {
+                          if (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.endTime[l][m]
+
+                          )
+                        }
+                      }
+                    // startSeconds=Number(shiftsArray[j].shiftsObject.startTime[l][m].split(':')[0])*60+Number(shiftsArray[j].shiftsObject.startTime[l][m].split(':')[1]);
+                     // console.log('j=',j,'k=',k,'m=',m,startSeconds)
+                    // startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
+                    }
+                     // for (o=0;o<) loop will be here
                     // console.log('j=',j,'k=',k,'m=',m,'n=',n,shiftsArray[j].shiftsObject.startTime[l][m],shiftsArray[k].shiftsObject.startTime[l][n])
-                  }}}}}}              
+                  }}}}              
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 

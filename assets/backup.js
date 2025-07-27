@@ -74,7 +74,8 @@ for (h = 0; h < 2; h++) {// h = 0 home team F, h = 1 away team F
             else if ((fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l])) {
               if (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l + 1]) { shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][j][i][2 * l + 1]) }
               else {shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][k][i][2 * m + 1])}
-            }}}// end m, l loop
+            }} 
+          }// end m, l loop
             for (l = k + 1; l < fArray[h].length; l++) {tempTime = []; tempTime2 = [];
             for (m = 0; m < shiftsPair.length/2; m++){
               for (n = 0; n < fArray[h][l][i].length/2; n++) {if ((fArray[h][l][i][2*n]>=shiftsPair[2*m])&&(fArray[h][l][i][2*n]<shiftsPair[2*m+1])){
@@ -122,3 +123,24 @@ for (h = 0; h < 2; h++) {// h = 0 home team F, h = 1 away team F
     // end time [01:28, 04:08, 05:24, 07:00, 08:44, 09:51, 11:29, 12:26, 12:4] [01:42, 04:26, 06:50, 10:06, 13:23, 15:37, 16:54, 18:2] [00:38, 02:05, 03:59, 06:56, 09:46, 12:32, 13:59, 17:00, 19:]
     // start time [02:31, 05:24, 07:33, 12:26, 15:17] [01:42, 08:03, 13:23, 18:26"] [02:05, 04:44, 08:05, 09:45, 12:32, 14:55, 19:49]
     // end time [03:21, 06:08, 08:07, 12:37, 16:29] [02:02, 08:36, 14:10, 19:25] [02:58, 05:17, 08:39, 10:44, 13:14, 15:46, 20:00]
+
+    // h = 0; h < 2 2 teams // for (i=0;i<2;i++) 2 teams 
+    // i = 0; i < 3 // 3 periods // (l=0;l<1;l++) to change it later to 3 currently only 1st period counts
+    // j = 0; j < fArray[h].length // (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]);j<20*(i+1);j++) all forwards
+    // k = j+1; k < fArray[h].length; (k=j+1;k<20*(i+1);k++ 2nd forward
+    // shiftspair
+    // l < fArray[h][j][i].length / 2 (m=0;m<shiftsArray[j].shiftsObject.startTime[l].length;m++) 
+    // m < fArray[h][k][i].length / 2 (n=0; m<shiftsArray[k].shiftsObject.startTime[l].length;m++)
+
+    // farray h team F# period length / 2 
+    shiftsArray[i].shiftsObject.startTime[h][j] // i player # h period j shift number
+    ((fArray[h][k][i][2 * m] >= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l + 1]))
+    shiftsArray[k].shiftsObject.startTime[l][n]; shiftsArray[j].shiftsObject.startTime[l][m]; shiftsArray[k].shiftsObject.startTime[l][n]; shiftsArray[j].shiftsObject.endTime[l][m];
+
+    { if ((fArray[h][k][i][2 * m] >= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l + 1])) {
+      if (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l + 1]) { shiftsPair.push(fArray[h][k][i][2 * m], fArray[h][j][i][2 * l + 1]) }
+      else { shiftsPair.push(fArray[h][k][i][2 * m], fArray[h][k][i][2 * m + 1]) }}
+    else if ((fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l])) {
+      if (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l + 1]) { shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][j][i][2 * l + 1]) }
+      else {shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][k][i][2 * m + 1])}
+    }} 
