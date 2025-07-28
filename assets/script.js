@@ -162,18 +162,16 @@ function getInputValue() {
                           if (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.endTime[l][m]) { shiftsPair.push(shiftsArray[j].shiftsObject.startTime[l][m], shiftsArray[j].shiftsObject.endTime[l][m]) }
                           else {shiftsPair.push(shiftsArray[j].shiftsObject.startTime[l][m], shiftsArray[k].shiftsObject.endTime[l][n])}
                         }}} // end m,n loop
-                    //
-                    for (m=k+1;m<20*(i+1);m++) {tempTime=[]; temPTime2=[];
+                    for (m=k+1;m<20*(i+1);m++) {tempTime=[]; tempTime2=[];
                       for (n=0;n<shiftsPair.length/2;n++) {for (o=0;o<shiftsArray[m].shiftsObject.startTime[l].length;o++) {
                         {if ((shiftsArray[m].shiftsObject.startTime[l][o]>=shiftsPair[2*n])&&(shiftsArray[m].shiftsObject.startTime[l][o]<shiftsPair[2*n+1])){
-                          if (fArray[h][l][i][2*n+1]>=shiftsPair[2*m+1]) {tempTime.push(fArray[h][l][i][2*n], shiftsPair[2 * m + 1])}
-                          else { tempTime.push(fArray[h][l][i][2*n], fArray[h][l][i][2*n+1]) }}
-                          else if (fArray[h][l][i][2 * n] <= shiftsPair[2 * m] && fArray[h][l][i][2 * n + 1] > shiftsPair[2 * m]) {
-                            if (fArray[h][l][i][2 * n + 1] >= shiftsPair[2 * m + 1]) { tempTime.push(shiftsPair[2 * m], shiftsPair[2 * m + 1]) }
-                            else { tempTime.push(shiftsPair[2 * m], fArray[h][l][i][2 * n + 1])}
-                          }}
-                      }
-                    } // end second n loop
+                          if (shiftsArray[m].shiftsObject.endTime[l][o]>=shiftsPair[2*n+1]) {tempTime.push(shiftsArray[m].shiftsObject.startTime[l][o], shiftsPair[2 * n + 1])}
+                          else { tempTime.push(shiftsArray[m].shiftsObject.startTime[l][o], shiftsArray[m].shiftsObject.endTime[l][o]) }}
+                          else if ((shiftsArray[m].shiftsObject.startTime[l][o] <= shiftsPair[2 * n]) && (shiftsArray[m].shiftsObject.endTime[l][o] > shiftsPair[2 * n])) {
+                            if (shiftsArray[m].shiftsObject.endTime[l][o] >= shiftsPair[2 * n + 1]) { tempTime.push(shiftsPair[2 * n], shiftsPair[2 * n + 1]) }
+                            else { tempTime.push(shiftsPair[2 * n], shiftsArray[m].shiftsObject.endTime[l][o])}
+                          }}}} // end second n loop
+                          // fiveOnFive loop here line 152
                     }
                     //
                   }}}}              

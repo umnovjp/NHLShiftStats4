@@ -81,7 +81,7 @@ for (h = 0; h < 2; h++) {// h = 0 home team F, h = 1 away team F
               for (n = 0; n < fArray[h][l][i].length/2; n++) {if ((fArray[h][l][i][2*n]>=shiftsPair[2*m])&&(fArray[h][l][i][2*n]<shiftsPair[2*m+1])){
                 if (fArray[h][l][i][2*n+1]>=shiftsPair[2*m+1]) {tempTime.push(fArray[h][l][i][2*n], shiftsPair[2 * m + 1])}
                 else { tempTime.push(fArray[h][l][i][2*n], fArray[h][l][i][2*n+1]) }}
-                else if (fArray[h][l][i][2 * n] <= shiftsPair[2 * m] && fArray[h][l][i][2 * n + 1] > shiftsPair[2 * m]) {
+                else if ((fArray[h][l][i][2 * n] <= shiftsPair[2 * m]) && (fArray[h][l][i][2 * n + 1] > shiftsPair[2 * m])) {
                   if (fArray[h][l][i][2 * n + 1] >= shiftsPair[2 * m + 1]) { tempTime.push(shiftsPair[2 * m], shiftsPair[2 * m + 1]) }
                   else { tempTime.push(shiftsPair[2 * m], fArray[h][l][i][2 * n + 1])}
                 }}} // end second m loop
