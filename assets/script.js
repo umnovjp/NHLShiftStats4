@@ -156,17 +156,26 @@ function getInputValue() {
                     for (m=0; m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {
                       for (n=0; n<shiftsArray[k].shiftsObject.startTime[l].length;n++) {
                         if ((    shiftsArray[k].shiftsObject.startTime[l][n] >= shiftsArray[j].shiftsObject.startTime[l][m]) && (shiftsArray[k].shiftsObject.startTime[l][n] <= shiftsArray[j].shiftsObject.endTime[l][m])) {
-                          if (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.endTime[l][m]
-
-                          )
-                        }
+                          if (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.endTime[l][m]) {shiftsPair.push(shiftsArray[k].shiftsObject.startTime[l][n], shiftsArray[j].shiftsObject.endTime[l][m])}
+                          else { shiftsPair.push(shiftsArray[k].shiftsObject.startTime[l][n], shiftsArray[k].shiftsObject.endTime[l][n]) }}
+                        else if ((shiftsArray[k].shiftsObject.startTime[l][n]<= shiftsArray[j].shiftsObject.startTime[l][m]) && (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.startTime[l][m])) {
+                          if (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.endTime[l][m]) { shiftsPair.push(shiftsArray[j].shiftsObject.startTime[l][m], shiftsArray[j].shiftsObject.endTime[l][m]) }
+                          else {shiftsPair.push(shiftsArray[j].shiftsObject.startTime[l][m], shiftsArray[k].shiftsObject.endTime[l][n])}
+                        }}} // end m,n loop
+                    //
+                    for (m=k+1;m<20*(i+1);m++) {tempTime=[]; temPTime2=[];
+                      for (n=0;n<shiftsPair.length/2;n++) {for (o=0;o<shiftsArray[m].shiftsObject.startTime[l].length;o++) {
+                        {if ((shiftsArray[m].shiftsObject.startTime[l][o]>=shiftsPair[2*n])&&(shiftsArray[m].shiftsObject.startTime[l][o]<shiftsPair[2*n+1])){
+                          if (fArray[h][l][i][2*n+1]>=shiftsPair[2*m+1]) {tempTime.push(fArray[h][l][i][2*n], shiftsPair[2 * m + 1])}
+                          else { tempTime.push(fArray[h][l][i][2*n], fArray[h][l][i][2*n+1]) }}
+                          else if (fArray[h][l][i][2 * n] <= shiftsPair[2 * m] && fArray[h][l][i][2 * n + 1] > shiftsPair[2 * m]) {
+                            if (fArray[h][l][i][2 * n + 1] >= shiftsPair[2 * m + 1]) { tempTime.push(shiftsPair[2 * m], shiftsPair[2 * m + 1]) }
+                            else { tempTime.push(shiftsPair[2 * m], fArray[h][l][i][2 * n + 1])}
+                          }}
                       }
-                    // startSeconds=Number(shiftsArray[j].shiftsObject.startTime[l][m].split(':')[0])*60+Number(shiftsArray[j].shiftsObject.startTime[l][m].split(':')[1]);
-                     // console.log('j=',j,'k=',k,'m=',m,startSeconds)
-                    // startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
+                    } // end second n loop
                     }
-                     // for (o=0;o<) loop will be here
-                    // console.log('j=',j,'k=',k,'m=',m,'n=',n,shiftsArray[j].shiftsObject.startTime[l][m],shiftsArray[k].shiftsObject.startTime[l][n])
+                    //
                   }}}}              
               }); // end second .then shifts
           }); // end second .then gamecenter;
