@@ -73,22 +73,19 @@ function getInputValue() {
                   for (i=0;i<1200;i++) { for (j=0;j<6;j++) { tempArrayF[j].push(0); tempArrayD[j].push(0); tempArrayG[j].push(1) }}
                   // start DH, FH, GA, GH, DA, FA
                   for (i=0;i<shiftsArray.length;i++) { for (h=0;h<3;h++) { // i is players should be 40 on two teams but h is 3 periods                    
-                    {if (shiftsArray[i].shiftsObject.startTime[h].length>0) { // startTimeArray=shiftsArray[i].shiftsObject.startTime[h].split(',');
-                    // endTimeArray=shiftsArray[i].shiftsObject.endTime[h].split(',');
+                    {if (shiftsArray[i].shiftsObject.startTime[h].length>0) { 
                      console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h])
                     for (j=1;j<shiftsArray[i].shiftsObject.startTime[h].length;j++) {// startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
                       // startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-                    // endSeconds=Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.endTime[h][j].split(':')[1]);
-                    // endSeconds=Number(endTimeArray[j].split(':')[0])*60+Number(endTimeArray[j].split(':')[1]);
-                    //console.log(startSeconds, endSeconds)
-                    for (k=shiftsArray[i].shiftsObject.startTime[h][k];k<shiftsArray[i].shiftsObject.endTime[h][k];k++) { if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayD[h][k]=tempArrayD[h][k]+1}
+                    console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.startTime[h])
+                    for (k=shiftsArray[i].shiftsObject.startTime[h];k<shiftsArray[i].shiftsObject.endTime[h];k++) { if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayD[h][k]=tempArrayD[h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayF[h][k]=tempArrayF[h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayG[h][k]=tempArrayG[h][k]+1}
                       else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayD[3+h][k]=tempArrayD[3+h][k]+1}
                       else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayF[3+h][k]=tempArrayF[3+h][k]+1}
                       else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayG[3+h][k]=tempArrayG[3+h][k]+1}
-                    }}}}
-                }} // end i,h cycle
+                    }}}}}
+                  } // end i,h cycle
                 console.log(tempArrayG, tempArrayF, tempArrayD)
                 
                 for (i=0;i<1200;i++) { for (j=0;j<6;j++) {if (tempArrayD[j][i]===tempArrayD[j][i+1]) {delete(tempArrayD[j][i])}
@@ -135,7 +132,7 @@ function getInputValue() {
                   else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]<=fiveOnFive8[i][2*k+1])&&(fiveOnFive9[i][2*j+1]>fiveOnFive8[i][2*k])) {fiveOnFive9[i].push(fiveOnFive8[i][2*k],fiveOnFive9[i][2*j+1])
                   }}}            
             } // end i=0; i<6 loop
-            for (i=0;i<3;i++) {
+            for (i=0;i<3;i++) { // fiveOnFive11 is when both teams played with 1G, 2D, 3F console.log will be deleted
               for (j=0;j<fiveOnFive10[i].length/2;j++) {for (k=0;k<fiveOnFive10[i+3].length/2;k++) {
                 if ((fiveOnFive10[i][2*j]>=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]<=fiveOnFive10[i+3][2*k+1])) {fiveOnFive11[i].push(fiveOnFive10[i][2*j],fiveOnFive10[i][2*j+1])
                   console.log('case1',i,j,k,fiveOnFive10[i][2*j],fiveOnFive10[i][2*j+1])
@@ -172,6 +169,7 @@ function getInputValue() {
                             else { tempTime.push(shiftsPair[2 * n], shiftsArray[m].shiftsObject.endTime[l][o])}
                           }}}} // end second n loop
                           // fiveOnFive loop here line 152
+                          for (n=0;n<fiveOnFive11[l].length;n++) {}
                     }
                     //
                   }}}}              
