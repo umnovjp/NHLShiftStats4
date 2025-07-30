@@ -91,7 +91,8 @@ for (h = 0; h < 2; h++) {// h = 0 home team F, h = 1 away team F
             else if ((tempTime[2*n] <= fiveOnFive5[h][i][2*m])&&(tempTime[2*n+1] >= fiveOnFive5[h][i][2*m])) {
               if (tempTime[2*n+1] >= fiveOnFive5[h][i][2*m+1]) {tempTime2.push(fiveOnFive5[h][i][2*m+1]-fiveOnFive5[h][i][2*m])}
               else {tempTime2.push(tempTime[2*n+1] - fiveOnFive5[h][i][2*m])}
-            }}} // end second m,n loop to count only 5x5 plays
+            }
+          }} // end second m,n loop to count only 5x5 plays
             shifts = 0; const sum = tempTime2.reduce((partialSum, a) => partialSum + a, 0);
             for (o = 0; o < tempTime.length; o++) { if (tempTime[o] >= 10) { shifts = shifts + 1;
             tempTime2.push(tempTime[o])}}

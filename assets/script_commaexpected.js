@@ -169,8 +169,16 @@ function getInputValue() {
                             else { tempTime.push(shiftsPair[2 * n], shiftsArray[m].shiftsObject.endTime[l][o])}
                           }}}} // end second n loop
                           // fiveOnFive loop here line 152
-                          for (n=0;n<fiveOnFive11[l].length;n++) {}
-                    }
+                          for (n=0;n<fiveOnFive11[l].length;n++) {for (o=0;o<tempTime.length/2;o++) {
+                            if ((tempTime[2*o]>=fiveOnFive11[l][2*n])&&(tempTime[2*o]<=fiveOnFive11[l][2*n+1])) {
+                              if (tempTime[2*o+1]>=fiveOnFive11[l][2*n+1]) {tempTime2.push(fiveOnFive11[l][2*n+1]-tempTime[2*o])}
+                              else {tempTime2.push(tempTime[2*o+1]-tempTime[2*o])}}
+                              else if ((tempTime[2*o]<=fiveOnFive11[l][2*n])&&(tempTime[2*o+1]>=fiveOnFive11[l][2*n])) {
+                                if (tempTime[2*o+1]>=fiveOnFive11[l][2*n+1]) {tempTime2.push(fiveOnFive11[l][2*n+1]-fiveOnFive11[l][2*n])}
+                                else {tempTime2.push(tempTime[2*o+1] - fiveOnFive11[l][2*n])}
+                              }}
+                          } // end 3rd n,o loop
+                        }}
                     //
                   }}}}              
               }); // end second .then shifts
