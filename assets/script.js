@@ -175,9 +175,7 @@ function getInputValue() {
               else if ((tempTime[2*o] <= fiveOnFive11[l][2*n])&&(tempTime[2*o+1] >= fiveOnFive11[l][2*o])) {
                 if (tempTime[2*o+1] >= fiveOnFive11[l][2*n+1]) {tempTime2.push(fiveOnFive11[l][2*n+1]-fiveOnFive11[l][2*n])}
                 else {tempTime2.push(tempTime[2*o+1] - fiveOnFive11[l][2*n])}
-              }
-                        }}
-                    }
+              }}}}
                     //
                   }}}}              
               }); // end second .then shifts
