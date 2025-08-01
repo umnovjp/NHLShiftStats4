@@ -146,7 +146,7 @@ function getInputValue() {
                   console.log('case4',i,j,k,fiveOnFive11[i][2*k],fiveOnFive11[i][2*j+1])
                 }}}        
             }
-                 console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount);
+                 console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount); linesArray=[[],[],[],[],[],[]]
                  for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]);j<20*(i+1);j++) {
                   for (k=j+1;k<20*(i+1);k++){ for (l=0;l<1;l++) { // to change it later to l<3
                     shiftsPair=[];
@@ -175,9 +175,14 @@ function getInputValue() {
               else if ((tempTime[2*o] <= fiveOnFive11[l][2*n])&&(tempTime[2*o+1] >= fiveOnFive11[l][2*o])) {
                 if (tempTime[2*o+1] >= fiveOnFive11[l][2*n+1]) {tempTime2.push(fiveOnFive11[l][2*n+1]-fiveOnFive11[l][2*n])}
                 else {tempTime2.push(tempTime[2*o+1] - fiveOnFive11[l][2*n])}
-              }}}}
+              }}} // end n,o loop to count only 5x5 plays
+              shifts = 0; const sum = tempTime2.reduce((partialSum, a) => partialSum + a, 0);
+            for (p = 0; p < tempTime.length; p++) { if (tempTime[p] >= 10) { shifts = shifts + 1;
+            tempTime2.push(tempTime[p])}}
+            linesArray[l + 3 * i].push(sum); linesArray[l + 3 * i].push(shifts, l, m, n); console.log(l, m, n, tempTime); // l period, m,n first two forwards
+            }
                     //
-                  }}}}              
+                  }}}}            
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
