@@ -147,7 +147,7 @@ function getInputValue() {
                 }}}        
             }
                  console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount); linesArray=[[],[],[],[],[],[]]
-                 for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]);j<20*(i+1);j++) {
+                 for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]);j<20*(i+1);j++) { // i may be 0 or 1 for home and away team
                   for (k=j+1;k<20*(i+1);k++){ for (l=0;l<1;l++) { // to change it later to l<3
                     shiftsPair=[];
                     for (m=0; m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {
@@ -179,10 +179,11 @@ function getInputValue() {
               shifts = 0; const sum = tempTime2.reduce((partialSum, a) => partialSum + a, 0);
             for (p = 0; p < tempTime.length; p++) { if (tempTime[p] >= 10) { shifts = shifts + 1;
             tempTime2.push(tempTime[p])}}
-            linesArray[l + 3 * i].push(sum); linesArray[l + 3 * i].push(shifts, l, m, n); console.log(l, m, n, tempTime); // l period, m,n first two forwards
+            linesArray[l + 3 * i].push(sum); linesArray[l + 3 * i].push(shifts, j, k, m); console.log(l, j, k, tempTime); // l period, m,n first two forwards
             }
                     //
-                  }}}}            
+                  }}}} // end i loop currently line 150
+                  console.log('shiftsPair', shiftsPair, 'linesArray', linesArray);
               }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
