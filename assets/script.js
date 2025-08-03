@@ -1,192 +1,207 @@
-
-var scheduleContent = document.getElementById('schedule'); var gameId; var inputVal = '2021'; standingsArray = []; linesArray10 = []; lineUpCount=[0,0,0,0,0,0]
+var scheduleContent = document.getElementById('schedule'); var gameId; var inputVal = '2021'; standingsArray = []; linesArray10=[]
 // lines below will allow user to select date then to select game on that date
 function getInputValue() {
   var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
-  var formatted = date[2] + '-' + date[0] + '-' + date[1];
-  // var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/schedule/' + formatted;
+  var formatted = date[2]+'-'+date[0]+'-'+date[1]; 
   var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
-  fetch(requestURL, {
-    "method": "GET", "headers": {}
+  fetch(requestURL, {"method": "GET", "headers": {}
   })
-    .then(function (response) { return response.json() })
-    .then(function (data) { console.log('I am in schedule then');
+    .then(function (response) {return response.json()})
+    .then(function (data) {console.log('I am in schedule then');
       var numberOfGames = data.gameWeek[0].games.length; scheduleContent.textContent = '';
-      for (var i = 0; i < numberOfGames; i++) { var gameName = document.createElement('button');
+      for (var i = 0; i < numberOfGames; i++) {
+        var gameName = document.createElement('button');
         gameName.setAttribute('id', 'game' + i); var idx = gameName.getAttribute('id');
         gameName.innerHTML = 'Game ' + i + ': ' + data.gameWeek[0].games[i].awayTeam.abbrev + ' vs ' + data.gameWeek[0].games[i].homeTeam.abbrev;
         document.getElementById('schedule').appendChild(gameName); gameName.addEventListener('click', displayGameData);
       }
-      
-      function displayGameData(event) { idx = event.currentTarget; idxString = event.currentTarget.textContent;
+
+      function displayGameData(event) {idx = event.currentTarget; idxString = event.currentTarget.textContent;
         idxArray = idxString.split(':'); idxNumber = idxArray[0].split(' '); gameNumber = idxNumber[1];
         const gameId = data.gameWeek[0].games[gameNumber].id; console.log(gameId);
-        // var requestURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
         var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
-        fetch(requestURL, { "method": "GET", "headers": {}})
+        fetch(requestURL, {
+          "method": "GET", "headers": {}
+        })
           .then(function (response) { return response.json() })
-          .then(function (data) {
-            const gameInfo = document.createElement('section'); gameInfo.setAttribute('id', 'gameInfo');
+          .then(function (data) {const gameInfo = document.createElement('section'); gameInfo.setAttribute('id', 'gameInfo');
             document.getElementById('schedule').appendChild(gameInfo);
-            var gameTitle = document.createElement('h2'); gameTitle.textContent = '';
-            gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on ' + formatted;
-            document.getElementById('gameInfo').appendChild(gameTitle); shiftsArray = [];
-
-            function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
-              this.playerId = playerId; this.jerseyNumber = jerseyNumber; this.name = name; this.position = position;
-              this.team = team; this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}}
-            for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.goalies[i].playerId, data.playerByGameStats.homeTeam.goalies[i].sweaterNumber, data.playerByGameStats.homeTeam.goalies[i].name, 'G', 'H');
-              shiftsArray.push(CurrentPlayer); lineUpCount[0]=lineUpCount[0]+1}
-            for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.defense[i].playerId, data.playerByGameStats.homeTeam.defense[i].sweaterNumber, data.playerByGameStats.homeTeam.defense[i].name, 'D', 'H');
-              shiftsArray.push(CurrentPlayer); lineUpCount[1]=lineUpCount[1]+1}
-            for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.forwards[i].playerId, data.playerByGameStats.homeTeam.forwards[i].sweaterNumber, data.playerByGameStats.homeTeam.forwards[i].name, 'F', 'H');
-              shiftsArray.push(CurrentPlayer); lineUpCount[2]=lineUpCount[2]+1}
-            for (i = 0; i < data.playerByGameStats.awayTeam.goalies.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.goalies[i].playerId, data.playerByGameStats.awayTeam.goalies[i].sweaterNumber, data.playerByGameStats.awayTeam.goalies[i].name, 'G', 'A');
-              shiftsArray.push(CurrentPlayer); lineUpCount[3]=lineUpCount[3]+1}
-            for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.defense[i].playerId, data.playerByGameStats.awayTeam.defense[i].sweaterNumber, data.playerByGameStats.awayTeam.defense[i].name, 'D', 'A');
-              shiftsArray.push(CurrentPlayer); lineUpCount[4]=lineUpCount[4]+1}
-            for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.forwards[i].playerId, data.playerByGameStats.awayTeam.forwards[i].sweaterNumber, data.playerByGameStats.awayTeam.forwards[i].name, 'F', 'A');
-              shiftsArray.push(CurrentPlayer); lineUpCount[5]=lineUpCount[5]+1}
-           // var shiftsURL = 'https://corsproxy.io/?key=2ddedfd8&url=https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
-           // var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/gamecenter/' + gameId + '/boxscore';
-           var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
-            fetch(shiftsURL, { "method": "GET", "headers": {} })
+            var standingsURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/standings/' + formatted;
+            fetch(standingsURL, {
+              "method": "GET", "headers": {}
+            })
               .then(function (response) { return response.json() })
-              .then(function (data_shifts) { console.log('I am in second shift then', data_shifts.data, shiftsArray[0]);
-                for (i=0;i<data_shifts.data.length;i++) {if (data_shifts.data[i].typeCode===517) {
-                  for (j=0;j<shiftsArray.length;j++) { for (k=0;k<3;k++) {
-                    if ((data_shifts.data[i].playerId===shiftsArray[j].playerId)&&(data_shifts.data[i].period===k+1)) { console.log(data_shifts.data[i].startTime, typeof data_shifts.data[i].startTime)
-                       shiftsArray[j].shiftsObject.startTime[k].push(Number(data_shifts.data[i].startTime.split(':')[0]*60)+Number(data_shifts.data[i].startTime.split(':')[1]))
-                       shiftsArray[j].shiftsObject.endTime[k].push(Number(data_shifts.data[i].endTime.split(':')[0]*60)+Number(data_shifts.data[i].endTime.split(':')[1]))
-                       // shiftsArray[j].shiftsObject.endTime[k].push(Number(data_shifts.data[i].endTime).split(':')[0]*60+Number(data_shifts.data[i].endTime).split(':')[1])
-                       // startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
-                     // shiftsArray[j].shiftsObject.startTime[k] = shiftsArray[j].shiftsObject.startTime[k] + ', ' + data_shifts.data[i].startTime, 
-                       // shiftsArray[j].shiftsObject.endTime[k].push(data_shifts.data[i].endTime)
-                     // shiftsArray[j].shiftsObject.endTime[k] = shiftsArray[j].shiftsObject.endTime[k] + ', ' + data_shifts.data[i].endTime
-                    } // end if loop to add script here
-                    // tempArray3=shiftsArray[j].shiftsObject.startTime[k].split(',')
-                  }}}}
-                console.log(shiftsArray, shiftsArray[2].shiftsObject);
-                // then I ran cycle to eliminate end shift start shift pairs ???
-                  tempArrayD=[[],[],[],[],[],[]]; tempArrayF=[[],[],[],[],[],[]];tempArrayG=[[],[],[],[],[],[]];tempArrayG1=[[],[],[],[],[],[]];tempArrayD1=[[],[],[],[],[],[]];tempArrayF1=[[],[],[],[],[],[]];tempArrayDA3=[[],[],[]]; 
-                  for (i=0;i<1200;i++) { for (j=0;j<3;j++) { tempArrayDA3[j].push(0) }}
-                  for (i=0;i<1200;i++) { for (j=0;j<6;j++) { tempArrayF[j].push(0); tempArrayD[j].push(0); tempArrayG[j].push(1) }}
-                  // start DH, FH, GA, GH, DA, FA
-                  for (i=0;i<shiftsArray.length;i++) { for (h=0;h<3;h++) { // i is players should be 40 on two teams but h is 3 periods                    
-                    {if (shiftsArray[i].shiftsObject.startTime[h].length>0) { 
-                     console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.endTime[h])
-                    for (j=1;j<shiftsArray[i].shiftsObject.startTime[h].length;j++) {// startSeconds=Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[0])*60+Number(shiftsArray[i].shiftsObject.startTime[h][j].split(':')[1]);
-                      // startSeconds=Number(startTimeArray[j].split(':')[0])*60+Number(startTimeArray[j].split(':')[1]);
-                    console.log(shiftsArray[i].shiftsObject.startTime[h], shiftsArray[i].shiftsObject.startTime[h])
-                    for (k=shiftsArray[i].shiftsObject.startTime[h];k<shiftsArray[i].shiftsObject.endTime[h];k++) { if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='H')) {tempArrayD[h][k]=tempArrayD[h][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='H')) {tempArrayF[h][k]=tempArrayF[h][k]+1}
-                      else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='H')) {tempArrayG[h][k]=tempArrayG[h][k]+1}
-                      else if ((shiftsArray[i].position==='D')&&(shiftsArray[i].team==='A')) {tempArrayD[3+h][k]=tempArrayD[3+h][k]+1}
-                      else if ((shiftsArray[i].position==='F')&&(shiftsArray[i].team==='A')) {tempArrayF[3+h][k]=tempArrayF[3+h][k]+1}
-                      else if ((shiftsArray[i].position==='G')&&(shiftsArray[i].team==='A')) {tempArrayG[3+h][k]=tempArrayG[3+h][k]+1}
-                    }}}}}
-                  } // end i,h cycle
-                console.log(tempArrayG, tempArrayF, tempArrayD)
-                
-                for (i=0;i<1200;i++) { for (j=0;j<6;j++) {if (tempArrayD[j][i]===tempArrayD[j][i+1]) {delete(tempArrayD[j][i])}
-                  if (tempArrayF[j][i]===tempArrayF[j][i+1]) {delete(tempArrayF[j][i])};
-                  if (tempArrayG[j][i]===tempArrayG[j][i+1]) {delete(tempArrayG[j][i])};
-                }} 
-                for (i=0;i<1200;i++) { for (j=0;j<6;j++) {if (!tempArrayD[j][i]) {} else {tempArrayD1[j].push(tempArrayD[j][i],i)}
-                if (!tempArrayF[j][i]) {} else {tempArrayF1[j].push(tempArrayF[j][i],i)};
-                if (!tempArrayG[j][i]) {} else {tempArrayG1[j].push(tempArrayG[j][i],i)};
-              }}
-                // fiveOnFive3 is when team played with 2D; fiveOnFive4 is when team played with 3F; fiveOnFive5 is when team played with 1G; 
-                fiveOnFive=[[],[],[],[],[],[]]; fiveOnFive3=tempArrayD1; fiveOnFive4=tempArrayF1; fiveOnFive5=tempArrayG1; 
-                fiveOnFive6=[[],[],[],[],[],[]]; fiveOnFive7=[[],[],[],[],[],[]]; fiveOnFive8=[[],[],[],[],[],[]]; fiveOnFive9=[[],[],[],[],[],[]]; fiveOnFive10=[[],[],[],[],[],[]]; fiveOnFive11=[[],[],[]];
-               
-              for (i=0;i<6;i++) { // first three periods home team then 3 periods away team total 6
-                for (j=tempArrayD1[i].length/2-1; j>0; j--) {if (fiveOnFive3[i][2*j+1]-fiveOnFive3[i][2*j-1]<4) {
-                  tempArray1=fiveOnFive3[i].slice(0,2*j-2); tempArray2=fiveOnFive3[i].slice(2*j+2);
-                     fiveOnFive3[i]=tempArray1.concat(tempArray2)
-                }}
-              for (j=tempArrayF1[i].length/2-1; j>0; j--) {if (fiveOnFive4[i][2*j+1]-fiveOnFive4[i][2*j-1]<4) {
-                tempArray1=fiveOnFive4[i].slice(0,2*j-2); tempArray2=fiveOnFive4[i].slice(2*j+2);
-                   fiveOnFive4[i]=tempArray1.concat(tempArray2) }}
-              for (j=tempArrayG1[i].length/2-1; j>0; j--) {if (fiveOnFive5[i][2*j+1]-fiveOnFive5[i][2*j-1]<4) {
-                tempArray1=fiveOnFive5[i].slice(0,2*j-2); tempArray2=fiveOnFive5[i].slice(2*j+2);
-                   fiveOnFive5[i]=tempArray1.concat(tempArray2) }}
-              // fiveOnFive6, fiveOnFive7, fiveOnFive8 are arrays when team played with 2D, 3F, 1G. Index 0-2 for home team in 3 periods, index 3-5 for away team in 3 periods 
-              // then fiveOnFive9 is when a team played with 2D and 3F, fiveOnFive10 is when a team played with 1G 2D 3F. 
-              // will add condition if a team started period with 1D or with 2F or with 4F. Other numbers are unlikelys
-              if (fiveOnFive3[i][0]===2) {fiveOnFive6[i].push(0, fiveOnFive3[i][1])}; if (fiveOnFive4[i][0]===3) {fiveOnFive7[i].push(0, fiveOnFive4[i][1])}
-              if (fiveOnFive5[i][0]===2) {fiveOnFive8[i].push(0, fiveOnFive5[i][1])}
-              for (j=1;j<fiveOnFive3[i].length/2;j++) { if (fiveOnFive3[i][2*j]===2) {fiveOnFive6[i].push(fiveOnFive3[i][2*j-1],fiveOnFive3[i][2*j+1])} }
-              for (j=1;j<fiveOnFive4[i].length/2;j++) { if (fiveOnFive4[i][2*j]===3) {fiveOnFive7[i].push(fiveOnFive4[i][2*j-1],fiveOnFive4[i][2*j+1])} }
-              for (j=1;j<fiveOnFive5[i].length/2;j++) { if (fiveOnFive5[i][2*j]===2) {fiveOnFive8[i].push(fiveOnFive5[i][2*j-1],fiveOnFive5[i][2*j+1])} }
-              for (j=0;j<fiveOnFive6[i].length/2;j++) {for (k=0;k<fiveOnFive7[i].length/2;k++) {
-                if ((fiveOnFive6[i][2*j]>=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive6[i][2*j+1]) }
-                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive7[i][2*k+1]) }
-                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]>=fiveOnFive7[i][2*k+1])&&(fiveOnFive6[i][2*j]<fiveOnFive7[i][2*k+1])) {fiveOnFive9[i].push(fiveOnFive6[i][2*j],fiveOnFive7[i][2*k+1])}
-                else if ((fiveOnFive6[i][2*j]<=fiveOnFive7[i][2*k])&&(fiveOnFive6[i][2*j+1]<=fiveOnFive7[i][2*k+1])&&(fiveOnFive6[i][2*j+1]>fiveOnFive7[i][2*k])) {fiveOnFive9[i].push(fiveOnFive7[i][2*k],fiveOnFive6[i][2*j+1])
-                }}}
-                for (j=0;j<fiveOnFive9[i].length/2;j++) {for (k=0;k<fiveOnFive8[i].length/2;k++) {
-                  if ((fiveOnFive9[i][2*j]>=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]<=fiveOnFive8[i][2*k+1])) {fiveOnFive10[i].push(fiveOnFive9[i][2*j],fiveOnFive9[i][2*j+1])}
-                  else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]>=fiveOnFive8[i][2*k+1])) {fiveOnFive10[i].push(fiveOnFive8[i][2*k],fiveOnFive8[i][2*k+1])}
-                  else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]>=fiveOnFive8[i][2*k+1])&&(fiveOnFive9[i][2*j]<fiveOnFive8[i][2*k+1])) { fiveOnFive10[i].push(fiveOnFive9[i][2*j],fiveOnFive8[i][2*k+1])}
-                  else if ((fiveOnFive9[i][2*j]<=fiveOnFive8[i][2*k])&&(fiveOnFive9[i][2*j+1]<=fiveOnFive8[i][2*k+1])&&(fiveOnFive9[i][2*j+1]>fiveOnFive8[i][2*k])) {fiveOnFive9[i].push(fiveOnFive8[i][2*k],fiveOnFive9[i][2*j+1])
-                  }}}            
-            } // end i=0; i<6 loop
-            for (i=0;i<3;i++) { // fiveOnFive11 is when both teams played with 1G, 2D, 3F console.log will be deleted
-              for (j=0;j<fiveOnFive10[i].length/2;j++) {for (k=0;k<fiveOnFive10[i+3].length/2;k++) {
-                if ((fiveOnFive10[i][2*j]>=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]<=fiveOnFive10[i+3][2*k+1])) {fiveOnFive11[i].push(fiveOnFive10[i][2*j],fiveOnFive10[i][2*j+1])
-                  console.log('case1',i,j,k,fiveOnFive10[i][2*j],fiveOnFive10[i][2*j+1])
-                }
-                else if ((fiveOnFive10[i][2*j]<=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]>=fiveOnFive10[i+3][2*k+1])) {fiveOnFive11[i].push(fiveOnFive10[i+3][2*k],fiveOnFive10[i+3][2*k+1])
-                  console.log('case2',i,j,k,fiveOnFive10[i+3][2*k],fiveOnFive10[i+3][2*k+1])
-                }
-                else if ((fiveOnFive10[i][2*j]<=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]>=fiveOnFive10[i+3][2*k+1])&&(fiveOnFive10[i][2*j]<fiveOnFive10[i+3][2*k+1])) { console.log('case3',i,j,k,fiveOnFive10[i][2*j],fiveOnFive10[i+3][2*k+1])
-                  fiveOnFive11[i].push(fiveOnFive10[i][2*j],fiveOnFive10[i+3][2*k+1])}                
-                else if ((fiveOnFive10[i][2*j]<=fiveOnFive10[i+3][2*k])&&(fiveOnFive10[i][2*j+1]<=fiveOnFive10[i+3][2*k+1])&&(fiveOnFive10[i][2*j+1]>fiveOnFive10[i+3][2*k])) {fiveOnFive11[i].push(fiveOnFive10[i+3][2*k],fiveOnFive10[i][2*j+1])
-                  console.log('case4',i,j,k,fiveOnFive11[i][2*k],fiveOnFive11[i][2*j+1])
-                }}}        
-            }
-                 console.log(fiveOnFive6, fiveOnFive7, fiveOnFive8, fiveOnFive10, fiveOnFive11, lineUpCount); linesArray=[[],[],[],[],[],[]]
-                 for (i=0;i<2;i++) {for (j=20*i+(lineUpCount[3*i+0]+lineUpCount[3*i+1]);j<20*(i+1);j++) { // i may be 0 or 1 for home and away team
-                  for (k=j+1;k<20*(i+1);k++){ for (l=0;l<1;l++) { // to change it later to l<3
-                    shiftsPair=[];
-                    for (m=0; m<shiftsArray[j].shiftsObject.startTime[l].length;m++) {
-                      for (n=0; n<shiftsArray[k].shiftsObject.startTime[l].length;n++) {
-                        if ((    shiftsArray[k].shiftsObject.startTime[l][n] >= shiftsArray[j].shiftsObject.startTime[l][m]) && (shiftsArray[k].shiftsObject.startTime[l][n] <= shiftsArray[j].shiftsObject.endTime[l][m])) {
-                          if (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.endTime[l][m]) {shiftsPair.push(shiftsArray[k].shiftsObject.startTime[l][n], shiftsArray[j].shiftsObject.endTime[l][m])}
-                          else { shiftsPair.push(shiftsArray[k].shiftsObject.startTime[l][n], shiftsArray[k].shiftsObject.endTime[l][n]) }}
-                        else if ((shiftsArray[k].shiftsObject.startTime[l][n]<= shiftsArray[j].shiftsObject.startTime[l][m]) && (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.startTime[l][m])) {
-                          if (shiftsArray[k].shiftsObject.endTime[l][n] >= shiftsArray[j].shiftsObject.endTime[l][m]) { shiftsPair.push(shiftsArray[j].shiftsObject.startTime[l][m], shiftsArray[j].shiftsObject.endTime[l][m]) }
-                          else {shiftsPair.push(shiftsArray[j].shiftsObject.startTime[l][m], shiftsArray[k].shiftsObject.endTime[l][n])}
-                        }}} // end m,n loop
-                    for (m=k+1;m<20*(i+1);m++) {tempTime=[]; tempTime2=[];
-                      for (n=0;n<shiftsPair.length/2;n++) {for (o=0;o<shiftsArray[m].shiftsObject.startTime[l].length;o++) {
-                        {if ((shiftsArray[m].shiftsObject.startTime[l][o]>=shiftsPair[2*n])&&(shiftsArray[m].shiftsObject.startTime[l][o]<shiftsPair[2*n+1])){
-                          if (shiftsArray[m].shiftsObject.endTime[l][o]>=shiftsPair[2*n+1]) {tempTime.push(shiftsArray[m].shiftsObject.startTime[l][o], shiftsPair[2 * n + 1])}
-                          else { tempTime.push(shiftsArray[m].shiftsObject.startTime[l][o], shiftsArray[m].shiftsObject.endTime[l][o]) }}
-                          else if ((shiftsArray[m].shiftsObject.startTime[l][o] <= shiftsPair[2 * n]) && (shiftsArray[m].shiftsObject.endTime[l][o] > shiftsPair[2 * n])) {
-                            if (shiftsArray[m].shiftsObject.endTime[l][o] >= shiftsPair[2 * n + 1]) { tempTime.push(shiftsPair[2 * n], shiftsPair[2 * n + 1]) }
-                            else { tempTime.push(shiftsPair[2 * n], shiftsArray[m].shiftsObject.endTime[l][o])}
-                          }}}} // end second n loop
-                          // fiveOnFive loop here line 152
-                          for (n=0;n<fiveOnFive11[l].length;n++) {for (o=0;o<tempTime.length/2;o++) {if ((tempTime[2*o]>=fiveOnFive11[l][2*n])&&(tempTime[2*o]<=fiveOnFive11[l][2*n+1])) {
-                            if (tempTime[2*o+1] >= fiveOnFive11[l][2*n+1]) {tempTime2.push(fiveOnFive11[l][2*n+1]-tempTime[2*o])}
-              else {tempTime2.push(tempTime[2*o+1]-tempTime[2*o])}}
-              else if ((tempTime[2*o] <= fiveOnFive11[l][2*n])&&(tempTime[2*o+1] >= fiveOnFive11[l][2*o])) {
-                if (tempTime[2*o+1] >= fiveOnFive11[l][2*n+1]) {tempTime2.push(fiveOnFive11[l][2*n+1]-fiveOnFive11[l][2*n])}
-                else {tempTime2.push(tempTime[2*o+1] - fiveOnFive11[l][2*n])}
-              }}} // end n,o loop to count only 5x5 plays
-              shifts = 0; const sum = tempTime2.reduce((partialSum, a) => partialSum + a, 0);
-            for (p = 0; p < tempTime.length; p++) { if (tempTime[p] >= 10) { shifts = shifts + 1;
-            tempTime2.push(tempTime[p])}}
-            linesArray[l + 3 * i].push(sum); linesArray[l + 3 * i].push(shifts, j, k, m); console.log(l, j, k, tempTime); // l period, m,n first two forwards
-            }
-                    //
-                  }}}} // end i loop currently line 150
-                  console.log('shiftsPair', shiftsPair, 'linesArray', linesArray);
-              }); // end second .then shifts
+              .then(function (data_standings) { console.log(data_standings.standings);
+                for (i = 0; i < data_standings.standings.length; i++) { if (data_standings.standings[i].teamAbbrev.default === data.awayTeam.abbrev) {
+                    standingsArray.push(data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)
+                    console.log(i, data.awayTeam.abbrev, data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)}
+                  else if (data_standings.standings[i].teamAbbrev.default === data.homeTeam.abbrev) {
+                    standingsArray.push(data.homeTeam.abbrev, data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)
+                    console.log(i, data.homeTeam.abbrev, data_standings.standings[i].wins, data_standings.standings[i].losses, data_standings.standings[i].otLosses)
+                  }
+                  else (console.log('No Such Abbrev'))}
+                var gameTitle = document.createElement('h2'); gameTitle.textContent = '';
+                gameTitle.innerHTML = 'You are watching stats for ' + data.awayTeam.abbrev + standingsArray[0] + ' W ' + standingsArray[1] + ' L ' + standingsArray[2] + ' O at ' + data.homeTeam.abbrev + standingsArray[3] + ' W ' + standingsArray[4] + ' L ' + standingsArray[5] + ' O game';
+                document.getElementById('gameInfo').appendChild(gameTitle);
+                const homeF = []; const awayF = []; const homeD = []; const awayD = []; const homeG = []; const awayG = []; const playerIdArray = []; // let playerIdeObject = {a: 1}; const hasKeyId = true;
+                var obj = data.playerByGameStats.homeTeam.forwards; var keys = Object.keys(obj); playerIdeObject = {};
+                for (i = 0; i < keys.length; i++) {
+                  var val = obj[keys[i]]; homeF.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
+                  keyId = val.playerId; playerIdeObject[keyId] = []}
+                var obj = data.playerByGameStats.homeTeam.defense; var keys = Object.keys(obj);
+                for (i = 0; i < keys.length; i++) {
+                  var val = obj[keys[i]]; homeD.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
+                  keyId = val.playerId; playerIdeObject[keyId] = []}
+                var obj = data.playerByGameStats.homeTeam.goalies; var keys = Object.keys(obj);
+                for (i = 0; i < keys.length; i++) {
+                  var val = obj[keys[i]]; homeG.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
+                  keyId = val.playerId; playerIdeObject[keyId] = []}
+                var obj = data.playerByGameStats.awayTeam.forwards; var keys = Object.keys(obj);
+                for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayF.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
+                  keyId = val.playerId; playerIdeObject[keyId] = []}
+                var obj = data.playerByGameStats.awayTeam.defense; var keys = Object.keys(obj);
+                for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayD.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
+                  keyId = val.playerId; playerIdeObject[keyId] = []}
+                var obj = data.playerByGameStats.awayTeam.goalies; var keys = Object.keys(obj);
+                for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayG.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
+                  keyId = val.playerId; playerIdeObject[keyId] = []}
+                // console.log(homeF, homeD, homeG, awayF, awayD, awayG, playerIdArray)
+
+                var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
+                fetch(shiftsURL, { "method": "GET", "headers": {} })
+                  .then(function (response) {return response.json()})
+                  .then(function (data_shifts) {
+                    console.log('I am in second shift then', data_shifts);
+                    for (i = 0; i < data_shifts.data.length; i++) {
+                      if ((data_shifts.data[i].typeCode === 517) && (data_shifts.data[i].period < 4)) {playerOrder = playerIdArray.indexOf(data_shifts.data[i].playerId);
+                        shiftStart = data_shifts.data[i].startTime; shiftStart1 = shiftStart.split(':'); minutes = Number(shiftStart1[0]);
+                        seconds = Number(shiftStart1[1]); shiftStart2 = minutes * 60 + seconds;
+                        shiftEnd = data_shifts.data[i].endTime; shiftEnd1 = shiftEnd.split(':'); minutes = Number(shiftEnd1[0]);
+                        seconds = Number(shiftEnd1[1]); shiftEnd2 = minutes * 60 + seconds;
+                        playerIdArray[playerOrder + 1][data_shifts.data[i].period - 1].push(shiftStart2, shiftEnd2)}}
+                    for (i = 0; i < playerIdArray.length / 2; i++) {currentKey = playerIdArray[2 * i]; playerIdeObject[currentKey] = playerIdArray[2 * i + 1]}
+                    // console.log(playerIdArray, playerIdeObject);
+
+                    dArray = [[], []];
+                    for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeD.length / 3; j++) { if (playerIdArray[2 * i] === homeD[3 * j]) { dArray[0].push(playerIdArray[2 * i + 1]) } }
+                      for (j = 0; j < awayD.length / 3; j++) { if (playerIdArray[2 * i] === awayD[3 * j]) { dArray[1].push(playerIdArray[2 * i + 1]) }}}
+                    dArray2 = [[],[]]; // dArray2 is not used yet but will be used later as I switch to object instead of array
+                    for (i = 0; i < Object.keys(playerIdeObject).length; i++) {for (j = 0; j < homeD.length/3; j++){if (Object.keys(playerIdeObject)[i]==homeD[3*j]){//console.log(i, j, Object.keys(playerIdeObject)[i]);
+                        dArray2[0].push(Object.values(playerIdeObject)[i])}}
+                      for (j = 0; j < awayD.length/3; j++){if (Object.keys(playerIdeObject)[i]==awayD[3*j]){console.log(i, j, Object.keys(playerIdeObject)[i]);
+                        dArray2[1].push(Object.values(playerIdeObject)[i])}}} 
+                        
+                        fArray = [[], []];
+                    for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeF.length / 3; j++) { if (playerIdArray[2 * i] === homeF[3 * j]) { fArray[0].push(playerIdArray[2 * i + 1]) } }
+                      for (j = 0; j < awayF.length / 3; j++) { if (playerIdArray[2 * i] === awayF[3 * j]) { fArray[1].push(playerIdArray[2 * i + 1]) }}}                    
+                    console.log('dArray', dArray, 'dArray2', dArray2, 'fArray', fArray); pairingsArray = [[], [], [], [], [], []]; linesArray = [[], [], [], [], [], []];
+                    
+                    dArrayTemp = [[[],[],[]],[[],[],[]]]; fArrayTemp = [[[],[],[]],[[],[],[]]];
+                    for (i = 0; i < 2; i++) { for (j = 0; j < dArray[i].length; j++) { for (k = 0; k < 3; k++) {dArrayTemp[i][k] = dArrayTemp[i][k].concat(dArray[i][j][k])}}}
+                    for (i = 0; i < 2; i++) { for (j = 0; j < fArray[i].length; j++) { for (k = 0; k < 3; k++) {fArrayTemp[i][k] = fArrayTemp[i][k].concat(fArray[i][j][k])}}}
+                    console.log(dArrayTemp, fArrayTemp);
+                     // new attempt to create 5x5 loop
+                     dArrayTemp2 = [[[],[],[]],[[],[],[]]]; dArrayTemp3 = [[[],[],[]],[[],[],[]]]; fArrayTemp2 = [[[],[],[]],[[],[],[]]]; fArrayTemp3 = [[[],[],[]],[[],[],[]]]; 
+                     for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < 1200; k++) {dArrayTemp2[i][j].push(0); fArrayTemp2[i][j].push(0)}}}
+                     for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) for (k = 0; k < dArrayTemp[i][j].length/2; k++) 
+                   {for (l = dArrayTemp[i][j][2*k]; l < dArrayTemp[i][j][2*k + 1]; l++) {dArrayTemp2[i][j][l] = dArrayTemp2[i][j][l] + 1}}}
+                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) for (k = 0; k < fArrayTemp[i][j].length/2; k++) 
+                   {for (l = fArrayTemp[i][j][2*k]; l < fArrayTemp[i][j][2*k + 1]; l++) {fArrayTemp2[i][j][l] = fArrayTemp2[i][j][l] + 1}}}
+                   
+                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < 1200; k++) {if (dArrayTemp2[i][j][k+1] === dArrayTemp2[i][j][k]) {delete dArrayTemp2[i][j][k]}}}} 
+                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < 1200; k++) {if (fArrayTemp2[i][j][k+1] === fArrayTemp2[i][j][k]) {delete fArrayTemp2[i][j][k]}}}} 
+                 
+                 for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < 1200; k++) {if (!dArrayTemp2[i][j][k]) {} else {dArrayTemp3[i][j].push(dArrayTemp2[i][j][k], k)}}}}
+                 for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < 1200; k++) {if (!fArrayTemp2[i][j][k]) {} else {fArrayTemp3[i][j].push(fArrayTemp2[i][j][k], k)}}}}
+                   console.log(dArrayTemp3, fArrayTemp3);
+                   fiveOnFive = [[[],[],[]],[[],[],[]]]; fiveOnFive2 = [[[],[],[]],[[],[],[]]]; fiveOnFive3 = [[[],[],[]],[[],[],[]]]; fiveOnFive4 = [[[],[],[]],[[],[],[]]]; fiveOnFive5 = [[[],[],[]],[[],[],[]]]; 
+                   // fiveOnFive2 and fiveOnFive4 are used for comparison only not for script should be deleted later
+                   // fiveOnFive is when team played with 2D but fiveOnFive3 is when team played with 3F. Player is allowed up to 3 seconds to make a change. fiveOnFive5 is when team played with 2D and 3F
+                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) { if (dArrayTemp3[i][j][0] === 2) {fiveOnFive[i][j].push(0, dArrayTemp3[i][j][1]); fiveOnFive2[i][j].push(0, dArrayTemp3[i][j][1])}
+                     for (k = 1; k < dArrayTemp3[i][j].length/2; k++) {if (dArrayTemp3[i][j][2*k] === 2) {fiveOnFive[i][j].push(dArrayTemp3[i][j][2*k-1], dArrayTemp3[i][j][2*k+1]); fiveOnFive2[i][j].push(dArrayTemp3[i][j][2*k-1], dArrayTemp3[i][j][2*k+1])}}}}
+                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = fiveOnFive[i][j].length/2-1; k > 0; k--) {if (fiveOnFive[i][j][2*k]-fiveOnFive[i][j][2*k-1]<4) {tempArray1=fiveOnFive[i][j].slice(0,2*k-1); tempArray2=fiveOnFive[i][j].slice(2*k+1);
+                     fiveOnFive[i][j]=tempArray1.concat(tempArray2)
+                     }}}}
+                     for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) { if (fArrayTemp3[i][j][0] === 3) {fiveOnFive3[i][j].push(0, fArrayTemp3[i][j][1]); fiveOnFive4[i][j].push(0, fArrayTemp3[i][j][1])}
+                     for (k = 1; k < fArrayTemp3[i][j].length/2; k++) {if (fArrayTemp3[i][j][2*k] === 3) {fiveOnFive3[i][j].push(fArrayTemp3[i][j][2*k-1], fArrayTemp3[i][j][2*k+1]); fiveOnFive4[i][j].push(fArrayTemp3[i][j][2*k-1], fArrayTemp3[i][j][2*k+1])}}}}
+                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = fiveOnFive3[i][j].length/2-1; k > 0; k--) {if (fiveOnFive3[i][j][2*k]-fiveOnFive3[i][j][2*k-1]<4) { // console.log('160', fiveOnFive3[i][j][2*k], fiveOnFive3[i][j][2*k-1] )
+                     tempArray1=fiveOnFive3[i][j].slice(0,2*k-1); tempArray2=fiveOnFive3[i][j].slice(2*k+1);
+                     fiveOnFive3[i][j]=tempArray1.concat(tempArray2)
+                     }}}}
+                     for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < fiveOnFive[i][j].length/2; k++)  {for (l = 0; l < fiveOnFive3[i][j].length/2; l++) {
+                       if ((fiveOnFive[i][j][2*k] >= fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1] <= fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k], fiveOnFive[i][j][2*k+1])}
+                       else if ((fiveOnFive[i][j][2*k] <= fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1] >= fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive3[i][j][2*l], fiveOnFive3[i][j][2*l+1])}
+                       else if ((fiveOnFive[i][j][2*k]>=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]>=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k]<fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k], fiveOnFive3[i][j][2*l+1])}
+                       else if ((fiveOnFive[i][j][2*k]<=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k+1]>fiveOnFive3[i][j][2*l])) {fiveOnFive5[i][j].push(fiveOnFive3[i][j][2*l], fiveOnFive[i][j][2*k+1])}
+                     }}}} 
+                    console.log('fiveOnFive', fiveOnFive, 'fiveOnFive3', fiveOnFive3, 'fiveOnFive5', fiveOnFive5); 
+
+                    for (h=0; h<2; h++) { // h = 0 home team D, h = 1 away team D 
+                      for (i=0; i<3; i++) { for (j = 0; j<dArray[h].length; j++) { for (k=j+1; k<dArray[h].length; k++) {tempTime=[]; tempTime2=[]; for (l=0; l<dArray[h][j][i].length/2; l++) {
+                              for (m=0; m<dArray[h][k][i].length/2; m++) { if ((dArray[h][k][i][2*m] >= dArray[h][j][i][2*l])&&(dArray[h][k][i][2*m] <= dArray[h][j][i][2 * l + 1])) {
+                                  if (dArray[h][k][i][2 * m + 1] >= dArray[h][j][i][2 * l + 1]) { tempTime.push(dArray[h][k][i][2 * m], dArray[h][j][i][2 * l + 1]) }
+                                  else { tempTime.push(dArray[h][k][i][2 * m], dArray[h][k][i][2 * m + 1]) }}
+                                  else if ((dArray[h][k][i][2 * m] <= dArray[h][j][i][2 * l]) && (dArray[h][k][i][2 * m + 1] >= dArray[h][j][i][2 * l])) {
+                                  if (dArray[h][k][i][2 * m + 1] >= dArray[h][j][i][2 * l + 1]) { tempTime.push(dArray[h][j][i][2 * l], dArray[h][j][i][2 * l + 1]) }
+                                  else {tempTime.push(dArray[h][j][i][2 * l], dArray[h][k][i][2 * m + 1])}
+                                }}}   // end l, m loop
+                                for (l = 0; l < fiveOnFive5[h][i].length/2; l++) { for (m = 0; m < tempTime.length/2; m++) {if ((tempTime[2*m]>=fiveOnFive5[h][i][2*l])&&(tempTime[2*m]<=fiveOnFive5[h][i][2*l+1])){
+                                  if (tempTime[2*m+1] >= fiveOnFive5[h][i][2*l+1]) {tempTime2.push(fiveOnFive5[h][i][2*l+1]-tempTime[2*m])}
+                                  else {tempTime2.push(tempTime[2*m+1]-tempTime[2*m])}
+                                }
+                                else if ((tempTime[2*m] <= fiveOnFive5[h][i][2*l])&&(tempTime[2*m+1] >= fiveOnFive5[h][i][2*l])) {
+                                  if (tempTime[2*m+1] >= fiveOnFive5[h][i][2*l+1]) {tempTime2.push(fiveOnFive5[h][i][2*l+1]-fiveOnFive5[h][i][2*l])}
+                                  else {tempTime2.push(tempTime[2*m+1] - fiveOnFive5[h][i][2*l])}
+                                }}} // end second m,l loop to count only 5x5 plays
+                                // console.log(h,i,j,k,tempTime);
+                            shifts = 0; const sum = tempTime2.reduce((partialSum, a) => partialSum + a, 0);
+                            for (n = 0; n < tempTime2.length; n++) { if (tempTime2[n] >= 10) { shifts = shifts + 1 } }
+                            pairingsArray[i + 3 * h].push(sum); pairingsArray[i + 3 * h].push(shifts); // console.log(h, i, j, k, tempTime, tempTime2);
+                          }}}} // end k, j, i and h loop periods 
+                    console.log(pairingsArray); tempTime2 = [];
+                    
+                     dArrayTemp2 = [[[],[],[]],[[],[],[]]]; dArrayTemp3 = [[[],[],[]],[[],[],[]]]; fArrayTemp2 = [[[],[],[]],[[],[],[]]]; fArrayTemp3 = [[[],[],[]],[[],[],[]]];
+
+                    for (h = 0; h < 2; h++) {// h = 0 home team F, h = 1 away team F
+                      for (i = 0; i < 3; i++) { for (j = 0; j < fArray[h].length; j++) { // i loop for 3 periods
+                          for (k = j + 1; k < fArray[h].length; k++) {shiftsPair = []; for (l = 0; l < fArray[h][j][i].length / 2; l++) {
+                              for (m = 0; m < fArray[h][k][i].length / 2; m++) { if ((fArray[h][k][i][2 * m] >= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l + 1])) {
+                                  if (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l + 1]) { shiftsPair.push(fArray[h][k][i][2 * m], fArray[h][j][i][2 * l + 1]) }
+                                  else { shiftsPair.push(fArray[h][k][i][2 * m], fArray[h][k][i][2 * m + 1]) }}
+                                else if ((fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l])) {
+                                  if (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l + 1]) { shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][j][i][2 * l + 1]) }
+                                  else {shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][k][i][2 * m + 1])}
+                                }}}// end m, l loop
+                                for (l = k + 1; l < fArray[h].length; l++) {tempTime = []; tempTime2 = [];
+                                for (m = 0; m < shiftsPair.length/2; m++){
+                                  for (n = 0; n < fArray[h][l][i].length/2; n++) {if ((fArray[h][l][i][2*n]>=shiftsPair[2*m])&&(fArray[h][l][i][2*n]<shiftsPair[2*m+1])){
+                                    if (fArray[h][l][i][2*n+1]>=shiftsPair[2*m+1]) {tempTime.push(fArray[h][l][i][2*n], shiftsPair[2 * m + 1])}
+                                    else { tempTime.push(fArray[h][l][i][2*n], fArray[h][l][i][2*n+1]) }}
+                                    else if (fArray[h][l][i][2 * n] <= shiftsPair[2 * m] && fArray[h][l][i][2 * n + 1] > shiftsPair[2 * m]) {
+                                      if (fArray[h][l][i][2 * n + 1] >= shiftsPair[2 * m + 1]) { tempTime.push(shiftsPair[2 * m], shiftsPair[2 * m + 1]) }
+                                      else { tempTime.push(shiftsPair[2 * m], fArray[h][l][i][2 * n + 1])}
+                                    }}} // end second m loop
+                                for (m = 0; m < fiveOnFive5[h][i].length/2; m++) { for (n = 0; n < tempTime.length/2; n++) {if ((tempTime[2*n]>=fiveOnFive5[h][i][2*m])&&(tempTime[2*n]<=fiveOnFive5[h][i][2*m+1])){
+                                  if (tempTime[2*n+1] >= fiveOnFive5[h][i][2*m+1]) {tempTime2.push(fiveOnFive5[h][i][2*m+1]-tempTime[2*n])}
+                                  else {tempTime2.push(tempTime[2*n+1]-tempTime[2*n])}}
+                                else if ((tempTime[2*n] <= fiveOnFive5[h][i][2*m])&&(tempTime[2*n+1] >= fiveOnFive5[h][i][2*m])) {
+                                  if (tempTime[2*n+1] >= fiveOnFive5[h][i][2*m+1]) {tempTime2.push(fiveOnFive5[h][i][2*m+1]-fiveOnFive5[h][i][2*m])}
+                                  else {tempTime2.push(tempTime[2*n+1] - fiveOnFive5[h][i][2*m])}
+                                }}} // end second m,n loop to count only 5x5 plays
+                                shifts = 0; const sum = tempTime2.reduce((partialSum, a) => partialSum + a, 0);
+                                for (o = 0; o < tempTime.length; o++) { if (tempTime[o] >= 10) { shifts = shifts + 1;
+                                tempTime2.push(tempTime[o])}}
+                                linesArray[i + 3 * h].push(sum); linesArray[i + 3 * h].push(shifts, j, k, l); // console.log(i, j, k, tempTime);
+                              } // end second l loop
+                          }} // temp end k, j loops
+                        }} // end k, j, i and h loop periods
+
+                        console.log('shiftsPair', shiftsPair, 'linesArray', linesArray); // linesArray2 = [[],[],[],[],[],[]]; 
+
+                  }); // end second .then shifts
+              }); // end second .then standings;
           }); // end second .then gamecenter;
       } // end displayGameData 
     } // end second .then from getinputvalue
-    );
+    ); 
 } // end getInput Value function 
