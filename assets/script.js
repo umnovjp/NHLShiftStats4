@@ -45,19 +45,16 @@ function getInputValue() {
                 document.getElementById('gameInfo').appendChild(gameTitle);
                 const homeF = []; const awayF = []; const homeD = []; const awayD = []; const homeG = []; const awayG = []; const playerIdArray = []; // let playerIdeObject = {a: 1}; const hasKeyId = true;
                 var obj = data.playerByGameStats.homeTeam.forwards; var keys = Object.keys(obj); playerIdeObject = {};
-                for (i = 0; i < keys.length; i++) {
-                  var val = obj[keys[i]]; homeF.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
+                for (i = 0; i < keys.length; i++) { var val = obj[keys[i]]; homeF.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
                   keyId = val.playerId; playerIdeObject[keyId] = []}
                 var obj = data.playerByGameStats.homeTeam.defense; var keys = Object.keys(obj);
-                for (i = 0; i < keys.length; i++) {
-                  var val = obj[keys[i]]; homeD.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
+                for (i = 0; i < keys.length; i++) { var val = obj[keys[i]]; homeD.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
                   keyId = val.playerId; playerIdeObject[keyId] = []}
                 var obj = data.playerByGameStats.homeTeam.goalies; var keys = Object.keys(obj);
-                for (i = 0; i < keys.length; i++) {
-                  var val = obj[keys[i]]; homeG.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
+                for (i = 0; i < keys.length; i++) { var val = obj[keys[i]]; homeG.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
                   keyId = val.playerId; playerIdeObject[keyId] = []}
                 var obj = data.playerByGameStats.awayTeam.forwards; var keys = Object.keys(obj);
-                for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayF.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
+                for (i = 0; i < keys.length; i++) { var val = obj[keys[i]]; awayF.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])
                   keyId = val.playerId; playerIdeObject[keyId] = []}
                 var obj = data.playerByGameStats.awayTeam.defense; var keys = Object.keys(obj);
                 for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayD.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
@@ -65,13 +62,11 @@ function getInputValue() {
                 var obj = data.playerByGameStats.awayTeam.goalies; var keys = Object.keys(obj);
                 for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayG.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
                   keyId = val.playerId; playerIdeObject[keyId] = []}
-                // console.log(homeF, homeD, homeG, awayF, awayD, awayG, playerIdArray)
 
                 var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
                 fetch(shiftsURL, { "method": "GET", "headers": {} })
                   .then(function (response) {return response.json()})
-                  .then(function (data_shifts) {
-                    console.log('I am in second shift then', data_shifts);
+                  .then(function (data_shifts) { console.log('I am in second shift then', data_shifts);
                     for (i = 0; i < data_shifts.data.length; i++) {
                       if ((data_shifts.data[i].typeCode === 517) && (data_shifts.data[i].period < 4)) {playerOrder = playerIdArray.indexOf(data_shifts.data[i].playerId);
                         shiftStart = data_shifts.data[i].startTime; shiftStart1 = shiftStart.split(':'); minutes = Number(shiftStart1[0]);
@@ -80,7 +75,6 @@ function getInputValue() {
                         seconds = Number(shiftEnd1[1]); shiftEnd2 = minutes * 60 + seconds;
                         playerIdArray[playerOrder + 1][data_shifts.data[i].period - 1].push(shiftStart2, shiftEnd2)}}
                     for (i = 0; i < playerIdArray.length / 2; i++) {currentKey = playerIdArray[2 * i]; playerIdeObject[currentKey] = playerIdArray[2 * i + 1]}
-                    // console.log(playerIdArray, playerIdeObject);
 
                     dArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeD.length / 3; j++) { if (playerIdArray[2 * i] === homeD[3 * j]) { dArray[0].push(playerIdArray[2 * i + 1]) } }
