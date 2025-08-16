@@ -41,19 +41,7 @@ function getInputValue() {
               this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}
             }
 
-            for (i = 0; i < data.playerByGameStats.homeTeam.goalies.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.goalies[i].playerId, data.playerByGameStats.homeTeam.goalies[i].sweaterNumber, data.playerByGameStats.homeTeam.goalies[i].name, 'G', 'H');
-              shiftsArray.push(CurrentPlayer)}
-            for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.defense[i].playerId, data.playerByGameStats.homeTeam.defense[i].sweaterNumber, data.playerByGameStats.homeTeam.defense[i].name, 'D', 'H');
-              shiftsArray.push(CurrentPlayer)}
-            for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.homeTeam.forwards[i].playerId, data.playerByGameStats.homeTeam.forwards[i].sweaterNumber, data.playerByGameStats.homeTeam.forwards[i].name, 'F', 'H');
-              shiftsArray.push(CurrentPlayer)}
-            for (i = 0; i < data.playerByGameStats.awayTeam.goalies.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.goalies[i].playerId, data.playerByGameStats.awayTeam.goalies[i].sweaterNumber, data.playerByGameStats.awayTeam.goalies[i].name, 'G', 'A');
-              shiftsArray.push(CurrentPlayer)}
-            for (i = 0; i < data.playerByGameStats.homeTeam.defense.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.defense[i].playerId, data.playerByGameStats.awayTeam.defense[i].sweaterNumber, data.playerByGameStats.awayTeam.defense[i].name, 'D', 'A');
-              shiftsArray.push(CurrentPlayer)}
-            for (i = 0; i < data.playerByGameStats.homeTeam.forwards.length; i++) { const CurrentPlayer = new Shifts(data.playerByGameStats.awayTeam.forwards[i].playerId, data.playerByGameStats.awayTeam.forwards[i].sweaterNumber, data.playerByGameStats.awayTeam.forwards[i].name, 'F', 'A');
-              shiftsArray.push(CurrentPlayer)}
-              var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
+            var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
               .then(function (data_shifts) { 

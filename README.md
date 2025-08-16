@@ -1,4 +1,4 @@
 # NHLShiftStats4
-This repo is update on my previous repo located here: https://github.com/umnovjp/NHLShiftsStats3. I just started doing staff in a different way. Using objects and not arrays. Does not improve too much in fact using object takes more lines than arrays. Started from scratch. But next plan is to run this process on the server. Old file became just too complicated. I cannot recall what I did. Easier to start from scratch than to recall. And I have more experience now, than 3 years ago. 
+This repo is update on my previous repo located here: https://github.com/umnovjp/NHLShiftsStats3. I just started doing staff in a different way. Using objects and not arrays. Does not improve too much in fact using object takes more lines than arrays. Started from scratch.
 ## Future Development
-I do not expect any further development in this script. I did excercise to check if using objects and not arrays is going to bring any benefit. The answer is no. I will continue updating #3 script/ Also I will use that script to create a new version of NHLGameBlog.  
+Changed my mind. I will develop this script to cover F lineup changes. 
