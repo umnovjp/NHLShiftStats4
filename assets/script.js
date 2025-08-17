@@ -79,11 +79,11 @@ function getInputValue() {
                     dArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeD.length / 3; j++) { if (playerIdArray[2 * i] === homeD[3 * j]) { dArray[0].push(playerIdArray[2 * i + 1]) } }
                       for (j = 0; j < awayD.length / 3; j++) { if (playerIdArray[2 * i] === awayD[3 * j]) { dArray[1].push(playerIdArray[2 * i + 1]) }}}
-                    dArray2 = [[],[]]; // dArray2 is not used yet but will be used later as I switch to object instead of array
-                    for (i = 0; i < Object.keys(playerIdeObject).length; i++) {for (j = 0; j < homeD.length/3; j++){if (Object.keys(playerIdeObject)[i]==homeD[3*j]){//console.log(i, j, Object.keys(playerIdeObject)[i]);
-                        dArray2[0].push(Object.values(playerIdeObject)[i])}}
-                      for (j = 0; j < awayD.length/3; j++){if (Object.keys(playerIdeObject)[i]==awayD[3*j]){console.log(i, j, Object.keys(playerIdeObject)[i]);
-                        dArray2[1].push(Object.values(playerIdeObject)[i])}}} 
+                    // dArray2 = [[],[]]; // dArray2 is not used yet but will be used later as I switch to object instead of array
+                    // for (i = 0; i < Object.keys(playerIdeObject).length; i++) {for (j = 0; j < homeD.length/3; j++){if (Object.keys(playerIdeObject)[i]==homeD[3*j]){//console.log(i, j, Object.keys(playerIdeObject)[i]);
+                    //     dArray2[0].push(Object.values(playerIdeObject)[i])}}
+                    //   for (j = 0; j < awayD.length/3; j++){if (Object.keys(playerIdeObject)[i]==awayD[3*j]){console.log(i, j, Object.keys(playerIdeObject)[i]);
+                    //     dArray2[1].push(Object.values(playerIdeObject)[i])}}} 
                         
                         fArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeF.length / 3; j++) { if (playerIdArray[2 * i] === homeF[3 * j]) { fArray[0].push(playerIdArray[2 * i + 1]) } }
@@ -193,19 +193,19 @@ function getInputValue() {
                         console.log('shiftsPair', shiftsPair, 'linesArray', linesArray); // linesArray2 = [[],[],[],[],[],[]];
                         tempArray3 = [homeF.length/3, awayF.length/3]; linesArray4 = [[],[]]; finalLineup2=[[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]]];
                         linesArray7 = [[[],[],[]],[[],[],[]],[],[],[],[]];
-                                                  // If statement makes sure that linesArray7[h][i] is not empty even if no line played together for 101s or more
-                                                  for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<linesArray[3*h].length/5;j++) {if (linesArray[3*h+i][5*j]>100) {
-                                                    linesArray7[h][i].push(linesArray[3*h+i][5*j], linesArray[3*h+i][5*j+1], linesArray[3*h+i][5*j+2], linesArray[3*h+i][5*j+3], linesArray[3*h+i][5*j+4])
-                                                    }}
-                                                if ((j=linesArray[3*h].length/5-1)&&(linesArray7[h][i].length===0)) {tempIndex=Math.max(...linesArray[3*h+i])                        
-                                                  tempIndex2=linesArray[3*h+i].indexOf(tempIndex)
-                                                  console.log('linesarray7 is empty', 'h', h, 'i', i, linesArray7[h][i], tempIndex, tempIndex2)
-                                                  linesArray7[h][i].push(linesArray[3*h+i][tempIndex2],linesArray[3*h+i][tempIndex2+1],linesArray[3*h+i][tempIndex2+2],linesArray[3*h+i][tempIndex2+3],linesArray[3*h+i][tempIndex2+4])
-                                                }}}
-                                                    console.log('linesArray7', linesArray7);
-                                                    // finalLineup is the array that I need to look at tomorrow
-                                                    // also to add fiveonfive is goalie is pulled
-                                                                // finalLineup2 loop; index 0 and 1 are lines that spent 100s or more in a given period index 2 and 3 are players that appeared more than once in index 0 or 1 
+                          // If statement makes sure that linesArray7[h][i] is not empty even if no line played together for 101s or more
+                          for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<linesArray[3*h].length/5;j++) {if (linesArray[3*h+i][5*j]>100) {
+                          linesArray7[h][i].push(linesArray[3*h+i][5*j], linesArray[3*h+i][5*j+1], linesArray[3*h+i][5*j+2], linesArray[3*h+i][5*j+3], linesArray[3*h+i][5*j+4])
+                          }}
+                          if ((j=linesArray[3*h].length/5-1)&&(linesArray7[h][i].length===0)) {tempIndex=Math.max(...linesArray[3*h+i])                        
+                          tempIndex2=linesArray[3*h+i].indexOf(tempIndex)
+                          console.log('linesarray7 is empty', 'h', h, 'i', i, linesArray7[h][i], tempIndex, tempIndex2)
+                          linesArray7[h][i].push(linesArray[3*h+i][tempIndex2],linesArray[3*h+i][tempIndex2+1],linesArray[3*h+i][tempIndex2+2],linesArray[3*h+i][tempIndex2+3],linesArray[3*h+i][tempIndex2+4])
+                          }}}
+                          console.log('linesArray7', linesArray7);
+            // finalLineup is the array that I need to look at tomorrow
+            // also to add fiveonfive is goalie is pulled
+            // finalLineup2 loop; index 0 and 1 are lines that spent 100s or more in a given period index 2 and 3 are players that appeared more than once in index 0 or 1 
             // and index 5 6 is to verify all players that actually played in lines from index 0 1 reason for that is PHI lines where #11 played on 2 lines leaving one partner behind...
             for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<linesArray7[h][i].length/5;j++) {finalLineup2[h][i].push(linesArray7[h][i][5*j+2], linesArray7[h][i][5*j+3], linesArray7[h][i][5*j+4])}}}
             for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<finalLineup2[h][i].length;j++) {for (k=j+1;k<finalLineup2[h][i].length;k++) {
@@ -283,9 +283,9 @@ function getInputValue() {
       console.log('finallineup9', finalLineup2[tempIndex10+4][tempIndex9], finalLineup2[tempIndex10+4][tempIndex9].length, tempArray3);
       if (finalLineup2[tempIndex10+4][tempIndex9].length===9) {
         for (i=0;i<tempArray3[tempIndex10];i++) {if (finalLineup2[tempIndex10+4][tempIndex9].includes(i)) {}
-        else  {finalLineup2[tempIndex10+4][tempIndex9].push(i)}}}
-      }
+        else  {finalLineup2[tempIndex10+4][tempIndex9].push(i)}}}}
       console.log('finalLineup2', finalLineup2);
+      // to compare starting and final lineups here tomorrow
 
                   }); // end second .then shifts
               }); // end second .then standings;
