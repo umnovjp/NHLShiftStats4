@@ -88,7 +88,7 @@ function getInputValue() {
                         fArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeF.length / 3; j++) { if (playerIdArray[2 * i] === homeF[3 * j]) { fArray[0].push(playerIdArray[2 * i + 1]) } }
                       for (j = 0; j < awayF.length / 3; j++) { if (playerIdArray[2 * i] === awayF[3 * j]) { fArray[1].push(playerIdArray[2 * i + 1]) }}}                    
-                    console.log('dArray', dArray, 'dArray2', dArray2, 'fArray', fArray); pairingsArray = [[], [], [], [], [], []]; linesArray = [[], [], [], [], [], []];
+                    console.log('dArray', dArray, 'fArray', fArray); pairingsArray = [[], [], [], [], [], []]; linesArray = [[], [], [], [], [], []];
                     
                     dArrayTemp = [[[],[],[]],[[],[],[]]]; fArrayTemp = [[[],[],[]],[[],[],[]]];
                     for (i = 0; i < 2; i++) { for (j = 0; j < dArray[i].length; j++) { for (k = 0; k < 3; k++) {dArrayTemp[i][k] = dArrayTemp[i][k].concat(dArray[i][j][k])}}}
@@ -203,10 +203,10 @@ function getInputValue() {
                           linesArray7[h][i].push(linesArray[3*h+i][tempIndex2],linesArray[3*h+i][tempIndex2+1],linesArray[3*h+i][tempIndex2+2],linesArray[3*h+i][tempIndex2+3],linesArray[3*h+i][tempIndex2+4])
                           }}}
                           console.log('linesArray7', linesArray7);
-            // finalLineup is the array that I need to look at tomorrow
             // also to add fiveonfive is goalie is pulled
             // finalLineup2 loop; index 0 and 1 are lines that spent 100s or more in a given period index 2 and 3 are players that appeared more than once in index 0 or 1 
             // and index 5 6 is to verify all players that actually played in lines from index 0 1 reason for that is PHI lines where #11 played on 2 lines leaving one partner behind...
+            // currently lines 210-288 or so final goal is to create F lines
             for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<linesArray7[h][i].length/5;j++) {finalLineup2[h][i].push(linesArray7[h][i][5*j+2], linesArray7[h][i][5*j+3], linesArray7[h][i][5*j+4])}}}
             for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<finalLineup2[h][i].length;j++) {for (k=j+1;k<finalLineup2[h][i].length;k++) {
               if (finalLineup2[h][i][j]===finalLineup2[h][i][k]) { if (finalLineup2[h+2][i].includes(finalLineup2[h][i][j])) {}
@@ -216,7 +216,6 @@ function getInputValue() {
           for (j=0;j<finalLineup2[h][i].length/3;j++) {if ((finalLineup2[h+2][i].includes(finalLineup2[h][i][3*j]))||(finalLineup2[h+2][i].includes(finalLineup2[h][i][3*j+1]))||(finalLineup2[h+2][i].includes(finalLineup2[h][i][3*j+2]))){}
           else {finalLineup2[h+4][i].push(finalLineup2[h][i][3*j], finalLineup2[h][i][3*j+1], finalLineup2[h][i][3*j+2])}}
           if (finalLineup2[h+4][i].length===12) {}
-          // .length?          
           else if (finalLineup2[h+4][i].length===9) {for (j=0;j<tempArray3[h];j++){
             if (finalLineup2[h][i].includes(j)){}
           else finalLineup2[h+4][i].push(j)}}
@@ -285,7 +284,18 @@ function getInputValue() {
         for (i=0;i<tempArray3[tempIndex10];i++) {if (finalLineup2[tempIndex10+4][tempIndex9].includes(i)) {}
         else  {finalLineup2[tempIndex10+4][tempIndex9].push(i)}}}}
       console.log('finalLineup2', finalLineup2);
-      // to compare starting and final lineups here tomorrow
+      console.log('final lineup', finalLineup2[4], finalLineup2[5]);
+            // did not use i because i is for periods not currently used
+      oldLines=[[],[]]; newLines=[[],[]];
+      for (h=4;h<6;h++) {for (j=0;j<finalLineup2[h][0].length/3;j++) 
+        {for(k=j;k<finalLineup2[h][0].length/3;k++) {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
+        {oldLines[h-4].push(finalLineup2[h][0][3*j])}
+        //   { if(finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k]) { if ((finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2])) {oldLines[h-4].push(finalLineup2[h][0][3*j])}
+         else {newLines[h-4].push(finalLineup2[h][2][3*k], finalLineup2[h][2][3*k+1], finalLineup2[h][2][3*k+2])}
+        // }}
+      }
+    }}
+      console.log('old', oldLines, 'new',  newLines);
 
                   }); // end second .then shifts
               }); // end second .then standings;
