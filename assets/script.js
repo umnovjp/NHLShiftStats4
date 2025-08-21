@@ -1,16 +1,13 @@
 var scheduleContent = document.getElementById('schedule'); var gameId; var inputVal = '2021'; standingsArray = []; linesArray10=[]
 // lines below will allow user to select date then to select game on that date
-function getInputValue() {
-  var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
-  var formatted = date[2]+'-'+date[0]+'-'+date[1]; 
-  var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
+function getInputValue() { var inputVal = document.getElementById('datepicker').value; var date = inputVal.split('/');
+  var formatted = date[2]+'-'+date[0]+'-'+date[1]; var requestURL = 'https://cors-anywhere.herokuapp.com/https://api-web.nhle.com/v1/schedule/' + formatted;
   fetch(requestURL, {"method": "GET", "headers": {}
   })
     .then(function (response) {return response.json()})
     .then(function (data) {console.log('I am in schedule then');
       var numberOfGames = data.gameWeek[0].games.length; scheduleContent.textContent = '';
-      for (var i = 0; i < numberOfGames; i++) {
-        var gameName = document.createElement('button');
+      for (var i = 0; i < numberOfGames; i++) { var gameName = document.createElement('button');
         gameName.setAttribute('id', 'game' + i); var idx = gameName.getAttribute('id');
         gameName.innerHTML = 'Game ' + i + ': ' + data.gameWeek[0].games[i].awayTeam.abbrev + ' vs ' + data.gameWeek[0].games[i].homeTeam.abbrev;
         document.getElementById('schedule').appendChild(gameName); gameName.addEventListener('click', displayGameData);
@@ -79,11 +76,6 @@ function getInputValue() {
                     dArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeD.length / 3; j++) { if (playerIdArray[2 * i] === homeD[3 * j]) { dArray[0].push(playerIdArray[2 * i + 1]) } }
                       for (j = 0; j < awayD.length / 3; j++) { if (playerIdArray[2 * i] === awayD[3 * j]) { dArray[1].push(playerIdArray[2 * i + 1]) }}}
-                    // dArray2 = [[],[]]; // dArray2 is not used yet but will be used later as I switch to object instead of array
-                    // for (i = 0; i < Object.keys(playerIdeObject).length; i++) {for (j = 0; j < homeD.length/3; j++){if (Object.keys(playerIdeObject)[i]==homeD[3*j]){//console.log(i, j, Object.keys(playerIdeObject)[i]);
-                    //     dArray2[0].push(Object.values(playerIdeObject)[i])}}
-                    //   for (j = 0; j < awayD.length/3; j++){if (Object.keys(playerIdeObject)[i]==awayD[3*j]){console.log(i, j, Object.keys(playerIdeObject)[i]);
-                    //     dArray2[1].push(Object.values(playerIdeObject)[i])}}} 
                         
                         fArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeF.length / 3; j++) { if (playerIdArray[2 * i] === homeF[3 * j]) { fArray[0].push(playerIdArray[2 * i + 1]) } }
@@ -119,8 +111,7 @@ function getInputValue() {
                      for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) { if (fArrayTemp3[i][j][0] === 3) {fiveOnFive3[i][j].push(0, fArrayTemp3[i][j][1]); fiveOnFive4[i][j].push(0, fArrayTemp3[i][j][1])}
                      for (k = 1; k < fArrayTemp3[i][j].length/2; k++) {if (fArrayTemp3[i][j][2*k] === 3) {fiveOnFive3[i][j].push(fArrayTemp3[i][j][2*k-1], fArrayTemp3[i][j][2*k+1]); fiveOnFive4[i][j].push(fArrayTemp3[i][j][2*k-1], fArrayTemp3[i][j][2*k+1])}}}}
                    for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = fiveOnFive3[i][j].length/2-1; k > 0; k--) {if (fiveOnFive3[i][j][2*k]-fiveOnFive3[i][j][2*k-1]<4) { // console.log('160', fiveOnFive3[i][j][2*k], fiveOnFive3[i][j][2*k-1] )
-                     tempArray1=fiveOnFive3[i][j].slice(0,2*k-1); tempArray2=fiveOnFive3[i][j].slice(2*k+1);
-                     fiveOnFive3[i][j]=tempArray1.concat(tempArray2)
+                     tempArray1=fiveOnFive3[i][j].slice(0,2*k-1); tempArray2=fiveOnFive3[i][j].slice(2*k+1); fiveOnFive3[i][j]=tempArray1.concat(tempArray2)
                      }}}}
                      for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < fiveOnFive[i][j].length/2; k++)  {for (l = 0; l < fiveOnFive3[i][j].length/2; l++) {
                        if ((fiveOnFive[i][j][2*k] >= fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1] <= fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k], fiveOnFive[i][j][2*k+1])}
