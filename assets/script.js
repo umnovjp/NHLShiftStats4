@@ -280,7 +280,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
         {for(k=j;k<finalLineup2[h][0].length/3;k++) {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
         {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])}
       }}}
-    for (h=4;h<6;h++) {
+    for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][0].length/3;j++) {
+      // to add script here tomorrow 
+    }
     //   for (j=0;j<finalLineup2[h][0].length/3;j++) {for (k=0;k<oldLines[h-4].length/3;k++) {
     //   if (oldLines[h-4][3*k]===finalLineup2[h][3*j]) {
     //     if ((oldLines[h-4][3*k+1]===finalLineup2[h][3*j+1])&&(oldLines[h-4][3*k+2]===finalLineup2[h][3*j+2])) {}
