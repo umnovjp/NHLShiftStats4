@@ -262,8 +262,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
     } // end if length === 0
       else {console.log('case to be added it is not 0 or 1 or 2 or 3 or 4 lines', 'h', h, 'i', i)}
       }} // i, h loops end finalLineup2
-            if (typeof linesArray9 != 'undefined') {
-      tempIndex7 = Math.max(...linesArray9); tempIndex8 =linesArray9.indexOf(Math.max(...linesArray9));
+            if (typeof linesArray9 != 'undefined') { tempIndex7 = Math.max(...linesArray9); tempIndex8 =linesArray9.indexOf(Math.max(...linesArray9));
       console.log('linesArray9', linesArray9, 'tempIndex7', tempIndex7, 'tempIndex8', tempIndex8, 'i', tempIndex9, 'h', tempIndex10);
       linesArray10.push(linesArray9[tempIndex8+2],linesArray9[tempIndex8+3],linesArray9[tempIndex8+4]);
       console.log(linesArray10, 'finallineup6', finalLineup2[tempIndex10+4][tempIndex9]);
@@ -272,17 +271,18 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       if (finalLineup2[tempIndex10+4][tempIndex9].length===9) {
         for (i=0;i<tempArray3[tempIndex10];i++) {if (finalLineup2[tempIndex10+4][tempIndex9].includes(i)) {}
         else  {finalLineup2[tempIndex10+4][tempIndex9].push(i)}}}}
-      console.log('finalLineup2', finalLineup2);
-      console.log('final lineup', finalLineup2[4], finalLineup2[5]);
-            // did not use i because i is for periods not currently used
+      // console.log('finalLineup2', finalLineup2);
+      console.log('final lineup home', finalLineup2[4], 'final lineup away', finalLineup2[5]);
       oldLines=[[],[]]; newLines=[[],[]];
       for (h=4;h<6;h++) {for (j=0;j<finalLineup2[h][0].length/3;j++) 
         {for(k=j;k<finalLineup2[h][0].length/3;k++) {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
         {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])}
       }}}
-    for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][0].length/3;j++) {
-      // to add script here tomorrow 
-    }
+    for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][0].length/3;j++) { for (k=0;k<oldLines[h-4].length/3;k++) 
+      if (finalLineup2[h][2][3*j]===oldLines[h-4][3*k]) {}
+      else if ((!oldLines[h-4].includes(finalLineup2[h][2][3*j]))&&(!newLines[h-4].includes(finalLineup2[h][2][3*j]))) {
+        newLines[h-4].push(finalLineup2[h][2][3*j],finalLineup2[h][2][3*j+1],finalLineup2[h][2][3*j+2])
+      }}
     //   for (j=0;j<finalLineup2[h][0].length/3;j++) {for (k=0;k<oldLines[h-4].length/3;k++) {
     //   if (oldLines[h-4][3*k]===finalLineup2[h][3*j]) {
     //     if ((oldLines[h-4][3*k+1]===finalLineup2[h][3*j+1])&&(oldLines[h-4][3*k+2]===finalLineup2[h][3*j+2])) {}

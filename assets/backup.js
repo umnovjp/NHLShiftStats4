@@ -32,14 +32,14 @@ function getInputValue() {
             gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on ' + formatted;
             document.getElementById('gameInfo').appendChild(gameTitle); shiftsArray = [];
 
-            function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
-              this.playerId = playerId;
-              this.jerseyNumber = jerseyNumber;
-              this.name = name;
-              this.position = position;
-              this.team = team;
-              this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}
-            }
+            // function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
+            //   this.playerId = playerId;
+            //   this.jerseyNumber = jerseyNumber;
+            //   this.name = name;
+            //   this.position = position;
+            //   this.team = team;
+            //   this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}
+            // }
 
             var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
@@ -62,8 +62,7 @@ for (h = 0; h < 2; h++) {// h = 0 home team F, h = 1 away team F
             else if ((fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l])) {
               if (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l + 1]) { shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][j][i][2 * l + 1]) }
               else {shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][k][i][2 * m + 1])}
-            }} 
-          }// end m, l loop
+            }}}// end m, l loop
             for (l = k + 1; l < fArray[h].length; l++) {tempTime = []; tempTime2 = [];
             for (m = 0; m < shiftsPair.length/2; m++){
               for (n = 0; n < fArray[h][l][i].length/2; n++) {if ((fArray[h][l][i][2*n]>=shiftsPair[2*m])&&(fArray[h][l][i][2*n]<shiftsPair[2*m+1])){
@@ -79,8 +78,7 @@ for (h = 0; h < 2; h++) {// h = 0 home team F, h = 1 away team F
             else if ((tempTime[2*n] <= fiveOnFive5[h][i][2*m])&&(tempTime[2*n+1] >= fiveOnFive5[h][i][2*m])) {
               if (tempTime[2*n+1] >= fiveOnFive5[h][i][2*m+1]) {tempTime2.push(fiveOnFive5[h][i][2*m+1]-fiveOnFive5[h][i][2*m])}
               else {tempTime2.push(tempTime[2*n+1] - fiveOnFive5[h][i][2*m])}
-            }
-          }} // end second m,n loop to count only 5x5 plays
+            }}} // end second m,n loop to count only 5x5 plays
             shifts = 0; const sum = tempTime2.reduce((partialSum, a) => partialSum + a, 0);
             for (o = 0; o < tempTime.length; o++) { if (tempTime[o] >= 10) { shifts = shifts + 1;
             tempTime2.push(tempTime[o])}}
