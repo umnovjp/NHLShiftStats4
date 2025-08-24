@@ -273,23 +273,20 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
         else  {finalLineup2[tempIndex10+4][tempIndex9].push(i)}}}}
       // console.log('finalLineup2', finalLineup2);
       console.log('final lineup home', finalLineup2[4], 'final lineup away', finalLineup2[5]);
-      oldLines=[[],[]]; newLines=[[],[]];
+      oldLines=[[],[],[],[]]; newLines=[[],[]];
       for (h=4;h<6;h++) {for (j=0;j<finalLineup2[h][0].length/3;j++) 
         {for(k=j;k<finalLineup2[h][0].length/3;k++) {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
-        {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])}
-      }}}
+        {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2]);
+          oldLines[h-2].push(finalLineup2[h][0][3*j])
+        }}}}
     for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][0].length/3;j++) { for (k=0;k<oldLines[h-4].length/3;k++) 
-      if (finalLineup2[h][2][3*j]===oldLines[h-4][3*k]) {}
-      else if ((!oldLines[h-4].includes(finalLineup2[h][2][3*j]))&&(!newLines[h-4].includes(finalLineup2[h][2][3*j]))) {
-        newLines[h-4].push(finalLineup2[h][2][3*j],finalLineup2[h][2][3*j+1],finalLineup2[h][2][3*j+2])
-      }}
-    //   for (j=0;j<finalLineup2[h][0].length/3;j++) {for (k=0;k<oldLines[h-4].length/3;k++) {
-    //   if (oldLines[h-4][3*k]===finalLineup2[h][3*j]) {
-    //     if ((oldLines[h-4][3*k+1]===finalLineup2[h][3*j+1])&&(oldLines[h-4][3*k+2]===finalLineup2[h][3*j+2])) {}
-    //     else {newLines[h-4].push(finalLineup2[h][3*j],finalLineup2[h][3*j+1],finalLineup2[h][3*j+2])}
-    //   }
-    //   else {newLines[h-4].push(finalLineup2[h][3*j],finalLineup2[h][3*j+1],finalLineup2[h][3*j+2])}
-    // }}
+      if (oldLines[h-2].includes(finalLineup2[h][2][3*j])) {tempIndex11=oldLines[h-2].indexOf(finalLineup2[h][2][3*j])
+        console.log(tempIndex11)
+      }
+      // else if ((!oldLines[h-4].includes(finalLineup2[h][2][3*j]))&&(!newLines[h-4].includes(finalLineup2[h][2][3*j]))) {
+      //   newLines[h-4].push(finalLineup2[h][2][3*j],finalLineup2[h][2][3*j+1],finalLineup2[h][2][3*j+2])
+      // }
+      }
   }
       console.log('old', oldLines, 'new',  newLines);
 

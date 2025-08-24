@@ -32,20 +32,11 @@ function getInputValue() {
             gameTitle.innerHTML = 'You are watching analysis for ' + data.awayTeam.abbrev + ' at ' + data.homeTeam.abbrev + ' game' + ' on ' + formatted;
             document.getElementById('gameInfo').appendChild(gameTitle); shiftsArray = [];
 
-            // function Shifts(playerId, jerseyNumber, name, position, team, shiftsObject) {
-            //   this.playerId = playerId;
-            //   this.jerseyNumber = jerseyNumber;
-            //   this.name = name;
-            //   this.position = position;
-            //   this.team = team;
-            //   this.shiftsObject = {startTime: [[],[],[]], endTime: [[],[],[]]}
-            // }
-
             var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
             fetch(shiftsURL, { "method": "GET", "headers": {} })
               .then(function (response) { return response.json() })
               .then(function (data_shifts) { 
-                // script here
+                // script here;
                }); // end second .then shifts
           }); // end second .then gamecenter;
       } // end displayGameData 
