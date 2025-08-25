@@ -69,15 +69,12 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                         shiftStart = data_shifts.data[i].startTime; shiftStart1 = shiftStart.split(':'); minutes = Number(shiftStart1[0]);
                         seconds = Number(shiftStart1[1]); shiftStart2 = minutes * 60 + seconds;
                         shiftEnd = data_shifts.data[i].endTime; shiftEnd1 = shiftEnd.split(':'); minutes = Number(shiftEnd1[0]);
-                        seconds = Number(shiftEnd1[1]); shiftEnd2 = minutes * 60 + seconds;
-                        playerIdArray[playerOrder + 1][data_shifts.data[i].period - 1].push(shiftStart2, shiftEnd2)}}
+                        seconds = Number(shiftEnd1[1]); shiftEnd2 = minutes * 60 + seconds; playerIdArray[playerOrder + 1][data_shifts.data[i].period - 1].push(shiftStart2, shiftEnd2)}}
                     for (i = 0; i < playerIdArray.length / 2; i++) {currentKey = playerIdArray[2 * i]; playerIdeObject[currentKey] = playerIdArray[2 * i + 1]}
 
-                    dArray = [[], []];
+                    dArray = [[], []];  fArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeD.length / 3; j++) { if (playerIdArray[2 * i] === homeD[3 * j]) { dArray[0].push(playerIdArray[2 * i + 1]) } }
                       for (j = 0; j < awayD.length / 3; j++) { if (playerIdArray[2 * i] === awayD[3 * j]) { dArray[1].push(playerIdArray[2 * i + 1]) }}}
-                        
-                        fArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeF.length / 3; j++) { if (playerIdArray[2 * i] === homeF[3 * j]) { fArray[0].push(playerIdArray[2 * i + 1]) } }
                       for (j = 0; j < awayF.length / 3; j++) { if (playerIdArray[2 * i] === awayF[3 * j]) { fArray[1].push(playerIdArray[2 * i + 1]) }}}                    
                     console.log('dArray', dArray, 'fArray', fArray); pairingsArray = [[], [], [], [], [], []]; linesArray = [[], [], [], [], [], []];
@@ -85,7 +82,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     dArrayTemp = [[[],[],[]],[[],[],[]]]; fArrayTemp = [[[],[],[]],[[],[],[]]];
                     for (i = 0; i < 2; i++) { for (j = 0; j < dArray[i].length; j++) { for (k = 0; k < 3; k++) {dArrayTemp[i][k] = dArrayTemp[i][k].concat(dArray[i][j][k])}}}
                     for (i = 0; i < 2; i++) { for (j = 0; j < fArray[i].length; j++) { for (k = 0; k < 3; k++) {fArrayTemp[i][k] = fArrayTemp[i][k].concat(fArray[i][j][k])}}}
-                    console.log(dArrayTemp, fArrayTemp);
+                    console.log('dArrayTemp', dArrayTemp, 'fArrayTemp', fArrayTemp);
                      // new attempt to create 5x5 loop
                      dArrayTemp2 = [[[],[],[]],[[],[],[]]]; dArrayTemp3 = [[[],[],[]],[[],[],[]]]; fArrayTemp2 = [[[],[],[]],[[],[],[]]]; fArrayTemp3 = [[[],[],[]],[[],[],[]]]; 
                      for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < 1200; k++) {dArrayTemp2[i][j].push(0); fArrayTemp2[i][j].push(0)}}}
@@ -138,7 +135,6 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                                   if (tempTime[2*m+1] >= fiveOnFive5[h][i][2*l+1]) {tempTime2.push(fiveOnFive5[h][i][2*l+1]-fiveOnFive5[h][i][2*l])}
                                   else {tempTime2.push(tempTime[2*m+1] - fiveOnFive5[h][i][2*l])}
                                 }}} // end second m,l loop to count only 5x5 plays
-                                // console.log(h,i,j,k,tempTime);
                             shifts = 0; const sum = tempTime2.reduce((partialSum, a) => partialSum + a, 0);
                             for (n = 0; n < tempTime2.length; n++) { if (tempTime2[n] >= 10) { shifts = shifts + 1 } }
                             pairingsArray[i + 3 * h].push(sum); pairingsArray[i + 3 * h].push(shifts); // console.log(h, i, j, k, tempTime, tempTime2);
@@ -179,9 +175,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                                 linesArray[i + 3 * h].push(sum); linesArray[i + 3 * h].push(shifts, j, k, l); // console.log(i, j, k, tempTime);
                               } // end second l loop
                           }} // temp end k, j loops
-                        }} // end k, j, i and h loop periods
+                        }} // end i and h loop periods
 
-                        console.log('shiftsPair', shiftsPair, 'linesArray', linesArray); // linesArray2 = [[],[],[],[],[],[]];
+                        console.log('shiftsPair', shiftsPair, 'linesArray', linesArray);
                         tempArray3 = [homeF.length/3, awayF.length/3]; linesArray4 = [[],[]]; finalLineup2=[[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]]];
                         linesArray7 = [[[],[],[]],[[],[],[]],[],[],[],[]];
                           // If statement makes sure that linesArray7[h][i] is not empty even if no line played together for 101s or more
@@ -286,9 +282,8 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       // else if ((!oldLines[h-4].includes(finalLineup2[h][2][3*j]))&&(!newLines[h-4].includes(finalLineup2[h][2][3*j]))) {
       //   newLines[h-4].push(finalLineup2[h][2][3*j],finalLineup2[h][2][3*j+1],finalLineup2[h][2][3*j+2])
       // }
-      }
-  }
-      console.log('old', oldLines, 'new',  newLines);
+      }}
+      console.log('old', oldLines, 'new',  newLines, 'tempIndex11', tempIndex11);
 
                   }); // end second .then shifts
               }); // end second .then standings;
