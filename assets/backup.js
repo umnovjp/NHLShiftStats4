@@ -77,16 +77,3 @@ for (h = 0; h < 2; h++) {// h = 0 home team F, h = 1 away team F
           } // end second l loop
       }} // temp end k, j loops
     }} // end k, j, i and h loop periods
-
-    // farray h team F# period length / 2 
-    shiftsArray[i].shiftsObject.startTime[h][j] // i player # h period j shift number
-    ((fArray[h][k][i][2 * m] >= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l + 1]))
-    shiftsArray[k].shiftsObject.startTime[l][n]; shiftsArray[j].shiftsObject.startTime[l][m]; shiftsArray[k].shiftsObject.startTime[l][n]; shiftsArray[j].shiftsObject.endTime[l][m];
-
-    { if ((fArray[h][k][i][2 * m] >= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l + 1])) {
-      if (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l + 1]) { shiftsPair.push(fArray[h][k][i][2 * m], fArray[h][j][i][2 * l + 1]) }
-      else { shiftsPair.push(fArray[h][k][i][2 * m], fArray[h][k][i][2 * m + 1]) }}
-    else if ((fArray[h][k][i][2 * m] <= fArray[h][j][i][2 * l]) && (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l])) {
-      if (fArray[h][k][i][2 * m + 1] >= fArray[h][j][i][2 * l + 1]) { shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][j][i][2 * l + 1]) }
-      else {shiftsPair.push(fArray[h][j][i][2 * l], fArray[h][k][i][2 * m + 1])}
-    }} 

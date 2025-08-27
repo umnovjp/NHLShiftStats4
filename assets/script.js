@@ -54,10 +54,12 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                   keyId = val.playerId; playerIdeObject[keyId] = []}
                 var obj = data.playerByGameStats.awayTeam.defense; var keys = Object.keys(obj);
                 for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayD.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
-                  keyId = val.playerId; playerIdeObject[keyId] = []}
+                 // keyId = val.playerId; // playerIdeObject[keyId] = []
+                }
                 var obj = data.playerByGameStats.awayTeam.goalies; var keys = Object.keys(obj);
                 for (i = 0; i < keys.length; i++) {var val = obj[keys[i]]; awayG.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []]);
-                  keyId = val.playerId; playerIdeObject[keyId] = []}
+                 //  keyId = val.playerId; // playerIdeObject[keyId] = []
+                }
 
                 var shiftsURL = 'https://cors-anywhere.herokuapp.com/https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId=' + gameId;
                 fetch(shiftsURL, { "method": "GET", "headers": {} })
