@@ -282,9 +282,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       if (oldLines[h-2].includes(finalLineup2[h][2][3*j])) {tempIndex11=oldLines[h-2].indexOf(finalLineup2[h][2][3*j]);
         console.log(tempIndex11)
       }
-      // else if ((!oldLines[h-4].includes(finalLineup2[h][2][3*j]))&&(!newLines[h-4].includes(finalLineup2[h][2][3*j]))) {
-      //   newLines[h-4].push(finalLineup2[h][2][3*j],finalLineup2[h][2][3*j+1],finalLineup2[h][2][3*j+2])
-      // }
+      // will add script here tomorrow
       }}
       console.log('old', oldLines, 'new',  newLines, 'tempIndex11', tempIndex11);
 
