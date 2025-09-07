@@ -416,7 +416,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     lineByLine241.innerHTML=lineByLine1(0,0,0,0)[0][0]+' '+lineByLine1(0,0,0,0)[0][1]+' '+'<br>'+lineByLine1(0,0,0,1)[0][2]+' '+lineByLine1(0,0,0,1)[0][3]+' '+'<br>'+lineByLine1(0,0,0,2)[0][4]+' '+lineByLine1(0,0,0,2)[0][5]+' ';
                     lineByLine251.innerHTML=lineByLine1(0,0,1,0)[0][0]+' '+lineByLine1(0,0,1,0)[0][1]+' '+'<br>'+lineByLine1(0,0,1,1)[0][2]+' '+lineByLine1(0,0,1,1)[0][3]+' '+'<br>'+lineByLine1(0,0,1,0)[0][4]+' '+lineByLine1(0,0,1,0)[0][5]+' ';
                     lineByLine261.innerHTML=lineByLine1(0,0,2,0)[0][0]+' '+lineByLine1(0,0,2,0)[0][1]+' '+'<br>'+lineByLine1(0,0,2,1)[0][2]+' '+lineByLine1(0,0,2,1)[0][3]+' '+'<br>'+lineByLine1(0,0,2,2)[0][4]+' '+lineByLine1(0,0,2,2)[0][5]+' ';
-                    if (finalLineup2[5][0].length>=12) {lineByLine271.innerHTML=lineByLine1(0,0,3,0)[0][0]+' '+lineByLine1(0,0,3,0)[0][1]+' '+'<br>'+lineByLine1(0,0,3,1)[0][2]+' '+lineByLine1(0,0,3,1)[0][3]+' '+'<br>'+lineByLine1(0,0,3,2)[0][4]+' '+lineByLine1(0,0,3,2)[0][5]+' '}
+                    if (finalLineup2[5][0].length<=12) {lineByLine271.innerHTML=lineByLine1(0,0,3,0)[0][0]+' '+lineByLine1(0,0,3,0)[0][1]+' '+'<br>'+lineByLine1(0,0,3,1)[0][2]+' '+lineByLine1(0,0,3,1)[0][3]+' '+'<br>'+lineByLine1(0,0,3,2)[0][4]+' '+lineByLine1(0,0,3,2)[0][5]+' '
+                      
+                    }
                     
                     lineByLine003.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |'
                     lineByLine043.innerHTML=awayF[1+3*finalLineup2[5][0][0]]+' '+awayF[2+3*finalLineup2[5][0][0]]+'<br>'+awayF[1+3*finalLineup2[5][0][1]]+' '+awayF[2+3*finalLineup2[5][0][1]]+'<br>'+awayF[1+3*finalLineup2[5][0][2]]+' '+awayF[2+3*finalLineup2[5][0][2]];
