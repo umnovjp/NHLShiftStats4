@@ -261,15 +261,12 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
         for (i=0;i<tempArray3[tempIndex10];i++) {if (finalLineup2[tempIndex10+4][tempIndex9].includes(i)) {}
         else  {finalLineup2[tempIndex10+4][tempIndex9].push(i)}}}}
       console.log('final lineup home', finalLineup2[4], 'final lineup away', finalLineup2[5]); oldLines=[[],[]]; newLines=[[],[],[],[]];
-      for (h=4;h<6;h++) {for (j=0;j<finalLineup2[h][0].length/3;j++) 
+      for (h=4;h<6;h++) {for (j=0;j<finalLineup2[h][0].length/3;j++)
         {for(k=j;k<finalLineup2[h][0].length/3;k++) {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
-        {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2]);
-          // oldLines[h-2].push(finalLineup2[h][0][3*j])
+        {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])
         }}}}
-    for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][2].length;j++) { 
-      if (!oldLines[h-4].includes(finalLineup2[h][2][j])) {newLines[h-4].push(finalLineup2[h][2][j])}
-      }
-      for (j=0;j<newLines[h-4].length;j++) {for (k=0;k<finalLineup2[h][2].length/3;k++) {if (newLines[h-4][j]===finalLineup2[h][2][3*k]) {newLines[h-2].push(finalLineup2[h][2][3*k],finalLineup2[h][2][3*k+1],finalLineup2[h][2][3*k+2])}}}
+    for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][2].length;j++) { if (!oldLines[h-4].includes(finalLineup2[h][2][j])) {newLines[h-4].push(finalLineup2[h][2][j])}}
+      // for (j=0;j<newLines[h-4].length;j++) {for (k=0;k<finalLineup2[h][2].length/3;k++) {if (newLines[h-4][j]===finalLineup2[h][2][3*k]) {newLines[h-2].push(finalLineup2[h][2][3*k],finalLineup2[h][2][3*k+1],finalLineup2[h][2][3*k+2])}}}
     }
       console.log('old', oldLines, 'new',  newLines)
 
@@ -417,7 +414,6 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     lineByLine251.innerHTML=lineByLine1(0,0,1,0)[0][0]+' '+lineByLine1(0,0,1,0)[0][1]+' '+'<br>'+lineByLine1(0,0,1,1)[0][2]+' '+lineByLine1(0,0,1,1)[0][3]+' '+'<br>'+lineByLine1(0,0,1,0)[0][4]+' '+lineByLine1(0,0,1,0)[0][5]+' ';
                     lineByLine261.innerHTML=lineByLine1(0,0,2,0)[0][0]+' '+lineByLine1(0,0,2,0)[0][1]+' '+'<br>'+lineByLine1(0,0,2,1)[0][2]+' '+lineByLine1(0,0,2,1)[0][3]+' '+'<br>'+lineByLine1(0,0,2,2)[0][4]+' '+lineByLine1(0,0,2,2)[0][5]+' ';
                     if (finalLineup2[5][0].length<=12) {lineByLine271.innerHTML=lineByLine1(0,0,3,0)[0][0]+' '+lineByLine1(0,0,3,0)[0][1]+' '+'<br>'+lineByLine1(0,0,3,1)[0][2]+' '+lineByLine1(0,0,3,1)[0][3]+' '+'<br>'+lineByLine1(0,0,3,2)[0][4]+' '+lineByLine1(0,0,3,2)[0][5]+' '
-                      
                     }
                     
                     lineByLine003.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |'
@@ -437,6 +433,13 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     lineByLine253.innerHTML=lineByLine1(0,0,1,0)[0][0]+' '+lineByLine1(0,0,1,0)[0][1]+' '+'<br>'+lineByLine1(0,0,1,1)[0][2]+' '+lineByLine1(0,0,1,1)[0][3]+' '+'<br>'+lineByLine1(0,0,1,0)[0][4]+' '+lineByLine1(0,0,1,0)[0][5]+' ';
                     lineByLine263.innerHTML=lineByLine1(0,0,2,0)[0][0]+' '+lineByLine1(0,0,2,0)[0][1]+' '+'<br>'+lineByLine1(0,0,2,1)[0][2]+' '+lineByLine1(0,0,2,1)[0][3]+' '+'<br>'+lineByLine1(0,0,2,2)[0][4]+' '+lineByLine1(0,0,2,2)[0][5]+' ';
                     if (finalLineup2[5][0].length>=12) {lineByLine273.innerHTML=lineByLine1(0,0,3,0)[0][0]+' '+lineByLine1(0,0,3,0)[0][1]+' '+'<br>'+lineByLine1(0,0,3,1)[0][2]+' '+lineByLine1(0,0,3,1)[0][3]+' '+'<br>'+lineByLine1(0,0,3,2)[0][4]+' '+lineByLine1(0,0,3,2)[0][5]+' '}
+
+                      lineByLine303.innerHTML=homeF[1+3*finalLineup2[4][0][3]]+' '+homeF[2+3*finalLineup2[4][0][3]]+'<br>'+homeF[1+3*finalLineup2[4][0][4]]+' '+homeF[2+3*finalLineup2[4][0][4]]+'<br>'+homeF[1+3*finalLineup2[4][0][5]]+' '+homeF[2+3*finalLineup2[4][0][5]];
+                    lineByLine323.innerHTML=lineByLine1(0,1,0,0)[1][0]+' '+lineByLine1(0,1,0,0,0)[1][1]+'<br>'+lineByLine1(0,1,0,1)[1][2]+' '+lineByLine1(0,1,0,1)[1][3]+'<br>'+lineByLine1(0,1,0,2)[1][4]+' '+lineByLine1(0,1,0,2)[1][5];
+                    lineByLine343.innerHTML=lineByLine1(0,1,0,0)[0][0]+' '+lineByLine1(0,1,0,0)[0][1]+'<br>'+lineByLine1(0,1,0,1)[0][2]+' '+lineByLine1(0,1,0,1)[0][3]+' '+'<br>'+lineByLine1(0,1,0,2)[0][4]+' '+lineByLine1(0,1,0,2)[0][5];
+                    lineByLine353.innerHTML=lineByLine1(0,1,1,0)[0][0]+' '+lineByLine1(0,1,1,0)[0][1]+'<br>'+lineByLine1(0,1,1,1)[0][2]+' '+lineByLine1(0,1,1,1)[0][3]+' '+'<br>'+lineByLine1(0,1,1,2)[0][4]+' '+lineByLine1(0,1,1,2)[0][5];
+                    lineByLine363.innerHTML=lineByLine1(0,1,2,0)[0][0]+' '+lineByLine1(0,1,2,0)[0][1]+'<br>'+lineByLine1(0,1,2,1)[0][2]+' '+lineByLine1(0,1,2,1)[0][3]+' '+'<br>'+lineByLine1(0,1,2,2)[0][4]+' '+lineByLine1(0,1,2,2)[0][5];
+                    if (finalLineup2[5][0].length>=12) {lineByLine373.innerHTML=lineByLine1(0,1,3,0)[0][0]+' '+lineByLine1(0,1,3,0)[0][1]+' '+'<br>'+lineByLine1(0,1,3,1)[0][2]+' '+lineByLine1(0,1,3,1)[0][3]+' '+'<br>'+lineByLine1(0,1,3,2)[0][4]+' '+lineByLine1(0,1,3,2)[0][5]+' '}
 
                   }); // end second .then shifts
               }); // end second .then standings;
