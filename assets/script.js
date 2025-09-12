@@ -264,9 +264,10 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       for (h=4;h<6;h++) {for (j=0;j<finalLineup2[h][0].length/3;j++)
         {for(k=0;k<finalLineup2[h][0].length/3;k++)  // if (finalLineup2[h][0].length>=12)
           {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
-        { oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])
+        { if (finalLineup2[h][0][3*j+2]) {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])}
+        else {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1])} 
         }}
-      }}
+      }} // this loop assumes that team played with either 12F or 11F, but there were at least 2 games last season when a team played with 13F
     for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][2].length;j++) { if (!oldLines[h-4].includes(finalLineup2[h][2][j])) {newLines[h-4].push(finalLineup2[h][2][j])}}
       for (j=0;j<newLines[h-4].length;j++) {for (k=0;k<finalLineup2[h][2].length/3;k++) {if (newLines[h-4][j]===finalLineup2[h][2][3*k]) {newLines[h-2].push(finalLineup2[h][2][3*k],finalLineup2[h][2][3*k+1],finalLineup2[h][2][3*k+2])}}}
     }
