@@ -71,14 +71,14 @@ function getInputValue() {
                      else {shiftsLine3[6+n].push(fArray[1-h][t][n][2*l], fArray[1-h][u][n][2*m+1])}}
                     }} // end first m,l loop
                     // start second l,m loop
-                    shiftsLine3[9].push([]); // away team
+                    shiftsLine3[9].push([]); // when qrs played against tu
                     for (l=0;l<shiftsLine3[3+n].length/2;l++) {for (m=0;m<shiftsLine3[6+n].length/2;m++) {if ((shiftsLine3[6+n][2*m]>=shiftsLine3[3+n][2*l])&&(shiftsLine3[6+n][2*m]<=shiftsLine3[3+n][2*l+1])){
                     if (shiftsLine3[6+n][2*m+1]>=shiftsLine3[3+n][2*l+1]){shiftsLine3[9][n].push(shiftsLine3[6+n][2*m], shiftsLine3[3+n][2*l+1])}
                     else { shiftsLine3[9][n].push(shiftsLine3[6+n][2*m], shiftsLine3[6+n][2*m+1]) }}
                     else if ((shiftsLine3[6+n][2*m]<=shiftsLine3[3+n][2*l])&&(shiftsLine3[6+n][2*m+1]>=shiftsLine3[3+n][2*l])) {
                     if (shiftsLine3[6+n][2*m+1]>=shiftsLine3[3+n][2*l+1]) { shiftsLine3[9][n].push(shiftsLine3[3+n][2*l], shiftsLine3[3+n][2*l+1]) }
                       else {shiftsLine3[9][n].push(shiftsLine3[3+n][2*l], shiftsLine3[6+n][2*m+1])}}
-                    }} // end m,l loop line vs line
+                    }} // end m,l loop qrs against tu
                     lineVsLineTime=0; lineVsLineShifts=0;
                     for (k=0;k<shiftsLine3[9][n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine3[9][n][2*k+1]-shiftsLine3[9][n][2*k];
                     if (shiftsLine3[9][n][2*k+1]-shiftsLine3[9][n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}

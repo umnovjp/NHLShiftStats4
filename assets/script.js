@@ -417,7 +417,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                      else {shiftsLine3[6+n].push(fArray[1-h][t][n][2*l], fArray[1-h][u][n][2*m+1])}}
                     }} // end first m,l loop
                     // start second l,m loop
-                    shiftsLine3[9].push([]); // away team
+                    shiftsLine3[9].push([]); // when qrs played against tu
                     for (l=0;l<shiftsLine3[3+n].length/2;l++) {for (m=0;m<shiftsLine3[6+n].length/2;m++) {if ((shiftsLine3[6+n][2*m]>=shiftsLine3[3+n][2*l])&&(shiftsLine3[6+n][2*m]<=shiftsLine3[3+n][2*l+1])){
                     if (shiftsLine3[6+n][2*m+1]>=shiftsLine3[3+n][2*l+1]){shiftsLine3[9][n].push(shiftsLine3[6+n][2*m], shiftsLine3[3+n][2*l+1])}
                     else { shiftsLine3[9][n].push(shiftsLine3[6+n][2*m], shiftsLine3[6+n][2*m+1]) }}
@@ -425,15 +425,15 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     if (shiftsLine3[6+n][2*m+1]>=shiftsLine3[3+n][2*l+1]) { shiftsLine3[9][n].push(shiftsLine3[3+n][2*l], shiftsLine3[3+n][2*l+1]) }
                       else {shiftsLine3[9][n].push(shiftsLine3[3+n][2*l], shiftsLine3[6+n][2*m+1])}}
                     }} // end m,l loop line vs line
-                    lineVsLineTime=0; lineVsLineShifts=0;
+                    lineVsLineTime=0; lineVsLineShifts=0; // qrs played against tu
                     for (k=0;k<shiftsLine3[9][n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine3[9][n][2*k+1]-shiftsLine3[9][n][2*k];
                     if (shiftsLine3[9][n][2*k+1]-shiftsLine3[9][n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                     shiftsLine3[10][0].push(lineVsLineTime, lineVsLineShifts);
-                    lineVsLineTime=0; lineVsLineShifts=0;
+                    lineVsLineTime=0; lineVsLineShifts=0; // qrs played together
                     for (k=0;k<shiftsLine3[3+n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine3[3+n][2*k+1]-shiftsLine3[3+n][2*k];
                     if (shiftsLine3[3+n][2*k+1]-shiftsLine3[3+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                     shiftsLine3[10][1].push(lineVsLineTime, lineVsLineShifts)
-                    lineVsLineTime=0; lineVsLineShifts=0;
+                    lineVsLineTime=0; lineVsLineShifts=0; // tu played together
                     for (k=0;k<shiftsLine3[6+n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine3[6+n][2*k+1]-shiftsLine3[6+n][2*k];
                       if (shiftsLine3[6+n][2*k+1]-shiftsLine3[6+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                       shiftsLine3[10][2].push(lineVsLineTime, lineVsLineShifts)
@@ -573,8 +573,26 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     +lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][2]+' '+lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][3]+'<br>'+
                     lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][4]+' '+lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][5]
                   }
-                    else if (finalLineup2[4][0].length===11) {
-                    lineByLine501.innerHTML=homeF[1+3*finalLineup2[4][0][9]]+' '+homeF[2+3*finalLineup2[4][0][9]]+'<br>'+homeF[1+3*finalLineup2[4][0][10]]+' '+homeF[2+3*finalLineup2[4][0][10]]}
+                    else if (finalLineup2[4][0].length===11) { console.log (lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10]))
+                    lineByLine501.innerHTML=homeF[1+3*finalLineup2[4][0][9]]+' '+homeF[2+3*finalLineup2[4][0][9]]+'<br>'+homeF[1+3*finalLineup2[4][0][10]]+' '+homeF[2+3*finalLineup2[4][0][10]]
+                    lineByLine521.innerHTML=lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][0]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][2]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][4]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][5]
+
+                    lineByLine541.innerHTML=lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
+                    lineByLine551.innerHTML=lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
+                    lineByLine561.innerHTML=lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
+                    if (finalLineup2[5][0].length===12) { lineByLine571.innerHTML=lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
+                    }
+                  }
 
                     lineByLine003.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |'
                     lineByLine043.innerHTML=awayF[1+3*finalLineup2[5][0][0]]+' '+awayF[2+3*finalLineup2[5][0][0]]+'<br>'+awayF[1+3*finalLineup2[5][0][1]]+' '+awayF[2+3*finalLineup2[5][0][1]]+'<br>'+awayF[1+3*finalLineup2[5][0][2]]+' '+awayF[2+3*finalLineup2[5][0][2]];
