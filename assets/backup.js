@@ -47,5 +47,3 @@ function getInputValue() {
     } // end second .then from getinputvalue
     );
 } // end getInput Value
-
-

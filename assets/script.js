@@ -265,17 +265,21 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
         {for(k=0;k<finalLineup2[h][0].length/3;k++)  // if (finalLineup2[h][0].length>=12)
           {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
         { if (finalLineup2[h][0][3*j+2]) {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])}
-        else {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1])} 
+        else {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1])}
         }}
       }} // this loop assumes that team played with either 12F or 11F, but there were at least 2 games last season when a team played with 13F
     for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][2].length;j++) { if (!oldLines[h-4].includes(finalLineup2[h][2][j])) {newLines[h-4].push(finalLineup2[h][2][j])}}
       for (j=0;j<newLines[h-4].length;j++) {for (k=0;k<finalLineup2[h][2].length/3;k++) {if (newLines[h-4][j]===finalLineup2[h][2][3*k]) {newLines[h-2].push(finalLineup2[h][2][3*k],finalLineup2[h][2][3*k+1],finalLineup2[h][2][3*k+2])}}}
     }
       console.log('old', oldLines, 'new',  newLines);
-      // for (h=0;h<2;h++) { console.log('h', h, finalLineup2[h+4][0].length)
-      // if (finalLineup2[h+4][0].length===11)  {fArray[h].push([[0,1200],[0,1200],[0,1200]])}
-      // }
-      // console.log(fArray)
+      finalLineup3=[[[],[],[]],[[],[],[]]];
+      for (h=0;h<2;h++) {for (i=0;i<3;i++) { for (j=0;j<oldLines[h].length;j++) {
+        finalLineup3[h][i].push(oldLines[h][j])}
+        for (j=0;j<newLines[h].length;j++) {
+          finalLineup3[h][i].push(oldLines[h][j])
+        }
+      }}
+      console.log(finalLineup3)
 
                     // this function will be deleted; f is line number 0,1,2,3, j is opposite team line number 0,1,2,3, h is 0 or 1 home away team; n is player in a F line but i is period
                     function lineByLine1(h,f,j,i) {shiftsLine1=[]; for (p=0;p<14;p++) {shiftsLine1.push([])} shiftsLine1[13]=[[],[]]
@@ -390,10 +394,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     console.log('lineByLine1', lineByLine1(1,0,0,0),lineByLine1(1,0,0,1),lineByLine1(1,0,0,2),
                       'lineByLine2', lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2]))
 
-// h is team playing with 12F h=0 home team h=1 away team, 1-h team playing with 11F qrs are 12H line but tu are 4th line on 11F team
-                    function lineByLine3(h,q,r,s,t,u) {shiftsLine3=[]; for (p=0;p<12;p++) {shiftsLine3.push([])} shiftsLine3[10]=[[],[],[]]
-                    
-                    for (n=0;n<3;n++) {// n is the period, h is 0 or 1 home away team 
+                    // h is team playing with 12F h=0 home team h=1 away team, 1-h team playing with 11F qrs are 12H line but tu are 4th line on 11F team
+                    function lineByLine3(h,q,r,s,t,u) {shiftsLine3=[]; for (p=0;p<12;p++) {shiftsLine3.push([])} shiftsLine3[10]=[[],[],[]];                    
+                    for (n=0;n<3;n++) {// n is the period, h is 0 or 1 home away team
                     for (l=0;l<fArray[h][q][n].length/2;l++) { for (m=0;m<fArray[h][r][n].length/2;m++) {if ((fArray[h][r][n][2*m]>=fArray[h][q][n][2*l])&&(fArray[h][r][n][2*m]<=fArray[h][q][n][2*l+1]))
                     {if (fArray[h][r][n][2*m+1]>=fArray[h][q][n][2*l+1]) {shiftsLine3[n].push(fArray[h][r][n][2*m], fArray[h][q][n][2*l+1]) }
                     else { shiftsLine3[n].push(fArray[h][r][n][2*m], fArray[h][r][n][2*m+1]) }}
@@ -402,7 +405,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       else {shiftsLine3[n].push(fArray[h][q][n][2*l], fArray[h][r][n][2*m+1])}}
                     }} // end first m,l loop 
                     // start second l,m loop
-                    // console.log(h, s)
+                    // console.log(h, q, r, s);
                     for (l=0;l<shiftsLine3[n].length/2;l++) { for (m=0;m<fArray[h][s][n].length/2;m++) { if ((fArray[h][s][n][2*m]>=shiftsLine3[n][2*l])&&(fArray[h][s][n][2*m]<=shiftsLine3[n][2*l+1]))
                     {if (fArray[h][s][n][2*m+1]>=shiftsLine3[n][2*l+1]) {shiftsLine3[n+3].push(fArray[h][s][n][2*m], shiftsLine3[n][2*l+1]) }
                       else { shiftsLine3[n+3].push(fArray[h][s][n][2*m], fArray[h][s][n][2*m+1]) }}
@@ -441,7 +444,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     } // end n loop
                     return shiftsLine3[10]} // end function lineByLine3
 
-                    console.log(lineByLine3(1,finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10]))
+                    // console.log(lineByLine3(1,finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10]))
 
                     lineByLine001.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |'
                     lineByLine041.innerHTML=awayF[1+3*finalLineup2[5][0][0]]+' '+awayF[2+3*finalLineup2[5][0][0]]+'<br>'+awayF[1+3*finalLineup2[5][0][1]]+' '+awayF[2+3*finalLineup2[5][0][1]]+'<br>'+awayF[1+3*finalLineup2[5][0][2]]+' '+awayF[2+3*finalLineup2[5][0][2]];
