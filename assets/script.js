@@ -262,23 +262,20 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
         else  {finalLineup2[tempIndex10+4][tempIndex9].push(i)}}}}
       console.log('final lineup home', finalLineup2[4], 'final lineup away', finalLineup2[5]); oldLines=[[],[]]; newLines=[[],[],[],[]];
       for (h=4;h<6;h++) {for (j=0;j<finalLineup2[h][0].length/3;j++)
-        {for(k=0;k<finalLineup2[h][0].length/3;k++)  // if (finalLineup2[h][0].length>=12)
-          {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
+        {for(k=0;k<finalLineup2[h][0].length/3;k++) {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
         { if (finalLineup2[h][0][3*j+2]) {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])}
         else {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1])}
         }}
       }} // this loop assumes that team played with either 12F or 11F, but there were at least 2 games last season when a team played with 13F
     for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][2].length;j++) { if (!oldLines[h-4].includes(finalLineup2[h][2][j])) {newLines[h-4].push(finalLineup2[h][2][j])}}
-      for (j=0;j<newLines[h-4].length;j++) {for (k=0;k<finalLineup2[h][2].length/3;k++) {if (newLines[h-4][j]===finalLineup2[h][2][3*k]) {newLines[h-2].push(finalLineup2[h][2][3*k],finalLineup2[h][2][3*k+1],finalLineup2[h][2][3*k+2])}}}
-    }
+      for (j=0;j<newLines[h-4].length;j++) {for (k=0;k<finalLineup2[h][2].length/3;k++) {if (newLines[h-4][j]===finalLineup2[h][2][3*k]) {newLines[h-2].push(finalLineup2[h][2][3*k],finalLineup2[h][2][3*k+1],finalLineup2[h][2][3*k+2])}}}}
       console.log('old', oldLines, 'new',  newLines);
       // purpose of finalLineup3 is to bring old lines players as first elements in an array but new lines as last elements of the same array
       finalLineup3=[[],[],[],[]];
       for (h=0;h<2;h++) {for (j=0;j<oldLines[h].length;j++) { finalLineup3[h].push(oldLines[h][j]) 
-        finalLineup3[h+2].push(oldLines[h][j])}
+        finalLineup3[h+2].push(oldLines[h][j])} // probably will not need h+2
         for (j=0;j<newLines[h].length;j++) {} // did not add today but will do tomorrow
-        for (j=0;j<newLines[h].length;j++) { finalLineup3[h+2].push(newLines[h][j])
-        }}
+        for (j=0;j<newLines[h].length;j++) { finalLineup3[h+2].push(newLines[h][j])}}
       console.log(finalLineup3)
 
                     // this function will be deleted; f is line number 0,1,2,3, j is opposite team line number 0,1,2,3, h is 0 or 1 home away team; n is player in a F line but i is period
@@ -405,7 +402,6 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       else {shiftsLine3[n].push(fArray[h][q][n][2*l], fArray[h][r][n][2*m+1])}}
                     }} // end first m,l loop 
                     // start second l,m loop
-                    // console.log(h, q, r, s);
                     for (l=0;l<shiftsLine3[n].length/2;l++) { for (m=0;m<fArray[h][s][n].length/2;m++) { if ((fArray[h][s][n][2*m]>=shiftsLine3[n][2*l])&&(fArray[h][s][n][2*m]<=shiftsLine3[n][2*l+1]))
                     {if (fArray[h][s][n][2*m+1]>=shiftsLine3[n][2*l+1]) {shiftsLine3[n+3].push(fArray[h][s][n][2*m], shiftsLine3[n][2*l+1]) }
                       else { shiftsLine3[n+3].push(fArray[h][s][n][2*m], fArray[h][s][n][2*m+1]) }}

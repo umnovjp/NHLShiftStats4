@@ -58,7 +58,6 @@ function getInputValue() {
                       else {shiftsLine3[n].push(fArray[h][q][n][2*l], fArray[h][r][n][2*m+1])}}
                     }} // end first m,l loop 
                     // start second l,m loop
-                    // console.log(h, q, r, s);
                     for (l=0;l<shiftsLine3[n].length/2;l++) { for (m=0;m<fArray[h][s][n].length/2;m++) { if ((fArray[h][s][n][2*m]>=shiftsLine3[n][2*l])&&(fArray[h][s][n][2*m]<=shiftsLine3[n][2*l+1]))
                     {if (fArray[h][s][n][2*m+1]>=shiftsLine3[n][2*l+1]) {shiftsLine3[n+3].push(fArray[h][s][n][2*m], shiftsLine3[n][2*l+1]) }
                       else { shiftsLine3[n+3].push(fArray[h][s][n][2*m], fArray[h][s][n][2*m+1]) }}
@@ -82,6 +81,7 @@ function getInputValue() {
                     if (shiftsLine3[6+n][2*m+1]>=shiftsLine3[3+n][2*l+1]) { shiftsLine3[9][n].push(shiftsLine3[3+n][2*l], shiftsLine3[3+n][2*l+1]) }
                       else {shiftsLine3[9][n].push(shiftsLine3[3+n][2*l], shiftsLine3[6+n][2*m+1])}}
                     }} // end m,l loop line vs line
+                    // add fiveOnFive5 loop here
                     lineVsLineTime=0; lineVsLineShifts=0; // qrs played against tu
                     for (k=0;k<shiftsLine3[9][n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine3[9][n][2*k+1]-shiftsLine3[9][n][2*k];
                     if (shiftsLine3[9][n][2*k+1]-shiftsLine3[9][n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
