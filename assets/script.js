@@ -272,11 +272,11 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       console.log('old', oldLines, 'new',  newLines);
       // purpose of finalLineup3 is to bring old lines players as first elements in an array but new lines as last elements of the same array
       finalLineup3=[[],[],[],[]];
-      for (h=0;h<2;h++) {for (j=0;j<oldLines[h].length;j++) { finalLineup3[h].push(oldLines[h][j]) 
+      for (h=0;h<2;h++) {for (j=0;j<oldLines[h].length;j++) { finalLineup3[h].push(oldLines[h][j]);
         finalLineup3[h+2].push(oldLines[h][j])} // probably will not need h+2
-        for (j=0;j<newLines[h].length;j++) {} // did not add today but will do tomorrow
+        // for (j=0;j<newLines[h].length;j++) {} // did not add today but will do tomorrow
         for (j=0;j<newLines[h].length;j++) { finalLineup3[h+2].push(newLines[h][j])}}
-      console.log(finalLineup3)
+      console.log(finalLineup3);
 
                     // this function will be deleted; f is line number 0,1,2,3, j is opposite team line number 0,1,2,3, h is 0 or 1 home away team; n is player in a F line but i is period
                     function lineByLine1(h,f,j,i) {shiftsLine1=[]; for (p=0;p<14;p++) {shiftsLine1.push([])} shiftsLine1[13]=[[],[]]
