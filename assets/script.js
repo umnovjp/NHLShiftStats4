@@ -275,6 +275,8 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       for (h=0;h<2;h++) {for (j=0;j<oldLines[h].length;j++) { finalLineup3[h].push(oldLines[h][j]);
         finalLineup3[h+2].push(oldLines[h][j])} // probably will not need h+2
         // for (j=0;j<newLines[h].length;j++) {} // did not add today but will do tomorrow
+        for (j=0;j<4;j++) {for (k=0;k<oldLines[h].length/3;k++) {if (oldLines[h][3*k]===finalLineup2[h][3*j]) {if ((oldLines[h][3*k+1]===finalLineup2[h][3*j+1])&&(oldLines[h][3*k+2]===finalLineup2[h][3*j+2])) {}
+      else {finalLineup3[h].push(finalLineup2[h+4][0][3*j],finalLineup2[h+4][0][3*j+1],finalLineup2[h+4][0][3*j+2])}}}}
         for (j=0;j<newLines[h].length;j++) { finalLineup3[h+2].push(newLines[h][j])}}
       console.log(finalLineup3);
 
