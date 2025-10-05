@@ -245,8 +245,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       finalLineup2[4+h][i].push(linesArray8[tempIndex2+2],linesArray8[tempIndex2+3],linesArray8[tempIndex2+4])
       for (j=3*h;j<3*h+3;j++) {for (k=0;k<linesArray[j].length/5;k++) {
         if((finalLineup2[h+4][i].includes(linesArray[j][5*k+2]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+3]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+4]))) {}
-        else {linesArray9.push(linesArray[j][5*k], linesArray[j][5*k+1], linesArray[j][5*k+2], linesArray[j][5*k+3], linesArray[j][5*k+4])}
-      }}
+        else {linesArray9.push(linesArray[j][5*k], linesArray[j][5*k+1], linesArray[j][5*k+2], linesArray[j][5*k+3], linesArray[j][5*k+4])}}}
     linesArray9=linesArray9.slice(i*linesArray9.length/3, (i+1)*linesArray9.length/3);
     } // end if length === 0
       else {console.log('case to be added it is not 0 or 1 or 2 or 3 or 4 lines', 'h', h, 'i', i)}
@@ -264,8 +263,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       for (h=4;h<6;h++) {for (j=0;j<finalLineup2[h][0].length/3;j++)
         {for(k=0;k<finalLineup2[h][0].length/3;k++) {if((finalLineup2[h][0][3*j]===finalLineup2[h][2][3*k])&&(finalLineup2[h][0][3*j+1]===finalLineup2[h][2][3*k+1])&&(finalLineup2[h][0][3*j+2]===finalLineup2[h][2][3*k+2]))
         { if (finalLineup2[h][0][3*j+2]) {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1], finalLineup2[h][0][3*j+2])}
-        else {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1])}
-        }}
+        else {oldLines[h-4].push(finalLineup2[h][0][3*j], finalLineup2[h][0][3*j+1])}}}
       }} // this loop assumes that team played with either 12F or 11F, but there were at least 2 games last season when a team played with 13F
     for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][2].length;j++) { if (!oldLines[h-4].includes(finalLineup2[h][2][j])) {newLines[h-4].push(finalLineup2[h][2][j])}}
       for (j=0;j<newLines[h-4].length;j++) {for (k=0;k<finalLineup2[h][2].length/3;k++) {if (newLines[h-4][j]===finalLineup2[h][2][3*k]) {newLines[h-2].push(finalLineup2[h][2][3*k],finalLineup2[h][2][3*k+1],finalLineup2[h][2][3*k+2])}}}}
@@ -273,9 +271,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       // purpose of finalLineup3 is to bring old lines players as first elements in an array but new lines as last elements of the same array
       finalLineup3=[[],[],[],[]];
       for (h=0;h<2;h++) {for (j=0;j<oldLines[h].length;j++) { finalLineup3[h].push(oldLines[h][j]);
-        finalLineup3[h+2].push(oldLines[h][j])} // probably will not need h+2
-        // for (j=0;j<newLines[h].length;j++) {} // did not add today but will do tomorrow
-        for (j=0;j<4;j++) {for (k=0;k<oldLines[h].length/3;k++) {if (oldLines[h][3*k]===finalLineup2[h][3*j]) {if ((oldLines[h][3*k+1]===finalLineup2[h][3*j+1])&&(oldLines[h][3*k+2]===finalLineup2[h][3*j+2])) {}
+        finalLineup3[h+2].push(oldLines[h][j])} // h is first period, h+2 is 3rd period
+        for (j=0;j<4;j++) {for (k=0;k<oldLines[h].length/3;k++) { console.log(oldLines[h][3*k],finalLineup2[h][0][3*j])
+          if (oldLines[h][3*k]===finalLineup2[h+4][0][3*j]) {if ((oldLines[h][3*k+1]===finalLineup2[h+4][0][3*j+1])&&(oldLines[h][3*k+2]===finalLineup2[h+4][0][3*j+2])) {}
       else {finalLineup3[h].push(finalLineup2[h+4][0][3*j],finalLineup2[h+4][0][3*j+1],finalLineup2[h+4][0][3*j+2])}}}}
         for (j=0;j<newLines[h].length;j++) { finalLineup3[h+2].push(newLines[h][j])}}
       console.log(finalLineup3);
