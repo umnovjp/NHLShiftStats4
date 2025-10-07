@@ -274,9 +274,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
         finalLineup3[h+2].push(oldLines[h][j])} // h is first period, h+2 is 3rd period
         for (j=0;j<4;j++) {for (k=0;k<oldLines[h].length/3;k++) { console.log(h, oldLines[h][3*k],finalLineup2[h][0][3*j])
           if ((oldLines[h][3*k]===finalLineup2[h+4][0][3*j])&&(oldLines[h][3*k+1]===finalLineup2[h+4][0][3*j+1])&&(oldLines[h][3*k+2]===finalLineup2[h+4][0][3*j+2])) {}
-          else {finalLineup3[h].push(finalLineup2[h+4][0][3*j],finalLineup2[h+4][0][3*j+1],finalLineup2[h+4][0][3*j+2])}
+          else if (!finalLineup3[h].includes(finalLineup2[h+4][0][3*j])) {finalLineup3[h].push(finalLineup2[h+4][0][3*j],finalLineup2[h+4][0][3*j+1],finalLineup2[h+4][0][3*j+2])}
     }}
-        for (j=0;j<newLines[h].length;j++) { finalLineup3[h+2].push(newLines[h][j])}}
+        for (j=0;j<newLines[h].length;j++) { finalLineup3[h+2].push(newLines[h][j])}} // is it correct? why is it different for 3rd period? 
       console.log(finalLineup3);
 
                     // this function will be deleted; f is line number 0,1,2,3, j is opposite team line number 0,1,2,3, h is 0 or 1 home away team; n is player in a F line but i is period
