@@ -34,9 +34,8 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                 var gameTitle = document.createElement('h2'); gameTitle.textContent = '';
                 gameTitle.innerHTML = 'You are watching stats for ' + data.awayTeam.abbrev + standingsArray[0] + ' W ' + standingsArray[1] + ' L ' + standingsArray[2] + ' O at ' + data.homeTeam.abbrev + standingsArray[3] + ' W ' + standingsArray[4] + ' L ' + standingsArray[5] + ' O game';
                 document.getElementById('gameInfo').appendChild(gameTitle);
-                const homeF = []; const awayF = []; const homeD = []; const awayD = []; const homeG = []; const awayG = []; const playerIdArray = []; // let playerIdeObject = {a: 1}; const hasKeyId = true;
-                // to delete playerIdeObject
-                var obj = data.playerByGameStats.homeTeam.forwards; var keys = Object.keys(obj); playerIdeObject = {};
+                const homeF = []; const awayF = []; const homeD = []; const awayD = []; const homeG = []; const awayG = []; const playerIdArray = [];
+                var obj = data.playerByGameStats.homeTeam.forwards; var keys = Object.keys(obj);
                 for (i = 0; i < keys.length; i++) { var val = obj[keys[i]]; homeF.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])}
                 var obj = data.playerByGameStats.homeTeam.defense; var keys = Object.keys(obj);
                 for (i = 0; i < keys.length; i++) { var val = obj[keys[i]]; homeD.push(val.playerId, val.sweaterNumber, val.name.default); playerIdArray.push(val.playerId, [[], [], []])}
@@ -59,8 +58,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                         seconds = Number(shiftStart1[1]); shiftStart2 = minutes * 60 + seconds;
                         shiftEnd = data_shifts.data[i].endTime; shiftEnd1 = shiftEnd.split(':'); minutes = Number(shiftEnd1[0]);
                         seconds = Number(shiftEnd1[1]); shiftEnd2 = minutes * 60 + seconds; playerIdArray[playerOrder + 1][data_shifts.data[i].period - 1].push(shiftStart2, shiftEnd2)}}
-                    for (i = 0; i < playerIdArray.length / 2; i++) {currentKey = playerIdArray[2 * i]; // playerIdeObject[currentKey] = playerIdArray[2 * i + 1]
-                    }
+                    for (i = 0; i < playerIdArray.length / 2; i++) {currentKey = playerIdArray[2 * i]}
 
                     dArray = [[], []];  fArray = [[], []];
                     for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeD.length / 3; j++) { if (playerIdArray[2 * i] === homeD[3 * j]) { dArray[0].push(playerIdArray[2 * i + 1]) } }
