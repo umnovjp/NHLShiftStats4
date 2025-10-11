@@ -48,6 +48,8 @@ function getInputValue() {
     );
 } // end getInput Value
 
+// add 5x5 array if possible
+
                     function lineByLine3(h,q,r,s,t,u) {shiftsLine3=[]; for (p=0;p<12;p++) {shiftsLine3.push([])} shiftsLine3[10]=[[],[],[]];                    
                     for (n=0;n<3;n++) {// n is the period, h is 0 or 1 home away team
                     for (l=0;l<fArray[h][q][n].length/2;l++) { for (m=0;m<fArray[h][r][n].length/2;m++) {if ((fArray[h][r][n][2*m]>=fArray[h][q][n][2*l])&&(fArray[h][r][n][2*m]<=fArray[h][q][n][2*l+1]))
