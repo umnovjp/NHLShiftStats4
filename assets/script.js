@@ -194,7 +194,8 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
           else if (finalLineup2[h+4][i].length===9) {for (j=0;j<tempArray3[h];j++){
             if (finalLineup2[h][i].includes(j)){}
           else finalLineup2[h+4][i].push(j)}}
-          else if (finalLineup2[h+4][i].length===6) {console.log('Two lines', 'team', h, 'period', i, finalLineup2[h+4][i]); linesArray4 = [[[],[],[]],[[],[],[]]];
+          else if (finalLineup2[h+4][i].length===6) { //console.log('Two lines', 'team', h, 'period', i, finalLineup2[h+4][i]); 
+            linesArray4 = [[[],[],[]],[[],[],[]]];
           for (j=3*h;j<3+3*h;j++) {for (k=0;k<linesArray[j].length/5;k++) {
             if((finalLineup2[h+4][i].includes(linesArray[j][5*k+2]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+3]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+4]))) {}
             else {linesArray4[h][i].push(linesArray[j][5*k], linesArray[j][5*k+1], linesArray[j][5*k+2], linesArray[j][5*k+3], linesArray[j][5*k+4])}
@@ -323,8 +324,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
 
                     function lineByLine2(q,r,s,t,u,v) {shiftsLine2=[]; for (p=0;p<15;p++) {shiftsLine2.push([])} shiftsLine2[13]=[[],[],[]]
                     
-                    for (n=0;n<3;n++) {// n is the period, h is 0 or 1 home away team 
-                    for (l=0;l<fArray[0][q][n].length/2;l++) { for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
+                    for (n=0;n<3;n++) {// console.log(fArray[0][r][n], fArray[0][q][n], 'q=', q, 'r=', r, 'n=', n); // n is the period, h is 0 or 1 home away team 
+                    for (l=0;l<fArray[0][q][n].length/2;l++) { 
+                      for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
                     {if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) {shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][q][n][2*l+1]) }
                     else { shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][r][n][2*m+1]) }}
                     else if ((fArray[0][r][n][2*m]<=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l])) {
@@ -602,7 +604,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     lineByLine2(finalLineup3[0][9],finalLineup3[0][10],finalLineup3[0][11],finalLineup3[1][9],finalLineup3[1][10],finalLineup3[1][11])[2][4]+' '+lineByLine2(finalLineup3[0][9],finalLineup3[0][10],finalLineup3[0][11],finalLineup3[1][9],finalLineup3[1][10],finalLineup3[1][11])[2][5]}
                     else if ((finalLineup3[1].length>=12)&&(finalLineup3[0].length<12)) {lineByLine173.innerHTML=
                     lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][9],finalLineup3[1][10],finalLineup3[1][11])[2][0]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][9],finalLineup3[1][10],finalLineup3[1][11])[2][1]+'<br>'
-                    +lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[2][2]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[4][0][1],finalLineup3[0][2],finalLineup3[1][9],finalLineup3[1][10],finalLineup3[1][11])[2][3]+'<br>'+
+                    +lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[2][2]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[4][0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[2][3]+'<br>'+
                     lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[2][4]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][9],finalLineup3[1][10],finalLineup3[1][11])[2][5];}
                     else if (finalLineup3[1].length<12) {lineByLine173.innerHTML=
                     lineByLine3(0,finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][9],finalLineup3[1][10])[2][0]+' '+lineByLine3(0,finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][9],finalLineup3[1][10])[2][1]+'<br>'
