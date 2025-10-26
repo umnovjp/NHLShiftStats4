@@ -48,14 +48,6 @@ function getInputValue() {
     );
 } // end getInput Value
 
-                    lineByLine223.innerHTML=lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][0]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][1]+'<br>'
-                    +lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][2]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][3]+'<br>'+
-                    lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][4]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][5];
-                    lineByLine223.innerHTML=lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][0]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][1]+'<br>'
-                    +lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][2]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][3]+'<br>'+
-                    lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup3[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][4]+' '+lineByLine2(finalLineup3[0][0],finalLineup3[0][1],finalLineup3[0][2],finalLineup2[1][0],finalLineup3[1][1],finalLineup3[1][2])[1][5];
-                    // lineByLine243.innerHTML=lineByLine1(0,0,0,0)[0][0]+' '+lineByLine1(0,0,0,0)[0][1]+' '+'<br>'+lineByLine1(0,0,0,1)[0][2]+' '+lineByLine1(0,0,0,1)[0][3]+' '+'<br>'+lineByLine1(0,0,0,2)[0][4]+' '+lineByLine1(0,0,0,2)[0][5]+' ';
-
 // add 5x5 array if possible
 
                   
