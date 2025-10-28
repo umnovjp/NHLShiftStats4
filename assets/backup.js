@@ -50,4 +50,11 @@ function getInputValue() {
 
 // add 5x5 array if possible
 
+                    if (finalLineup2[5][0].length>=12) {lineByLine273.innerHTML=lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][0]+' '+lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][1]+'<br>'
+                    +lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][2]+' '+lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][3]+'<br>'+
+                    lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][4]+' '+lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][5]}
+                    else if (finalLineup2[5][0].length<12) {lineByLine273.innerHTML=lineByLine3(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][0]+' '+lineByLine3(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][1]+'<br>'
+                    +lineByLine3(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][2]+' '+lineByLine3(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][3]+'<br>'+
+                    lineByLine3(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][4]+' '+lineByLine3(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][5]}
+
                   
