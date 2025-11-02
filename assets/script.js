@@ -341,7 +341,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       else {shiftsLine2[n+3].push(shiftsLine2[n][2*l], fArray[0][s][n][2*m+1])}}
                     }} // end second m,l loop 
                     // console.log(fArray[1])
-                    for (l=0;l<fArray[1][t][n].length/2;l++) { // console.log('t=',t,'u=',u,'n=',n,'length=',fArray[1][t][n].length/2,fArray[1][u][n],fArray[1][v][n])
+                    for (l=0;l<fArray[1][t][n].length/2;l++) { 
                       for (m=0;m<fArray[1][u][n].length/2;m++) {if ((fArray[1][u][n][2*m]>=fArray[1][t][n][2*l])&&(fArray[1][u][n][2*m]<=fArray[1][t][n][2*l+1]))
                     {if (fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l+1]) {shiftsLine2[6+n].push(fArray[1][u][n][2*m], fArray[1][t][n][2*l+1]) }
                     else { shiftsLine2[6+n].push(fArray[1][u][n][2*m], fArray[1][u][n][2*m+1]) }}
@@ -565,17 +565,16 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     lineByLine561.innerHTML=lineByLine3(1,finalLineup2[5][2][6],finalLineup2[5][2][7],finalLineup2[5][2][8],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][2][6],finalLineup2[5][2][7],finalLineup2[5][2][8],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][1]+'<br>'
                     +lineByLine3(1,finalLineup2[5][2][6],finalLineup2[5][2][7],finalLineup2[5][2][8],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][2][6],finalLineup2[5][2][7],finalLineup2[5][2][8],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][3]+'<br>'+
                     lineByLine3(1,finalLineup2[5][2][6],finalLineup2[5][2][7],finalLineup2[5][2][8],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][2][6],finalLineup2[5][2][7],finalLineup2[5][2][8],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][5];
-                    if (finalLineup2[5][0].length===12) { lineByLine571.innerHTML=lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][1]+'<br>'
-                    +lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
-                    lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
-                    }
-                  }
+                    if (finalLineup2[5][0].length===12) {lineByLine571.innerHTML=lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][2][9],finalLineup2[5][2][10],finalLineup2[5][2][11],finalLineup2[4][2][9],finalLineup2[4][2][10])[0][5];
+                    }}
 
                     else if (finalLineup2[5][0].length<12)
                   {lineByLine571.innerHTML=
-                    lineByLine3(0,finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][0]+' '+lineByLine3(0,finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][1]+'<br>'
-                    +lineByLine3(0,finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][2]+' '+lineByLine3(0,finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][3]+'<br>'+
-                    lineByLine3(0,finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][4]+' '+lineByLine3(0,finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10])[0][5]}
+                    lineByLine3(0,finalLineup2[4][2][9],finalLineup2[4][2][10],finalLineup2[4][2][11],finalLineup2[5][2][9],finalLineup2[5][2][10])[0][0]+' '+lineByLine3(0,finalLineup2[4][2][9],finalLineup2[4][2][10],finalLineup2[4][2][11],finalLineup2[5][2][9],finalLineup2[5][2][10])[0][1]+'<br>'
+                    +lineByLine3(0,finalLineup2[4][2][9],finalLineup2[4][2][10],finalLineup2[4][2][11],finalLineup2[5][2][9],finalLineup2[5][2][10])[0][2]+' '+lineByLine3(0,finalLineup2[4][2][9],finalLineup2[4][2][10],finalLineup2[4][2][11],finalLineup2[5][2][9],finalLineup2[5][2][10])[0][3]+'<br>'+
+                    lineByLine3(0,finalLineup2[4][2][9],finalLineup2[4][2][10],finalLineup2[4][2][11],finalLineup2[5][2][9],finalLineup2[5][2][10])[0][4]+' '+lineByLine3(0,finalLineup2[4][2][9],finalLineup2[4][2][10],finalLineup2[4][2][11],finalLineup2[5][2][9],finalLineup2[5][2][10])[0][5]}
 
                     lineByLine003.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |';
                     lineByLine043.innerHTML=awayF[1+3*finalLineup2[5][0][0]]+' '+awayF[2+3*finalLineup2[5][0][0]]+'<br>'+awayF[1+3*finalLineup2[5][0][1]]+' '+awayF[2+3*finalLineup2[5][0][1]]+'<br>'+awayF[1+3*finalLineup2[5][0][2]]+' '+awayF[2+3*finalLineup2[5][0][2]];
