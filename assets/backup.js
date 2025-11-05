@@ -708,4 +708,4 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
     ); 
 } // end getInput Value function 
 ''
-                  
+                  const array = string.split('finalLineup2[5]')
