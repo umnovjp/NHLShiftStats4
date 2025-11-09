@@ -259,14 +259,6 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
     for (h=4;h<6;h++) { for (j=0;j<finalLineup2[h][2].length;j++) { if (!oldLines[h-4].includes(finalLineup2[h][2][j])) {newLines[h-4].push(finalLineup2[h][2][j])}}
       for (j=0;j<newLines[h-4].length;j++) {for (k=0;k<finalLineup2[h][2].length/3;k++) {if (newLines[h-4][j]===finalLineup2[h][2][3*k]) {newLines[h-2].push(finalLineup2[h][2][3*k],finalLineup2[h][2][3*k+1],finalLineup2[h][2][3*k+2])}}}}
       console.log('old', oldLines, 'new',  newLines);
-      // purpose of finalLineup3 is to bring old lines players as first elements in an array but new lines as last elements of the same array
-      // finalLineup3=[[],[],[],[]];
-      // for (h=0;h<2;h++) {for (j=0;j<oldLines[h].length;j++) { finalLineup3[h].push(oldLines[h][j]);
-      //   finalLineup3[h+2].push(oldLines[h][j])} // h is first period, h+2 is 3rd period
-      //   for (j=0;j<4;j++) {for (k=0;k<oldLines[h].length/3;k++) { if ((oldLines[h][3*k]===finalLineup2[h+4][0][3*j])&&(oldLines[h][3*k+1]===finalLineup2[h+4][0][3*j+1])&&(oldLines[h][3*k+2]===finalLineup2[h+4][0][3*j+2])) {}
-      //     else if (!finalLineup3[h].includes(finalLineup2[h+4][0][3*j])) {finalLineup3[h].push(finalLineup2[h+4][0][3*j],finalLineup2[h+4][0][3*j+1],finalLineup2[h+4][0][3*j+2])}}}
-      //   for (j=0;j<newLines[h].length;j++) { finalLineup3[h+2].push(newLines[h][j])}}  
-      // console.log('finalLineup3', finalLineup3);
 
                     // this function will be deleted; f is line number 0,1,2,3, j is opposite team line number 0,1,2,3, h is 0 or 1 home away team; n is player in a F line but i is period
                     function lineByLine1(h,f,j,i) {shiftsLine1=[]; for (p=0;p<14;p++) {shiftsLine1.push([])} shiftsLine1[13]=[[],[]]
@@ -294,7 +286,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     if (fArray[1-h][finalLineup2[5-h][i][3*j+1]][n][2*m+1]>=fArray[1-h][finalLineup2[5-h][i][3*j]][n][2*l+1]) { shiftsLine1[6+n].push(fArray[1-h][finalLineup2[5-h][i][3*j]][n][2*l], fArray[1-h][finalLineup2[5-h][i][3*j]][n][2*l+1]) }
                      else {shiftsLine1[6+n].push(fArray[1-h][finalLineup2[5-h][i][3*j]][n][2*l], fArray[1-h][finalLineup2[5-h][i][3*j+1]][n][2*m+1])}}
                     }} // end first m,l loop
-                    // start second l,m loop
+                    // start second l,m loop 
                     for (l=0;l<shiftsLine1[6+n].length/2;l++) { for (m=0;m<fArray[1-h][finalLineup2[5-h][i][3*j+2]][n].length/2;m++) { // console.log(l, m, 'team', h, 'period', i, fArray[1-h][finalLineup2[5-h][i][3*j+2]][n][2*m], fArray[1-h][finalLineup2[5-h][i][3*j+2]], shiftsLine1[6+n][2*l], shiftsLine1[6+n][2*l+1])
                       if ((fArray[1-h][finalLineup2[5-h][i][3*j+2]][n][2*m]>=shiftsLine1[6+n][2*l]) && (fArray[1-h][finalLineup2[5-h][i][3*j+2]][n][2*m]<=shiftsLine1[6+n][2*l+1]))
                     {if (fArray[1-h][finalLineup2[5-h][i][3*j+2]][n][2*m+1]>=shiftsLine1[6+n][2*l+1]) {shiftsLine1[9+n].push(fArray[1-h][finalLineup2[5-h][i][3*j+2]][n][2*m], shiftsLine1[6+n][2*l+1]) }
@@ -322,8 +314,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     } // end n loop
                     return shiftsLine1[13]} // end function lineByLine1 it will be deleted
 
-                    function lineByLine2(q,r,s,t,u,v) {shiftsLine2=[]; for (p=0;p<15;p++) {shiftsLine2.push([])} shiftsLine2[13]=[[],[],[]]
-                    
+                    function lineByLine2(q,r,s,t,u,v) {shiftsLine2=[]; for (p=0;p<15;p++) {shiftsLine2.push([])} shiftsLine2[13]=[[],[],[]]             
                     for (n=0;n<3;n++) {// console.log(fArray[0][r][n], fArray[0][q][n], 'q=', q, 'r=', r, 'n=', n); // n is the period, h is 0 or 1 home away team 
                     for (l=0;l<fArray[0][q][n].length/2;l++) { for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
                     {if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) {shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][q][n][2*l+1]) }
@@ -340,7 +331,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       if (fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l+1]) { shiftsLine2[n+3].push(shiftsLine2[n][2*l], shiftsLine2[n][2*l+1]) }
                       else {shiftsLine2[n+3].push(shiftsLine2[n][2*l], fArray[0][s][n][2*m+1])}}
                     }} // end second m,l loop 
-                    // console.log(fArray[1])
+                    
                     for (l=0;l<fArray[1][t][n].length/2;l++) { console.log('error0', fArray[1], 'n=', n, 'l=', l);
                       for (m=0;m<fArray[1][u][n].length/2;m++) {if ((fArray[1][u][n][2*m]>=fArray[1][t][n][2*l])&&(fArray[1][u][n][2*m]<=fArray[1][t][n][2*l+1]))
                     {if (fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l+1]) {shiftsLine2[6+n].push(fArray[1][u][n][2*m], fArray[1][t][n][2*l+1]) }
