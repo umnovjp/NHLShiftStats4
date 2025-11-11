@@ -339,9 +339,8 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     else if ((fArray[1][u][n][2*m]<=fArray[1][t][n][2*l])&&(fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l])) {
                     if (fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l+1]) { shiftsLine2[6+n].push(fArray[1][t][n][2*l], fArray[1][t][n][2*l+1]) }
                      else {shiftsLine2[6+n].push(fArray[1][t][n][2*l], fArray[1][u][n][2*m+1])}}
-                    }} // end first m,l loop /
+                    }} // end first m,l loop
                     // start second l,m loop 
-                    // console.log('cycle', shiftsLine2[6+n])
                     for (l=0;l<shiftsLine2[6+n].length/2;l++) { for (m=0;m<fArray[1][v][n].length/2;m++) { // console.log('error', fArray[1], 'l=', l, 'm=', m, 'n=', n);
                       if ((fArray[1][v][n][2*m]>=shiftsLine2[6+n][2*l])&&(fArray[1][v][n][2*m]<=shiftsLine2[6+n][2*l+1]))
                     {if (fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l+1]) {shiftsLine2[9+n].push(fArray[1][v][n][2*m], shiftsLine2[6+n][2*l+1]) }
@@ -371,7 +370,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       if (shiftsLine2[9+n][2*k+1]-shiftsLine2[9+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                       shiftsLine2[13][2].push(lineVsLineTime, lineVsLineShifts)
                     } // end n loop
-                    return shiftsLine2[13]} // end function lineByLine2
+                    return shiftsLine2[13]} // end function lineByLine2 
                     console.log('lineByLine1', lineByLine1(1,0,0,0),lineByLine1(1,0,0,1),lineByLine1(1,0,0,2),
                     'lineByLine2', lineByLine2(finalLineup2[4][0][0],finalLineup2[4][0][1],finalLineup2[4][0][2],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11]))
 
@@ -422,7 +421,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       if (shiftsLine3[6+n][2*k+1]-shiftsLine3[6+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                       shiftsLine3[10][2].push(lineVsLineTime, lineVsLineShifts)
                     } // end n loop
-                    return shiftsLine3[10]} // end function lineByLine3
+                    return shiftsLine3[10]} // end function lineByLine3 
              
                     lineByLine001.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |';
                     lineByLine041.innerHTML=awayF[1+3*finalLineup2[5][2][0]]+' '+awayF[2+3*finalLineup2[5][2][0]]+'<br>'+awayF[1+3*finalLineup2[5][2][1]]+' '+awayF[2+3*finalLineup2[5][2][1]]+'<br>'+awayF[1+3*finalLineup2[5][2][2]]+' '+awayF[2+3*finalLineup2[5][2][2]];
