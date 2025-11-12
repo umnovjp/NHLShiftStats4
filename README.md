@@ -9,4 +9,4 @@ Games with 11F in 2025-26 season, 10/09 game 0 CHI A 11F, game 10 A 11F, 10/11 g
 
 There is an error in game 1 10/08/25, game 0 10/09, game 10 10/09. also games 10/11, 10/13. Stars played 3 games with 7D early in Nov. 
 
-did not see it before. game 3 11/09 11F or 12F A team? 
+did not see it before. game 3 11/09 11F or 12F A team? Another case game 0 11/11 A team again and game 1 again same date. 

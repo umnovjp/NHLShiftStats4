@@ -420,10 +420,10 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     for (k=0;k<shiftsLine3[6+n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine3[6+n][2*k+1]-shiftsLine3[6+n][2*k];
                       if (shiftsLine3[6+n][2*k+1]-shiftsLine3[6+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                       shiftsLine3[10][2].push(lineVsLineTime, lineVsLineShifts)
-                    } // end n loop
-                    return shiftsLine3[10]} // end function lineByLine3 
+                    } // end n loop 
+                    return shiftsLine3[10]} // end function lineByLine3
              
-                    lineByLine001.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |';
+                    lineByLine001.innerHTML='\\ '+'Away Team ->' +'<br>'+ 'Home Team'+'<br>'+'    |'; 
                     lineByLine041.innerHTML=awayF[1+3*finalLineup2[5][2][0]]+' '+awayF[2+3*finalLineup2[5][2][0]]+'<br>'+awayF[1+3*finalLineup2[5][2][1]]+' '+awayF[2+3*finalLineup2[5][2][1]]+'<br>'+awayF[1+3*finalLineup2[5][2][2]]+' '+awayF[2+3*finalLineup2[5][2][2]];
                     lineByLine051.innerHTML=awayF[1+3*finalLineup2[5][2][3]]+' '+awayF[2+3*finalLineup2[5][2][3]]+'<br>'+awayF[1+3*finalLineup2[5][2][4]]+' '+awayF[2+3*finalLineup2[5][2][4]]+'<br>'+awayF[1+3*finalLineup2[5][2][5]]+' '+awayF[2+3*finalLineup2[5][2][5]];
                     lineByLine061.innerHTML=awayF[1+3*finalLineup2[5][2][6]]+' '+awayF[2+3*finalLineup2[5][2][6]]+'<br>'+awayF[1+3*finalLineup2[5][2][7]]+' '+awayF[2+3*finalLineup2[5][2][7]]+'<br>'+awayF[1+3*finalLineup2[5][2][8]]+' '+awayF[2+3*finalLineup2[5][2][8]];
