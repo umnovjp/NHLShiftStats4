@@ -332,8 +332,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       else if ((fArray[0][s][n][2*m]<=shiftsLine2[n][2*l])&&(fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l])) {
                       if (fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l+1]) { shiftsLine2[n+3].push(shiftsLine2[n][2*l], shiftsLine2[n][2*l+1]) }
                       else {shiftsLine2[n+3].push(shiftsLine2[n][2*l], fArray[0][s][n][2*m+1])}}
-                    }} // end second m,l loop; shiftsLine2[3,4,5] are arrays q and r and s were on ice in 3 periods
-                    
+                    }} // end second m,l loop; shiftsLine2[3,4,5] are arrays q and r and s were on ice in 3 periods                    
                     // calculate time when t,u were on ice in 3 periods
                     for (l=0;l<fArray[1][t][n].length/2;l++) { console.log('error0', fArray[1], 'n=', n, 'l=', l);
                       for (m=0;m<fArray[1][u][n].length/2;m++) {if ((fArray[1][u][n][2*m]>=fArray[1][t][n][2*l])&&(fArray[1][u][n][2*m]<=fArray[1][t][n][2*l+1]))
