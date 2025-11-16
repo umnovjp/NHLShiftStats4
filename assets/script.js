@@ -314,24 +314,27 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     } // end n loop
                     return shiftsLine1[13]} // end function lineByLine1 it will be deleted
 
-                    function lineByLine2(q,r,s,t,u,v) {shiftsLine2=[]; for (p=0;p<15;p++) {shiftsLine2.push([])} shiftsLine2[13]=[[],[],[]]             
-                    for (n=0;n<3;n++) {// console.log(fArray[0][r][n], fArray[0][q][n], 'q=', q, 'r=', r, 'n=', n); // n is the period, h is 0 or 1 home away team 
+                    // q,r,s are forwards on home team, t,u,v are forwards on away team values are 0...11 if 12F or 0...10 if 11F
+                    function lineByLine2(q,r,s,t,u,v) { // created an array with 15 elements
+                    shiftsLine2=[]; for (p=0;p<15;p++) {shiftsLine2.push([])} shiftsLine2[13]=[[],[],[]]             
+                    for (n=0;n<3;n++) { // n is 3 periods do not count OT or extra period in playoff game; l,m loops create an array player s q and r played together
                     for (l=0;l<fArray[0][q][n].length/2;l++) { for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
                     {if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) {shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][q][n][2*l+1]) }
                     else { shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][r][n][2*m+1]) }}
                     else if ((fArray[0][r][n][2*m]<=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l])) {
                       if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) { shiftsLine2[n].push(fArray[0][q][n][2*l], fArray[0][q][n][2*l+1]) }
                       else {shiftsLine2[n].push(fArray[0][q][n][2*l], fArray[0][r][n][2*m+1])}}
-                    }} // end first m,l loop
-                    // start second l,m loop
+                    }} // end first m,l loop; shiftsLine2[0,1,2] are arrays q and r were on ice in 3 periods
+                    // start second l,m loop calculating when q+r and s were on ice in 3 periods
                     for (l=0;l<shiftsLine2[n].length/2;l++) { for (m=0;m<fArray[0][s][n].length/2;m++) { if ((fArray[0][s][n][2*m]>=shiftsLine2[n][2*l])&&(fArray[0][s][n][2*m]<=shiftsLine2[n][2*l+1]))
                     {if (fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l+1]) {shiftsLine2[n+3].push(fArray[0][s][n][2*m], shiftsLine2[n][2*l+1]) }
                       else { shiftsLine2[n+3].push(fArray[0][s][n][2*m], fArray[0][s][n][2*m+1]) }}
                       else if ((fArray[0][s][n][2*m]<=shiftsLine2[n][2*l])&&(fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l])) {
                       if (fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l+1]) { shiftsLine2[n+3].push(shiftsLine2[n][2*l], shiftsLine2[n][2*l+1]) }
                       else {shiftsLine2[n+3].push(shiftsLine2[n][2*l], fArray[0][s][n][2*m+1])}}
-                    }} // end second m,l loop 
+                    }} // end second m,l loop; shiftsLine2[3,4,5] are arrays q and r and s were on ice in 3 periods
                     
+                    // calculate time when t,u were on ice in 3 periods
                     for (l=0;l<fArray[1][t][n].length/2;l++) { console.log('error0', fArray[1], 'n=', n, 'l=', l);
                       for (m=0;m<fArray[1][u][n].length/2;m++) {if ((fArray[1][u][n][2*m]>=fArray[1][t][n][2*l])&&(fArray[1][u][n][2*m]<=fArray[1][t][n][2*l+1]))
                     {if (fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l+1]) {shiftsLine2[6+n].push(fArray[1][u][n][2*m], fArray[1][t][n][2*l+1]) }
@@ -339,8 +342,8 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     else if ((fArray[1][u][n][2*m]<=fArray[1][t][n][2*l])&&(fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l])) {
                     if (fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l+1]) { shiftsLine2[6+n].push(fArray[1][t][n][2*l], fArray[1][t][n][2*l+1]) }
                      else {shiftsLine2[6+n].push(fArray[1][t][n][2*l], fArray[1][u][n][2*m+1])}}
-                    }} // end first m,l loop
-                    // start second l,m loop 
+                    }} // end first m,l loop; shiftsLine2[6,7,8] are arrays t and u were on ice in 3 periods for away team
+                    // start second l,m loop; calculate time t+u and v were on ice in 3 periods
                     for (l=0;l<shiftsLine2[6+n].length/2;l++) { for (m=0;m<fArray[1][v][n].length/2;m++) { // console.log('error', fArray[1], 'l=', l, 'm=', m, 'n=', n);
                       if ((fArray[1][v][n][2*m]>=shiftsLine2[6+n][2*l])&&(fArray[1][v][n][2*m]<=shiftsLine2[6+n][2*l+1]))
                     {if (fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l+1]) {shiftsLine2[9+n].push(fArray[1][v][n][2*m], shiftsLine2[6+n][2*l+1]) }
@@ -348,8 +351,8 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     else if ((fArray[1][v][n][2*m]<=shiftsLine2[6+n][2*l])&&(fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l])) {
                     if (fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l+1]) { shiftsLine2[9+n].push(shiftsLine2[6+n][2*l], shiftsLine2[6+n][2*l+1]) }
                     else {shiftsLine2[9+n].push(shiftsLine2[6+n][2*l], fArray[1][v][n][2*m+1])}}
-                    }} // end second away m,l loop
-                    shiftsLine2[12].push([]); // away team
+                    }} // end second away m,l loop; shiftsLine2[9,10,11] are arrays t and u and v were on ice in 3 periods for away team
+                    shiftsLine2[12].push([]); // away team shiftsLine2[12] is array qrs played against tuv in each of 3 periods so called nested array
                     for (l=0;l<shiftsLine2[3+n].length/2;l++) {for (m=0;m<shiftsLine2[9+n].length/2;m++) {if ((shiftsLine2[9+n][2*m]>=shiftsLine2[3+n][2*l])&&(shiftsLine2[9+n][2*m]<=shiftsLine2[3+n][2*l+1])){
                     if (shiftsLine2[9+n][2*m+1]>=shiftsLine2[3+n][2*l+1]){shiftsLine2[12][n].push(shiftsLine2[9+n][2*m], shiftsLine2[3+n][2*l+1])}
                     else { shiftsLine2[12][n].push(shiftsLine2[9+n][2*m], shiftsLine2[9+n][2*m+1]) }}
@@ -357,7 +360,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     if (shiftsLine2[9+n][2*m+1]>=shiftsLine2[3+n][2*l+1]) { shiftsLine2[12][n].push(shiftsLine2[3+n][2*l], shiftsLine2[3+n][2*l+1]) }
                       else {shiftsLine2[12][n].push(shiftsLine2[3+n][2*l], shiftsLine2[9+n][2*m+1])}}
                     }} // end m,l loop line vs line
-                    lineVsLineTime=0; lineVsLineShifts=0;
+                    lineVsLineTime=0; lineVsLineShifts=0; // calculating how many shifts and total time line qrs played against tuv assuming shift is >=10sec
                     for (k=0;k<shiftsLine2[12][n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine2[12][n][2*k+1]-shiftsLine2[12][n][2*k];
                     if (shiftsLine2[12][n][2*k+1]-shiftsLine2[12][n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                     shiftsLine2[13][0].push(lineVsLineTime, lineVsLineShifts);
@@ -638,6 +641,28 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     +lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8])[0][2]+' '+lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8])[0][3]+'<br>'+
                     lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8])[0][4]+' '+lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8])[0][5]
                     }
+                  if ((finalLineup2[4][0].length>=12)&&(finalLineup2[5][0].length>=12)) {lineByLine573.innerHTML=lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][0]+' '+lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][1]+'<br>'
+                    +lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][2]+' '+lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][3]+'<br>'+
+                    lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][4]+' '+lineByLine2(finalLineup2[4][0][9],finalLineup2[4][0][10],finalLineup2[4][0][11],finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11])[0][5]
+                  }                                                        
+                  
+                  else if (finalLineup2[4][0].length<=12) { lineByLine503.innerHTML=homeF[1+3*finalLineup2[4][0][9]]+' '+homeF[2+3*finalLineup2[4][0][9]]+'<br>'+homeF[1+3*finalLineup2[4][0][10]]+' '+homeF[2+3*finalLineup2[4][0][10]]
+                    lineByLine523.innerHTML=lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][0]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][2]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][4]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[2][5]
+                    lineByLine543.innerHTML=lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][0],finalLineup2[5][0][1],finalLineup2[5][0][2],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
+                    lineByLine553.innerHTML=lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][3],finalLineup2[5][0][4],finalLineup2[5][0][5],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
+                    lineByLine563.innerHTML=lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][6],finalLineup2[5][0][7],finalLineup2[5][0][8],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
+                    if (finalLineup2[5][0].length===12) {lineByLine573.innerHTML=lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][0]+' '+lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][1]+'<br>'
+                    +lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][2]+' '+lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][3]+'<br>'+
+                    lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][4]+' '+lineByLine3(1,finalLineup2[5][0][9],finalLineup2[5][0][10],finalLineup2[5][0][11],finalLineup2[4][0][9],finalLineup2[4][0][10])[0][5];
+                    }}
                   }); // end second .then shifts
               }); // end second .then standings;
           }); // end second .then gamecenter;
