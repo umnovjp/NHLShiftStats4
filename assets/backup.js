@@ -47,3 +47,19 @@ function getInputValue() {
     } // end second .then from getinputvalue
     );
 } // end getInput Value
+
+// 073 if (finalLineup2[5][0].length>=12) else
+// 173 if (finalLineup2[5][0].length>=12) else if (finalLineup2[5][0].length<12) 
+// 273 if (finalLineup2[5][0].length>=12) else if (finalLineup2[5][0].length<12) 
+// 373 if (finalLineup2[5][0].length>=12) else if (finalLineup2[5][0].length<12) 
+// 473 if (finalLineup2[5][0].length>=12)
+// 573 if ((finalLineup2[4][0].length>=12)&&(finalLineup2[5][0].length>=12))
+// 503, 523, 543, 553, 563 if (finalLineup2[4][0].length>=12) else if (finalLineup2[4][0].length<12) 
+
+// 071 if (finalLineup2[5][0].length>=12) else if (finalLineup2[5][0].length<12)
+// 171 if (finalLineup2[5][0].length>=12) else if (finalLineup2[5][0].length<12)
+// 271 if (finalLineup2[5][0].length>=12) else if (finalLineup2[5][0].length<12)
+// 371 if (finalLineup2[5][0].length>=12) else if (finalLineup2[5][0].length<12)
+// 471 if (finalLineup2[5][0].length>=12) else if (finalLineup2[5][0][2].length<12)
+// 571 if ((finalLineup2[4][0].length>=12)&&(finalLineup2[5][0].length>=12))
+// 501, 521, 541, 551, 561 if (finalLineup2[4][0].length>=12) else if (finalLineup2[4][0].length<12) 
