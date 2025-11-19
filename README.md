@@ -7,4 +7,4 @@ Games with 11F in March 2025: 03/01 game 1 A 11F, game 5 H 11F, 03/02 game 4 A 1
 
 Games with 11F in 2025-26 season, 10/09 game 0 CHI A 11F, game 10 A 11F, 10/11 game 10 A 11F, 10/13 game 9 H 11F, 10/30 game 2 all data missing, 09/11 game 0, game 3 11/12 H 11F, game 0 11/14. no new through 11/11
 
-not sure why Ovie line in game 4 11/13/25 has 0 s in 1st period. Then why is it first line? Because it was 3rd period lineup. resolved but game 0 on 11/09 has an error. game 1 11/15 has error in away lines 3rd period. game 0 11/16 error line 346. 
+not sure why Ovie line in game 4 11/13/25 has 0 s in 1st period. Then why is it first line? Because it was 3rd period lineup. resolved but game 0 on 11/09 has an error. game 1 11/15 has error in away lines 3rd period, same game H line 3 numbers are different in two tables. game 0 11/16 error line 346. game 2 11/17 error line 60???. Cannot believe game 5 11/17 is correct H team line 3. 
