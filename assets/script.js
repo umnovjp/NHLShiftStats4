@@ -176,7 +176,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                           linesArray7[h][i].push(linesArray[3*h+i][tempIndex2],linesArray[3*h+i][tempIndex2+1],linesArray[3*h+i][tempIndex2+2],linesArray[3*h+i][tempIndex2+3],linesArray[3*h+i][tempIndex2+4])
                           }}}
                           console.log('linesArray7', linesArray7);
-            // also to add fiveonfive is goalie is pulled
+            // also to add fiveonfive if goalie is pulled
             // finalLineup2 loop; index 0 and 1 are lines that spent 100s or more in a given period index 2 and 3 are players that appeared more than once in index 0 or 1 
             // and index 5 6 is to verify all players that actually played in lines from index 0 1 reason for that is PHI lines where #11 played on 2 lines leaving one partner behind...
             // currently lines 210-288 or so final goal is to create F lines
@@ -314,23 +314,20 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     // q,r,s are forwards on home team, t,u,v are forwards on away team values are 0...11 if 12F or 0...10 if 11F
                     function lineByLine2(q,r,s,t,u,v) { // created an array with 15 elements
                     shiftsLine2=[]; for (p=0;p<15;p++) {shiftsLine2.push([])} shiftsLine2[13]=[[],[],[]]             
-                    for (n=0;n<3;n++) { // n is 3 periods do not count OT or extra period in playoff game; l,m loops create an array player s q and r played together
-                    for (l=0;l<fArray[0][q][n].length/2;l++) { for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
+                    for (n=0;n<3;n++) { for (l=0;l<fArray[0][q][n].length/2;l++) { for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
                     {if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) {shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][q][n][2*l+1]) }
                     else { shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][r][n][2*m+1]) }}
                     else if ((fArray[0][r][n][2*m]<=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l])) {
                       if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) { shiftsLine2[n].push(fArray[0][q][n][2*l], fArray[0][q][n][2*l+1]) }
                       else {shiftsLine2[n].push(fArray[0][q][n][2*l], fArray[0][r][n][2*m+1])}}
-                    }} // end first m,l loop; shiftsLine2[0,1,2] are arrays q and r were on ice in 3 periods
-                    // start second l,m loop calculating when q+r and s were on ice in 3 periods
+                    }} // end first m,l loop
                     for (l=0;l<shiftsLine2[n].length/2;l++) { for (m=0;m<fArray[0][s][n].length/2;m++) { if ((fArray[0][s][n][2*m]>=shiftsLine2[n][2*l])&&(fArray[0][s][n][2*m]<=shiftsLine2[n][2*l+1]))
                     {if (fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l+1]) {shiftsLine2[n+3].push(fArray[0][s][n][2*m], shiftsLine2[n][2*l+1]) }
                       else { shiftsLine2[n+3].push(fArray[0][s][n][2*m], fArray[0][s][n][2*m+1]) }}
                       else if ((fArray[0][s][n][2*m]<=shiftsLine2[n][2*l])&&(fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l])) {
                       if (fArray[0][s][n][2*m+1]>=shiftsLine2[n][2*l+1]) { shiftsLine2[n+3].push(shiftsLine2[n][2*l], shiftsLine2[n][2*l+1]) }
                       else {shiftsLine2[n+3].push(shiftsLine2[n][2*l], fArray[0][s][n][2*m+1])}}
-                    }} // end second m,l loop; shiftsLine2[3,4,5] are arrays q and r and s were on ice in 3 periods                    
-                    // calculate time when t,u were on ice in 3 periods
+                    }} // end second m,l loop
                     for (l=0;l<fArray[1][t][n].length/2;l++) { // console.log('error0', fArray[1], 'n=', n, 'l=', l);
                       for (m=0;m<fArray[1][u][n].length/2;m++) {if ((fArray[1][u][n][2*m]>=fArray[1][t][n][2*l])&&(fArray[1][u][n][2*m]<=fArray[1][t][n][2*l+1]))
                     {if (fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l+1]) {shiftsLine2[6+n].push(fArray[1][u][n][2*m], fArray[1][t][n][2*l+1]) }
@@ -338,8 +335,8 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     else if ((fArray[1][u][n][2*m]<=fArray[1][t][n][2*l])&&(fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l])) {
                     if (fArray[1][u][n][2*m+1]>=fArray[1][t][n][2*l+1]) { shiftsLine2[6+n].push(fArray[1][t][n][2*l], fArray[1][t][n][2*l+1]) }
                      else {shiftsLine2[6+n].push(fArray[1][t][n][2*l], fArray[1][u][n][2*m+1])}}
-                    }} // end first m,l loop; shiftsLine2[6,7,8] are arrays t and u were on ice in 3 periods for away team
-                    // start second l,m loop; calculate time t+u and v were on ice in 3 periods
+                    }} // end first m,l loop
+                    // start second l,m loop
                     for (l=0;l<shiftsLine2[6+n].length/2;l++) { for (m=0;m<fArray[1][v][n].length/2;m++) { console.log('error', fArray[1], 'l=', l, 'm=', m, 'n=', n);
                       if ((fArray[1][v][n][2*m]>=shiftsLine2[6+n][2*l])&&(fArray[1][v][n][2*m]<=shiftsLine2[6+n][2*l+1]))
                     {if (fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l+1]) {shiftsLine2[9+n].push(fArray[1][v][n][2*m], shiftsLine2[6+n][2*l+1]) }
