@@ -312,7 +312,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     // return shiftsLine1[13]} // end function lineByLine1 it will be deleted
 
                     // q,r,s are forwards on home team, t,u,v are forwards on away team values are 0...11 if 12F or 0...10 if 11F
-                    function lineByLine2(q,r,s,t,u,v) { // created an array with 15 elements
+                    function lineByLine2(q,r,s,t,u,v) { // created an array with 15 elements need to add more
                     shiftsLine2=[]; for (p=0;p<15;p++) {shiftsLine2.push([])} shiftsLine2[13]=[[],[],[]]             
                     for (n=0;n<3;n++) { for (l=0;l<fArray[0][q][n].length/2;l++) { for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
                     {if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) {shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][q][n][2*l+1]) }
