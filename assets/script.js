@@ -359,7 +359,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     else if ((fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l])&&(fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l])) {
                     if (fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l+1]) { shiftsLine2[13+n].push(shiftsLine2[9+n][2*l], shiftsLine2[9+n][2*l+1]) }
                       else {shiftsLine2[13+n].push(shiftsLine2[9+n][2*l], fiveOnFive6[n][2*m+1])}}
-                    }} // end m,l loop fiveOnFive6
+                    }} // end m,l loop fiveOnFive6 not sure if that's correct
 
                     shiftsLine2[12].push([]);
                     for (l=0;l<shiftsLine2[3+n].length/2;l++) {for (m=0;m<shiftsLine2[13+n].length/2;m++) {if ((shiftsLine2[13+n][2*m]>=shiftsLine2[3+n][2*l])&&(shiftsLine2[13+n][2*m]<=shiftsLine2[3+n][2*l+1])){

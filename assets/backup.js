@@ -105,11 +105,11 @@ function getInputValue() {
                     } // end n loop
                     return shiftsLine2[13]} // end function lineByLine2 
 
-                                for (l=0;l<shiftsLine2[9+n].length/2;l++) {for (m=0;m<fiveOnFive6[n].length/2;m++) {
-                    if ((fiveOnFive6[n][2*m]>=shiftsLine2[9+n][2*l])&&(fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l+1]))
-                    {if (fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l+1]) {shiftsLine2[12+n].push(fiveOnFive6[n][2*m], shiftsLine2[9+n][2*l+1]) }
-                    else { shiftsLine2[12+n].push(fiveOnFive6[n][2*m], fiveOnFive6[n][2*m+1]) }}
-                    else if ((fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l])&&(fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l])) {
-                    if (fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l+1]) { shiftsLine2[12+n].push(shiftsLine2[9+n][2*l], shiftsLine2[9+n][2*l+1]) }
-                    else {shiftsLine2[12+n].push(shiftsLine2[9+n][2*l], fiveOnFive6[n][2*m+1])}}
-                    }} // end fiveOnFive6 m,l loop
+                    //             for (l=0;l<shiftsLine2[9+n].length/2;l++) {for (m=0;m<fiveOnFive6[n].length/2;m++) {
+                    // if ((fiveOnFive6[n][2*m]>=shiftsLine2[9+n][2*l])&&(fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l+1]))
+                    // {if (fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l+1]) {shiftsLine2[12+n].push(fiveOnFive6[n][2*m], shiftsLine2[9+n][2*l+1]) }
+                    // else { shiftsLine2[12+n].push(fiveOnFive6[n][2*m], fiveOnFive6[n][2*m+1]) }}
+                    // else if ((fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l])&&(fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l])) {
+                    // if (fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l+1]) { shiftsLine2[12+n].push(shiftsLine2[9+n][2*l], shiftsLine2[9+n][2*l+1]) }
+                    // else {shiftsLine2[12+n].push(shiftsLine2[9+n][2*l], fiveOnFive6[n][2*m+1])}}
+                    // }} // end fiveOnFive6 m,l loop
