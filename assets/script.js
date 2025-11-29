@@ -383,7 +383,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     for (k=0;k<shiftsLine2[12][n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine2[12][n][2*k+1]-shiftsLine2[12][n][2*k];
                     if (shiftsLine2[12][n][2*k+1]-shiftsLine2[12][n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                   shiftsLine2[16][0].push(lineVsLineTime, lineVsLineShifts);
-                    lineVsLineTime=0; lineVsLineShifts=0;
+                    lineVsLineTime=0; lineVsLineShifts=0; // needto make changes right here not 3+n or 9+n
                     for (k=0;k<shiftsLine2[3+n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine2[3+n][2*k+1]-shiftsLine2[3+n][2*k];
                     if (shiftsLine2[3+n][2*k+1]-shiftsLine2[3+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                     shiftsLine2[16][1].push(lineVsLineTime, lineVsLineShifts)
