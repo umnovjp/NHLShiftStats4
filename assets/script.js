@@ -198,15 +198,12 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
           else if (finalLineup2[h+4][i].length===9) {for (j=0;j<tempArray3[h];j++){
             if (finalLineup2[h][i].includes(j)){}
           else finalLineup2[h+4][i].push(j)}}
-          else if (finalLineup2[h+4][i].length===6) { //console.log('Two lines', 'team', h, 'period', i, finalLineup2[h+4][i]); 
-            linesArray4 = [[[],[],[]],[[],[],[]]];
-          for (j=3*h;j<3+3*h;j++) {for (k=0;k<linesArray[j].length/5;k++) {
-            if((finalLineup2[h+4][i].includes(linesArray[j][5*k+2]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+3]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+4]))) {}
+          else if (finalLineup2[h+4][i].length===6) { linesArray4 = [[[],[],[]],[[],[],[]]];
+          for (j=3*h;j<3+3*h;j++) {for (k=0;k<linesArray[j].length/5;k++) { if((finalLineup2[h+4][i].includes(linesArray[j][5*k+2]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+3]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+4]))) {}
             else {linesArray4[h][i].push(linesArray[j][5*k], linesArray[j][5*k+1], linesArray[j][5*k+2], linesArray[j][5*k+3], linesArray[j][5*k+4])}
             }}
           tempIndex6 = linesArray4[h][i].indexOf(Math.max(...linesArray4[h][i])); tempIndex2 = tempIndex6%(linesArray4[h][i].length/3);
           finalLineup2[h+4][i].push(linesArray4[h][i][tempIndex6+2], linesArray4[h][i][tempIndex6+3], linesArray4[h][i][tempIndex6+4]);
-          //finalLineup2[h+4][i].push(linesArray4[h][tempIndex6+2], linesArray4[h][tempIndex6+3], linesArray4[h][tempIndex6+4]);
           for (j=0; j<tempArray3[h]; j++) {if (finalLineup2[h+4][i].includes(j)){} else {finalLineup2[h+4][i].push(j)}}
         }
         else if (finalLineup2[h+4][i].length===3) {console.log('One line', 'team', h, 'period', i, finalLineup2[h+4][i]); linesArray5 = [[[],[],[]],[[],[],[]]]; linesArray6 = [[[],[],[]],[[],[],[]]];
@@ -319,7 +316,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
 
                     // q,r,s are forwards on home team, t,u,v are forwards on away team values are 0...11 if 12F or 0...10 if 11F
                     function lineByLine2(q,r,s,t,u,v) { // created an array with 15 elements need to add more
-                    shiftsLine2=[]; for (p=0;p<18;p++) {shiftsLine2.push([])} shiftsLine2[16]=[[],[],[]] 
+                    shiftsLine2=[]; for (p=0;p<21;p++) {shiftsLine2.push([])} shiftsLine2[16]=[[],[],[]]
                     for (n=0;n<3;n++) { for (l=0;l<fArray[0][q][n].length/2;l++) { for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
                     {if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) {shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][q][n][2*l+1]) }
                     else { shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][r][n][2*m+1]) }}
@@ -352,44 +349,44 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     else {shiftsLine2[9+n].push(shiftsLine2[6+n][2*l], fArray[1][v][n][2*m+1])}}
                     }} // end second away team m,l loop
 
-                    // to add loop here
+                    // shiftsLine2[13+n] is when a tuv line [n+9] played when both teams were 5x5; I believe similar loop is not required to calculated qrs line
                     for (l=0;l<shiftsLine2[9+n].length/2;l++) {for (m=0;m<fiveOnFive6[n].length/2;m++) {if ((fiveOnFive6[n][2*m]>=shiftsLine2[9+n][2*l])&&(fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l+1])){
                     if (fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l+1]){shiftsLine2[13+n].push(fiveOnFive6[n][2*m],shiftsLine2[9+n][2*l+1])}
                     else { shiftsLine2[13+n].push(fiveOnFive6[n][2*m], fiveOnFive6[n][2*m+1]) }}
                     else if ((fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l])&&(fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l])) {
                     if (fiveOnFive6[n][2*m+1]>=shiftsLine2[9+n][2*l+1]) { shiftsLine2[13+n].push(shiftsLine2[9+n][2*l], shiftsLine2[9+n][2*l+1]) }
                       else {shiftsLine2[13+n].push(shiftsLine2[9+n][2*l], fiveOnFive6[n][2*m+1])}}
-                    }} // end m,l loop fiveOnFive6 not sure if that's correct
+                    }} // end m,l loop fiveOnFive6 a team
+
+                    // shiftsLine2[17+n] is when a qrs line [n+3] played when both teams were 5x5
+                    for (l=0;l<shiftsLine2[3+n].length/2;l++) {for (m=0;m<fiveOnFive6[n].length/2;m++) {if ((fiveOnFive6[n][2*m]>=shiftsLine2[3+n][2*l])&&(fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l+1])){
+                    if (fiveOnFive6[n][2*m+1]>=shiftsLine2[3+n][2*l+1]){shiftsLine2[17+n].push(fiveOnFive6[n][2*m],shiftsLine2[3+n][2*l+1])}
+                    else { shiftsLine2[17+n].push(fiveOnFive6[n][2*m], fiveOnFive6[n][2*m+1]) }}
+                    else if ((fiveOnFive6[n][2*m]<=shiftsLine2[3+n][2*l])&&(fiveOnFive6[n][2*m+1]>=shiftsLine2[3+n][2*l])) {
+                    if (fiveOnFive6[n][2*m+1]>=shiftsLine2[3+n][2*l+1]) { shiftsLine2[17+n].push(shiftsLine2[3+n][2*l], shiftsLine2[3+n][2*l+1]) }
+                      else {shiftsLine2[17+n].push(shiftsLine2[3+n][2*l], fiveOnFive6[n][2*m+1])}}
+                    }} // end m,l loop fiveOnFive6 a team
 
                     shiftsLine2[12].push([]);
-                    for (l=0;l<shiftsLine2[3+n].length/2;l++) {for (m=0;m<shiftsLine2[13+n].length/2;m++) {if ((shiftsLine2[13+n][2*m]>=shiftsLine2[3+n][2*l])&&(shiftsLine2[13+n][2*m]<=shiftsLine2[3+n][2*l+1])){
-                    if (shiftsLine2[13+n][2*m+1]>=shiftsLine2[3+n][2*l+1]){shiftsLine2[12][n].push(shiftsLine2[13+n][2*m], shiftsLine2[3+n][2*l+1])}
+                    for (l=0;l<shiftsLine2[17+n].length/2;l++) {for (m=0;m<shiftsLine2[13+n].length/2;m++) {if ((shiftsLine2[13+n][2*m]>=shiftsLine2[17+n][2*l])&&(shiftsLine2[13+n][2*m]<=shiftsLine2[17+n][2*l+1])){
+                    if (shiftsLine2[13+n][2*m+1]>=shiftsLine2[17+n][2*l+1]){shiftsLine2[12][n].push(shiftsLine2[13+n][2*m], shiftsLine2[17+n][2*l+1])}
                     else { shiftsLine2[12][n].push(shiftsLine2[13+n][2*m], shiftsLine2[13+n][2*m+1]) }}
-                    else if ((shiftsLine2[13+n][2*m]<=shiftsLine2[3+n][2*l])&&(shiftsLine2[13+n][2*m+1]>=shiftsLine2[3+n][2*l])) {
-                    if (shiftsLine2[13+n][2*m+1]>=shiftsLine2[3+n][2*l+1]) { shiftsLine2[12][n].push(shiftsLine2[3+n][2*l], shiftsLine2[3+n][2*l+1]) }
-                      else {shiftsLine2[12][n].push(shiftsLine2[3+n][2*l], shiftsLine2[13+n][2*m+1])}}
+                    else if ((shiftsLine2[13+n][2*m]<=shiftsLine2[17+n][2*l])&&(shiftsLine2[13+n][2*m+1]>=shiftsLine2[17+n][2*l])) {
+                    if (shiftsLine2[13+n][2*m+1]>=shiftsLine2[17+n][2*l+1]) { shiftsLine2[12][n].push(shiftsLine2[17+n][2*l], shiftsLine2[17+n][2*l+1]) }
+                      else {shiftsLine2[12][n].push(shiftsLine2[17+n][2*l], shiftsLine2[13+n][2*m+1])}}
                     }} // end m,l loop line vs line
-
-                    // // to add loop here
-                    // for (l=0;l<shiftsLine2[12][n].length/2;l++) {for (m=0;m<fiveOnFive6[n].length/2;m++) {if ((fiveOnFive6[n][2*m]>=shiftsLine2[12][n][2*l])&&(fiveOnFive6[n][2*m]<=shiftsLine2[12][n][2*l+1])){
-                    // if (fiveOnFive6[n][2*m+1]>=shiftsLine2[12][n][2*l+1]){shiftsLine2[13+n].push(fiveOnFive6[n][2*m], shiftsLine2[12][n][2*l+1])}
-                    // else { shiftsLine2[13+n][n].push(fiveOnFive6[n][2*m], fiveOnFive6[n][2*m+1]) }}
-                    // else if ((fiveOnFive6[n][2*m]<=shiftsLine2[12][n][2*l])&&(fiveOnFive6[n][2*m+1]>=shiftsLine2[12][n][2*l])) {
-                    // if (fiveOnFive6[n][2*m+1]>=shiftsLine2[12][n][2*l+1]) { shiftsLine2[13+n].push(shiftsLine2[12][n][2*l], shiftsLine2[12][n][2*l+1]) }
-                    //   else {shiftsLine2[13+n].push(shiftsLine2[12][n][2*l], fiveOnFive6[n][2*m+1])}}
-                    // }} // end m,l loop fiveOnFive6
 
                     lineVsLineTime=0; lineVsLineShifts=0;
                     for (k=0;k<shiftsLine2[12][n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine2[12][n][2*k+1]-shiftsLine2[12][n][2*k];
                     if (shiftsLine2[12][n][2*k+1]-shiftsLine2[12][n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                   shiftsLine2[16][0].push(lineVsLineTime, lineVsLineShifts);
-                    lineVsLineTime=0; lineVsLineShifts=0; // needto make changes right here not 3+n or 9+n
+                    lineVsLineTime=0; lineVsLineShifts=0; // need to make changes right here not 3+n or 9+n
                     for (k=0;k<shiftsLine2[3+n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine2[3+n][2*k+1]-shiftsLine2[3+n][2*k];
                     if (shiftsLine2[3+n][2*k+1]-shiftsLine2[3+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                     shiftsLine2[16][1].push(lineVsLineTime, lineVsLineShifts)
                     lineVsLineTime=0; lineVsLineShifts=0;
-                    for (k=0;k<shiftsLine2[9+n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine2[9+n][2*k+1]-shiftsLine2[9+n][2*k];
-                      if (shiftsLine2[9+n][2*k+1]-shiftsLine2[9+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
+                    for (k=0;k<shiftsLine2[13+n].length/2;k++) { lineVsLineTime=lineVsLineTime+shiftsLine2[13+n][2*k+1]-shiftsLine2[13+n][2*k];
+                      if (shiftsLine2[13+n][2*k+1]-shiftsLine2[13+n][2*k]>=10) {lineVsLineShifts=lineVsLineShifts+1}}
                       shiftsLine2[16][2].push(lineVsLineTime, lineVsLineShifts)
                     } // end n loop
                     return shiftsLine2[16]} // end function lineByLine2
