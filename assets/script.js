@@ -60,14 +60,13 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                         seconds = Number(shiftEnd1[1]); shiftEnd2 = minutes * 60 + seconds; playerIdArray[playerOrder + 1][data_shifts.data[i].period - 1].push(shiftStart2, shiftEnd2)}}
                     for (i = 0; i < playerIdArray.length / 2; i++) {currentKey = playerIdArray[2 * i]}
 
-                    dArray = [[], []]; fArray = [[], []]; gArray=[[],[]]; // to add a loop here to find when a G was on ice for either team
-                    for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeD.length / 3; j++) { if (playerIdArray[2 * i] === homeD[3 * j]) { dArray[0].push(playerIdArray[2 * i + 1]) } }
-                      for (j = 0; j < awayD.length / 3; j++) { if (playerIdArray[2 * i] === awayD[3 * j]) { dArray[1].push(playerIdArray[2 * i + 1]) }}}
-                    for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeF.length / 3; j++) { if (playerIdArray[2 * i] === homeF[3 * j]) { fArray[0].push(playerIdArray[2 * i + 1]) } }
-                      for (j = 0; j < awayF.length / 3; j++) { if (playerIdArray[2 * i] === awayF[3 * j]) { fArray[1].push(playerIdArray[2 * i + 1]) }}}
-                      for (i = 0; i < playerIdArray.length / 2; i++) {for (j = 0; j < homeG.length / 3; j++) { { if (playerIdArray[2 * i] === homeG[3 * j]) { gArray[0].push(playerIdArray[2 * i + 1]) } }}
-                    for (j = 0; j < awayG.length / 3; j++) { { if (playerIdArray[2 * i] === awayG[3 * j]) { gArray[1].push(playerIdArray[2 * i + 1]) } }}
-                                        }
+                    dArray=[[],[]]; fArray=[[],[]]; gArray=[[],[]]; 
+                    for (i=0; i<playerIdArray.length/2; i++) {for (j=0; j<homeD.length/3; j++) { if (playerIdArray[2*i] === homeD[3*j]) { dArray[0].push(playerIdArray[2 * i + 1]) } }
+                      for (j=0; j<awayD.length/3; j++) {if (playerIdArray[2*i] === awayD[3*j]) { dArray[1].push(playerIdArray[2*i+1]) }}}
+                    for (i=0; i<playerIdArray.length/2; i++) {for (j=0; j<homeF.length/3; j++) { if (playerIdArray[2*i] === homeF[3*j]) { fArray[0].push(playerIdArray[2*i+1]) }}
+                      for (j=0; j<awayF.length/3; j++) { if (playerIdArray[2*i] === awayF[3*j]) { fArray[1].push(playerIdArray[2*i+1]) }}}
+                      for (i=0; i<playerIdArray.length/2; i++) {for (j=0; j<homeG.length/3; j++) {{ if (playerIdArray[2*i] === homeG[3*j]) { gArray[0].push(playerIdArray[2*i+1])} }}
+                    for (j=0; j<awayG.length/3; j++) {{ if (playerIdArray[2*i] === awayG[3*j]) { gArray[1].push(playerIdArray[2*i+1]) }}}}
                     console.log('dArray', dArray, 'fArray', fArray, 'gArray', gArray); pairingsArray = [[], [], [], [], [], []]; linesArray = [[], [], [], [], [], []];
                     
                     dArrayTemp = [[[],[],[]],[[],[],[]]]; fArrayTemp = [[[],[],[]],[[],[],[]]];
