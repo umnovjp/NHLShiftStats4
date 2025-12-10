@@ -114,11 +114,11 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     for (h=0; h<2; h++) { // h = 0 home team D, h = 1 away team D 
                       for (i=0; i<3; i++) { for (j = 0; j<dArray[h].length; j++) { for (k=j+1; k<dArray[h].length; k++) {tempTime=[]; tempTime2=[]; for (l=0; l<dArray[h][j][i].length/2; l++) {
                               for (m=0; m<dArray[h][k][i].length/2; m++) { if ((dArray[h][k][i][2*m] >= dArray[h][j][i][2*l])&&(dArray[h][k][i][2*m] <= dArray[h][j][i][2 * l + 1])) {
-                                  if (dArray[h][k][i][2 * m + 1] >= dArray[h][j][i][2 * l + 1]) { tempTime.push(dArray[h][k][i][2 * m], dArray[h][j][i][2 * l + 1]) }
-                                  else { tempTime.push(dArray[h][k][i][2 * m], dArray[h][k][i][2 * m + 1]) }}
-                                  else if ((dArray[h][k][i][2 * m] <= dArray[h][j][i][2 * l]) && (dArray[h][k][i][2 * m + 1] >= dArray[h][j][i][2 * l])) {
-                                  if (dArray[h][k][i][2 * m + 1] >= dArray[h][j][i][2 * l + 1]) { tempTime.push(dArray[h][j][i][2 * l], dArray[h][j][i][2 * l + 1]) }
-                                  else {tempTime.push(dArray[h][j][i][2 * l], dArray[h][k][i][2 * m + 1])}
+                                  if (dArray[h][k][i][2*m+1] >= dArray[h][j][i][2*l+1]) { tempTime.push(dArray[h][k][i][2*m], dArray[h][j][i][2*l+1]) }
+                                  else { tempTime.push(dArray[h][k][i][2*m], dArray[h][k][i][2*m+1]) }}
+                                  else if ((dArray[h][k][i][2*m] <=dArray[h][j][i][2*l]) && (dArray[h][k][i][2*m+1] >= dArray[h][j][i][2*l])) {
+                                  if (dArray[h][k][i][2*m+1] >= dArray[h][j][i][2*l+1]) { tempTime.push(dArray[h][j][i][2*l], dArray[h][j][i][2*l+1]) }
+                                  else {tempTime.push(dArray[h][j][i][2*l], dArray[h][k][i][2*m+1])}
                                 }}} // end l, m loop
                                 for (l=0; l<fiveOnFive5[h][i].length/2;l++) { for (m=0;m<tempTime.length/2;m++) {if ((tempTime[2*m]>=fiveOnFive5[h][i][2*l])&&(tempTime[2*m]<=fiveOnFive5[h][i][2*l+1])){
                                   if (tempTime[2*m+1]>=fiveOnFive5[h][i][2*l+1]) {tempTime2.push(fiveOnFive5[h][i][2*l+1]-tempTime[2*m])}
