@@ -76,21 +76,20 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                      // new attempt to create 5x5 loop
                      dArrayTemp2 = [[[],[],[]],[[],[],[]]]; dArrayTemp3 = [[[],[],[]],[[],[],[]]]; fArrayTemp2 = [[[],[],[]],[[],[],[]]]; fArrayTemp3 = [[[],[],[]],[[],[],[]]]; 
                      for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=0;k<1200;k++) {dArrayTemp2[i][j].push(0); fArrayTemp2[i][j].push(0)}}}
-                     for (i=0;i<2;i++) {for (j=0;j<3;j++) for (k=0;k<dArrayTemp[i][j].length/2; k++) {for (l=dArrayTemp[i][j][2*k]; l<dArrayTemp[i][j][2*k+1]; l++) {dArrayTemp2[i][j][l]=dArrayTemp2[i][j][l]+1}}}
-                   for (i=0;i<2;i++) {for (j=0;j<3;j++) for (k=0;k<fArrayTemp[i][j].length/2; k++) {for (l=fArrayTemp[i][j][2*k]; l<fArrayTemp[i][j][2*k+1]; l++) {fArrayTemp2[i][j][l]=fArrayTemp2[i][j][l]+1}}}
+                     for (i=0;i<2;i++) {for (j=0;j<3;j++) for (k=0;k<dArrayTemp[i][j].length/2;k++) {for (l=dArrayTemp[i][j][2*k];l<dArrayTemp[i][j][2*k+1]; l++) {dArrayTemp2[i][j][l]=dArrayTemp2[i][j][l]+1}}}
+                   for (i=0;i<2;i++) {for (j=0;j<3;j++) for (k=0;k<fArrayTemp[i][j].length/2;k++) {for (l=fArrayTemp[i][j][2*k];l<fArrayTemp[i][j][2*k+1]; l++) {fArrayTemp2[i][j][l]=fArrayTemp2[i][j][l]+1}}}
                    
                    for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=0;k<1200;k++) {if (dArrayTemp2[i][j][k+1]===dArrayTemp2[i][j][k]) {delete dArrayTemp2[i][j][k]}}}} 
                    for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=0;k<1200;k++) {if (fArrayTemp2[i][j][k+1]===fArrayTemp2[i][j][k]) {delete fArrayTemp2[i][j][k]}}}} 
                  
                  for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=0;k<1200;k++) {if (!dArrayTemp2[i][j][k]) {} else {dArrayTemp3[i][j].push(dArrayTemp2[i][j][k], k)}}}}
-                 for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < 1200; k++) {if (!fArrayTemp2[i][j][k]) {} else {fArrayTemp3[i][j].push(fArrayTemp2[i][j][k], k)}}}}
-                   // console.log(dArrayTemp3, fArrayTemp3);
-                   fiveOnFive = [[[],[],[]],[[],[],[]]]; fiveOnFive2 = [[[],[],[]],[[],[],[]]]; fiveOnFive3 = [[[],[],[]],[[],[],[]]]; fiveOnFive4 = [[[],[],[]],[[],[],[]]]; fiveOnFive5 = [[[],[],[]],[[],[],[]]]; fiveOnFive6=[[],[],[]];
+                 for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=0;k<1200;k++) {if (!fArrayTemp2[i][j][k]) {} else {fArrayTemp3[i][j].push(fArrayTemp2[i][j][k],k)}}}}
+                   fiveOnFive=[[[],[],[]],[[],[],[]]]; fiveOnFive2=[[[],[],[]],[[],[],[]]]; fiveOnFive3 = [[[],[],[]],[[],[],[]]]; fiveOnFive4 = [[[],[],[]],[[],[],[]]]; fiveOnFive5 = [[[],[],[]],[[],[],[]]]; fiveOnFive6=[[],[],[]];
                    // fiveOnFive2 and fiveOnFive4 are used for comparison only not for script should be deleted later
                    // fiveOnFive is when team played with 2D but fiveOnFive3 is when team played with 3F. Player is allowed up to 3 seconds to make a change. fiveOnFive5 is when team played with 2D and 3F, fiveOnFive6 is when both teams played with 3F and 2D
-                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) { if (dArrayTemp3[i][j][0] === 2) {fiveOnFive[i][j].push(0, dArrayTemp3[i][j][1]); fiveOnFive2[i][j].push(0, dArrayTemp3[i][j][1])}
-                     for (k = 1; k < dArrayTemp3[i][j].length/2; k++) {if (dArrayTemp3[i][j][2*k] === 2) {fiveOnFive[i][j].push(dArrayTemp3[i][j][2*k-1], dArrayTemp3[i][j][2*k+1]); fiveOnFive2[i][j].push(dArrayTemp3[i][j][2*k-1], dArrayTemp3[i][j][2*k+1])}}}}
-                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = fiveOnFive[i][j].length/2-1; k > 0; k--) {if (fiveOnFive[i][j][2*k]-fiveOnFive[i][j][2*k-1]<4) {tempArray1=fiveOnFive[i][j].slice(0,2*k-1); tempArray2=fiveOnFive[i][j].slice(2*k+1);
+                   for (i=0;i<2;i++) {for (j=0;j<3;j++) { if (dArrayTemp3[i][j][0]===2) {fiveOnFive[i][j].push(0, dArrayTemp3[i][j][1]); fiveOnFive2[i][j].push(0, dArrayTemp3[i][j][1])}
+                     for (k=1;k<dArrayTemp3[i][j].length/2;k++) {if (dArrayTemp3[i][j][2*k]===2) {fiveOnFive[i][j].push(dArrayTemp3[i][j][2*k-1], dArrayTemp3[i][j][2*k+1]); fiveOnFive2[i][j].push(dArrayTemp3[i][j][2*k-1], dArrayTemp3[i][j][2*k+1])}}}}
+                   for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=fiveOnFive[i][j].length/2-1;k>0;k--) {if (fiveOnFive[i][j][2*k]-fiveOnFive[i][j][2*k-1]<4) {tempArray1=fiveOnFive[i][j].slice(0,2*k-1); tempArray2=fiveOnFive[i][j].slice(2*k+1);
                      fiveOnFive[i][j]=tempArray1.concat(tempArray2)
                      }}}}
                      for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) { if (fArrayTemp3[i][j][0] === 3) {fiveOnFive3[i][j].push(0, fArrayTemp3[i][j][1]); fiveOnFive4[i][j].push(0, fArrayTemp3[i][j][1])}
