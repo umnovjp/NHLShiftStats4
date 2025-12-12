@@ -92,9 +92,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                    for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=fiveOnFive[i][j].length/2-1;k>0;k--) {if (fiveOnFive[i][j][2*k]-fiveOnFive[i][j][2*k-1]<4) {tempArray1=fiveOnFive[i][j].slice(0,2*k-1); tempArray2=fiveOnFive[i][j].slice(2*k+1);
                      fiveOnFive[i][j]=tempArray1.concat(tempArray2)
                      }}}}
-                     for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) { if (fArrayTemp3[i][j][0] === 3) {fiveOnFive3[i][j].push(0, fArrayTemp3[i][j][1]); fiveOnFive4[i][j].push(0, fArrayTemp3[i][j][1])}
-                     for (k = 1; k < fArrayTemp3[i][j].length/2; k++) {if (fArrayTemp3[i][j][2*k] === 3) {fiveOnFive3[i][j].push(fArrayTemp3[i][j][2*k-1], fArrayTemp3[i][j][2*k+1]); fiveOnFive4[i][j].push(fArrayTemp3[i][j][2*k-1], fArrayTemp3[i][j][2*k+1])}}}}
-                   for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = fiveOnFive3[i][j].length/2-1; k > 0; k--) {if (fiveOnFive3[i][j][2*k]-fiveOnFive3[i][j][2*k-1]<4) { // console.log('160', fiveOnFive3[i][j][2*k], fiveOnFive3[i][j][2*k-1] )
+                     for (i=0;i<2;i++) {for (j=0;j<3;j++) { if (fArrayTemp3[i][j][0]===3) {fiveOnFive3[i][j].push(0,fArrayTemp3[i][j][1]);fiveOnFive4[i][j].push(0,fArrayTemp3[i][j][1])}
+                     for (k=1;k<fArrayTemp3[i][j].length/2;k++) {if (fArrayTemp3[i][j][2*k]===3) {fiveOnFive3[i][j].push(fArrayTemp3[i][j][2*k-1], fArrayTemp3[i][j][2*k+1]); fiveOnFive4[i][j].push(fArrayTemp3[i][j][2*k-1],fArrayTemp3[i][j][2*k+1])}}}}
+                   for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=fiveOnFive3[i][j].length/2-1;k>0;k--) {if (fiveOnFive3[i][j][2*k]-fiveOnFive3[i][j][2*k-1]<4) {
                      tempArray1=fiveOnFive3[i][j].slice(0,2*k-1); tempArray2=fiveOnFive3[i][j].slice(2*k+1); fiveOnFive3[i][j]=tempArray1.concat(tempArray2)
                      }}}}
                      for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < fiveOnFive[i][j].length/2; k++) {for (l = 0; l < fiveOnFive3[i][j].length/2; l++) {
