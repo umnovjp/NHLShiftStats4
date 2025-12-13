@@ -97,8 +97,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                    for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=fiveOnFive3[i][j].length/2-1;k>0;k--) {if (fiveOnFive3[i][j][2*k]-fiveOnFive3[i][j][2*k-1]<4) {
                      tempArray1=fiveOnFive3[i][j].slice(0,2*k-1); tempArray2=fiveOnFive3[i][j].slice(2*k+1); fiveOnFive3[i][j]=tempArray1.concat(tempArray2)
                      }}}}
-                     for (i = 0; i < 2; i++) {for (j = 0; j < 3; j++) {for (k = 0; k < fiveOnFive[i][j].length/2; k++) {for (l = 0; l < fiveOnFive3[i][j].length/2; l++) {
-                       if ((fiveOnFive[i][j][2*k]>=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k], fiveOnFive[i][j][2*k+1])}
+                     for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=0;k<fiveOnFive[i][j].length/2; k++) {for (l=0;l<fiveOnFive3[i][j].length/2; l++) {if ((fiveOnFive[i][j][2*k]>=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k],fiveOnFive[i][j][2*k+1])}
                        else if ((fiveOnFive[i][j][2*k]<=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]>=fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive3[i][j][2*l], fiveOnFive3[i][j][2*l+1])}
                        else if ((fiveOnFive[i][j][2*k]>=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]>=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k]<fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k], fiveOnFive3[i][j][2*l+1])}
                        else if ((fiveOnFive[i][j][2*k]<=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k+1]>fiveOnFive3[i][j][2*l])) {fiveOnFive5[i][j].push(fiveOnFive3[i][j][2*l], fiveOnFive[i][j][2*k+1])}
@@ -260,7 +259,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
       console.log('old', oldLines, 'new',  newLines);
 
                     // q,r,s are forwards on home team, t,u,v are forwards on away team values are 0...11 if 12F or 0...10 if 11F
-                    function lineByLine2(q,r,s,t,u,v) { // created an array with 15 elements need to add more
+                    function lineByLine2(q,r,s,t,u,v) { // created an array with 21 elements
                     shiftsLine2=[]; for (p=0;p<21;p++) {shiftsLine2.push([])} shiftsLine2[16]=[[],[],[]]
                     for (n=0;n<3;n++) { for (l=0;l<fArray[0][q][n].length/2;l++) { for (m=0;m<fArray[0][r][n].length/2;m++) {if ((fArray[0][r][n][2*m]>=fArray[0][q][n][2*l])&&(fArray[0][r][n][2*m]<=fArray[0][q][n][2*l+1]))
                     {if (fArray[0][r][n][2*m+1]>=fArray[0][q][n][2*l+1]) {shiftsLine2[n].push(fArray[0][r][n][2*m], fArray[0][q][n][2*l+1]) }
@@ -285,14 +284,17 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                      else {shiftsLine2[6+n].push(fArray[1][t][n][2*l], fArray[1][u][n][2*m+1])}}
                     }} // end first m,l loop
                     // start second l,m loop
-                    for (l=0;l<shiftsLine2[6+n].length/2;l++) { for (m=0;m<fArray[1][v][n].length/2;m++) { // console.log('error', fArray[1], 'l=', l, 'm=', m, 'n=', n);
+                    for (l=0;l<shiftsLine2[6+n].length/2;l++) { // console.log('fArray', fArray);
+                       if (fArray[1].length>=12 ) {
+                      for (m=0;m<fArray[1][v][n].length/2;m++) { // console.log('error', fArray[1], 'l=', l, 'm=', m, 'n=', n);
                       if ((fArray[1][v][n][2*m]>=shiftsLine2[6+n][2*l])&&(fArray[1][v][n][2*m]<=shiftsLine2[6+n][2*l+1]))
                     {if (fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l+1]) {shiftsLine2[9+n].push(fArray[1][v][n][2*m], shiftsLine2[6+n][2*l+1]) }
                     else { shiftsLine2[9+n].push(fArray[1][v][n][2*m], fArray[1][v][n][2*m+1]) }}
                     else if ((fArray[1][v][n][2*m]<=shiftsLine2[6+n][2*l])&&(fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l])) {
                     if (fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l+1]) { shiftsLine2[9+n].push(shiftsLine2[6+n][2*l], shiftsLine2[6+n][2*l+1]) }
                     else {shiftsLine2[9+n].push(shiftsLine2[6+n][2*l], fArray[1][v][n][2*m+1])}}
-                    }} // end second away team m,l loop
+                    }}
+                  } // end second away team m,l loop
 
                     // shiftsLine2[14+n] is when a tu pair [n+6] played when both teams were 5x5;
                     for (l=0;l<shiftsLine2[9+n].length/2;l++) {for (m=0;m<fiveOnFive6[n].length/2;m++) {if ((fiveOnFive6[n][2*m]>=shiftsLine2[9+n][2*l])&&(fiveOnFive6[n][2*m]<=shiftsLine2[9+n][2*l+1])){
@@ -355,7 +357,9 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       if (fArray[h][s][n][2*m+1]>=shiftsLine3[n][2*l+1]) { shiftsLine3[n+3].push(shiftsLine3[n][2*l], shiftsLine3[n][2*l+1]) }
                       else {shiftsLine3[n+3].push(shiftsLine3[n][2*l], fArray[h][s][n][2*m+1])}}
                     }} // end second m,l loop 
-                    for (l=0;l<fArray[1-h][t][n].length/2;l++) { for (m=0;m<fArray[1-h][u][n].length/2;m++) {if ((fArray[1-h][u][n][2*m]>=fArray[1-h][t][n][2*l])&&(fArray[1-h][u][n][2*m]<=fArray[1-h][t][n][2*l+1]))
+                    for (l=0;l<fArray[1-h][t][n].length/2;l++) { console.log(fArray[1-h]);
+                      for (m=0;m<fArray[1-h][u][n].length/2;m++) { 
+                      if ((fArray[1-h][u][n][2*m]>=fArray[1-h][t][n][2*l])&&(fArray[1-h][u][n][2*m]<=fArray[1-h][t][n][2*l+1]))
                     {if (fArray[1-h][u][n][2*m+1]>=fArray[1-h][t][n][2*l+1]) {shiftsLine3[6+n].push(fArray[1-h][u][n][2*m], fArray[1-h][t][n][2*l+1]) }
                     else { shiftsLine3[6+n].push(fArray[1-h][u][n][2*m], fArray[1-h][u][n][2*m+1]) }}
                     else if ((fArray[1-h][u][n][2*m]<=fArray[1-h][t][n][2*l])&&(fArray[1-h][u][n][2*m+1]>=fArray[1-h][t][n][2*l])) {
