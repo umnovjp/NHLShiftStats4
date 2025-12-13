@@ -97,19 +97,19 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                    for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=fiveOnFive3[i][j].length/2-1;k>0;k--) {if (fiveOnFive3[i][j][2*k]-fiveOnFive3[i][j][2*k-1]<4) {
                      tempArray1=fiveOnFive3[i][j].slice(0,2*k-1); tempArray2=fiveOnFive3[i][j].slice(2*k+1); fiveOnFive3[i][j]=tempArray1.concat(tempArray2)
                      }}}}
-                     for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=0;k<fiveOnFive[i][j].length/2; k++) {for (l=0;l<fiveOnFive3[i][j].length/2; l++) {if ((fiveOnFive[i][j][2*k]>=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k],fiveOnFive[i][j][2*k+1])}
+                     for (i=0;i<2;i++) {for (j=0;j<3;j++) {for (k=0;k<fiveOnFive[i][j].length/2;k++) {for (l=0;l<fiveOnFive3[i][j].length/2;l++) {if ((fiveOnFive[i][j][2*k]>=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k],fiveOnFive[i][j][2*k+1])}
                        else if ((fiveOnFive[i][j][2*k]<=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]>=fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive3[i][j][2*l], fiveOnFive3[i][j][2*l+1])}
-                       else if ((fiveOnFive[i][j][2*k]>=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]>=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k]<fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k], fiveOnFive3[i][j][2*l+1])}
-                       else if ((fiveOnFive[i][j][2*k]<=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k+1]>fiveOnFive3[i][j][2*l])) {fiveOnFive5[i][j].push(fiveOnFive3[i][j][2*l], fiveOnFive[i][j][2*k+1])}
+                       else if ((fiveOnFive[i][j][2*k]>=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]>=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k]<fiveOnFive3[i][j][2*l+1])) {fiveOnFive5[i][j].push(fiveOnFive[i][j][2*k],fiveOnFive3[i][j][2*l+1])}
+                       else if ((fiveOnFive[i][j][2*k]<=fiveOnFive3[i][j][2*l])&&(fiveOnFive[i][j][2*k+1]<=fiveOnFive3[i][j][2*l+1])&&(fiveOnFive[i][j][2*k+1]>fiveOnFive3[i][j][2*l])) {fiveOnFive5[i][j].push(fiveOnFive3[i][j][2*l],fiveOnFive[i][j][2*k+1])}
                      }}}}
-                     for (j=0;j<3;j++) {for (k=0;k<fiveOnFive5[0][j].length/2;k++) {for (l=0;l<fiveOnFive5[1][j].length/2;l++) { if ((fiveOnFive5[0][j][2*k]>=fiveOnFive5[1][j][2*l])&&(fiveOnFive5[0][j][2*k+1]<=fiveOnFive5[1][j][2*l+1])) {fiveOnFive6[j].push(fiveOnFive5[0][j][2*k], fiveOnFive5[0][j][2*k+1])}
-                        else if ((fiveOnFive5[0][j][2*k]<=fiveOnFive5[1][j][2*l])&&(fiveOnFive5[0][j][2*k+1]>=fiveOnFive5[1][j][2*l+1])) {fiveOnFive6[j].push(fiveOnFive5[1][j][2*l], fiveOnFive5[1][j][2*l+1])}
+                     for (j=0;j<3;j++) {for (k=0;k<fiveOnFive5[0][j].length/2;k++) {for (l=0;l<fiveOnFive5[1][j].length/2;l++) { if ((fiveOnFive5[0][j][2*k]>=fiveOnFive5[1][j][2*l])&&(fiveOnFive5[0][j][2*k+1]<=fiveOnFive5[1][j][2*l+1])) {fiveOnFive6[j].push(fiveOnFive5[0][j][2*k],fiveOnFive5[0][j][2*k+1])}
+                        else if ((fiveOnFive5[0][j][2*k]<=fiveOnFive5[1][j][2*l])&&(fiveOnFive5[0][j][2*k+1]>=fiveOnFive5[1][j][2*l+1])) {fiveOnFive6[j].push(fiveOnFive5[1][j][2*l],fiveOnFive5[1][j][2*l+1])}
                         else if ((fiveOnFive5[0][j][2*k]>=fiveOnFive5[1][j][2*l])&&(fiveOnFive5[0][j][2*k+1]>=fiveOnFive5[1][j][2*l+1])&&(fiveOnFive5[0][j][2*k]<fiveOnFive5[1][j][2*l+1])) {fiveOnFive6[j].push(fiveOnFive5[0][j][2*k], fiveOnFive5[1][j][2*l+1])}
                         else if ((fiveOnFive5[0][j][2*k]<=fiveOnFive5[1][j][2*l])&&(fiveOnFive5[0][j][2*k+1]<=fiveOnFive5[1][j][2*l+1])&&(fiveOnFive5[0][j][2*k+1]>fiveOnFive5[1][j][2*l])) {fiveOnFive6[j].push(fiveOnFive5[1][j][2*l], fiveOnFive5[0][j][2*k+1])}
                      }}}
                     console.log('fiveOnFive', fiveOnFive, 'fiveOnFive3', fiveOnFive3, 'fiveOnFive5', fiveOnFive5, 'fiveOnFive6', fiveOnFive6);
 
-                    for (h=0; h<2; h++) { // h = 0 home team D, h = 1 away team D 
+                    for (h=0; h<2; h++) { //h=0 home team D, h=1 away team D 
                       for (i=0; i<3; i++) { for (j = 0; j<dArray[h].length; j++) { for (k=j+1; k<dArray[h].length; k++) {tempTime=[]; tempTime2=[]; for (l=0; l<dArray[h][j][i].length/2; l++) {
                               for (m=0; m<dArray[h][k][i].length/2; m++) { if ((dArray[h][k][i][2*m] >= dArray[h][j][i][2*l])&&(dArray[h][k][i][2*m] <= dArray[h][j][i][2 * l + 1])) {
                                   if (dArray[h][k][i][2*m+1] >= dArray[h][j][i][2*l+1]) { tempTime.push(dArray[h][k][i][2*m], dArray[h][j][i][2*l+1]) }
