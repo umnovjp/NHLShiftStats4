@@ -113,17 +113,15 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       for (i=0; i<3; i++) { for (j = 0; j<dArray[h].length; j++) { for (k=j+1; k<dArray[h].length; k++) {tempTime=[]; tempTime2=[]; for (l=0; l<dArray[h][j][i].length/2; l++) {
                               for (m=0; m<dArray[h][k][i].length/2; m++) { if ((dArray[h][k][i][2*m] >= dArray[h][j][i][2*l])&&(dArray[h][k][i][2*m] <= dArray[h][j][i][2 * l + 1])) {
                                   if (dArray[h][k][i][2*m+1] >= dArray[h][j][i][2*l+1]) { tempTime.push(dArray[h][k][i][2*m], dArray[h][j][i][2*l+1]) }
-                                  else { tempTime.push(dArray[h][k][i][2*m], dArray[h][k][i][2*m+1]) }}
-                                  else if ((dArray[h][k][i][2*m] <=dArray[h][j][i][2*l]) && (dArray[h][k][i][2*m+1] >= dArray[h][j][i][2*l])) {
-                                  if (dArray[h][k][i][2*m+1] >= dArray[h][j][i][2*l+1]) { tempTime.push(dArray[h][j][i][2*l], dArray[h][j][i][2*l+1]) }
+                                  else { tempTime.push(dArray[h][k][i][2*m], dArray[h][k][i][2*m+1])}}
+                                  else if ((dArray[h][k][i][2*m] <=dArray[h][j][i][2*l]) && (dArray[h][k][i][2*m+1]>=dArray[h][j][i][2*l])) {
+                                  if (dArray[h][k][i][2*m+1] >= dArray[h][j][i][2*l+1]) { tempTime.push(dArray[h][j][i][2*l],dArray[h][j][i][2*l+1]) }
                                   else {tempTime.push(dArray[h][j][i][2*l], dArray[h][k][i][2*m+1])}
                                 }}} // end l, m loop
-                                for (l=0; l<fiveOnFive5[h][i].length/2;l++) { for (m=0;m<tempTime.length/2;m++) {if ((tempTime[2*m]>=fiveOnFive5[h][i][2*l])&&(tempTime[2*m]<=fiveOnFive5[h][i][2*l+1])){
+                                for (l=0;l<fiveOnFive5[h][i].length/2;l++) { for (m=0;m<tempTime.length/2;m++) {if ((tempTime[2*m]>=fiveOnFive5[h][i][2*l])&&(tempTime[2*m]<=fiveOnFive5[h][i][2*l+1])){
                                   if (tempTime[2*m+1]>=fiveOnFive5[h][i][2*l+1]) {tempTime2.push(fiveOnFive5[h][i][2*l+1]-tempTime[2*m])}
-                                  else {tempTime2.push(tempTime[2*m+1]-tempTime[2*m])}
-                                }
-                                else if ((tempTime[2*m]<=fiveOnFive5[h][i][2*l])&&(tempTime[2*m+1]>=fiveOnFive5[h][i][2*l])) {
-                                  if (tempTime[2*m+1]>=fiveOnFive5[h][i][2*l+1]) {tempTime2.push(fiveOnFive5[h][i][2*l+1]-fiveOnFive5[h][i][2*l])}
+                                  else {tempTime2.push(tempTime[2*m+1]-tempTime[2*m])}}
+                                else if ((tempTime[2*m]<=fiveOnFive5[h][i][2*l])&&(tempTime[2*m+1]>=fiveOnFive5[h][i][2*l])) {if (tempTime[2*m+1]>=fiveOnFive5[h][i][2*l+1]) {tempTime2.push(fiveOnFive5[h][i][2*l+1]-fiveOnFive5[h][i][2*l])}
                                   else {tempTime2.push(tempTime[2*m+1]-fiveOnFive5[h][i][2*l])}
                                 }}} // end second m,l loop to count only 5x5 plays
                             shifts=0; const sum = tempTime2.reduce((partialSum,a) => partialSum+a,0);
@@ -134,7 +132,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     
                      dArrayTemp2 = [[[],[],[]],[[],[],[]]]; dArrayTemp3 = [[[],[],[]],[[],[],[]]]; fArrayTemp2 = [[[],[],[]],[[],[],[]]]; fArrayTemp3 = [[[],[],[]],[[],[],[]]];
 
-                    for (h=0;h<2;h++) {// h = 0 home team F, h = 1 away team F
+                    for (h=0;h<2;h++) {//h=0home team F, h=1 away team F
                       for (i=0;i<3;i++) { for (j=0;j<fArray[h].length;j++) { // i loop for 3 periods
                           for (k=j+1; k<fArray[h].length; k++) {shiftsPair=[]; for (l=0; l<fArray[h][j][i].length/2; l++) {
                               for (m=0; m<fArray[h][k][i].length/2; m++) { if ((fArray[h][k][i][2*m]>=fArray[h][j][i][2*l]) && (fArray[h][k][i][2*m]<=fArray[h][j][i][2*l+1])) {
@@ -144,7 +142,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                                   if (fArray[h][k][i][2*m+1]>= fArray[h][j][i][2*l+1]) { shiftsPair.push(fArray[h][j][i][2*l], fArray[h][j][i][2*l+1])}
                                   else {shiftsPair.push(fArray[h][j][i][2*l], fArray[h][k][i][2*m+1])}
                                 }}}// end m, l loop
-                                for (l=k+1; l<fArray[h].length; l++) {tempTime=[]; tempTime2=[];
+                                for (l=k+1; l<fArray[h].length;l++) {tempTime=[];tempTime2=[];
                                 for (m=0; m<shiftsPair.length/2; m++){
                                   for (n=0; n<fArray[h][l][i].length/2; n++) {if ((fArray[h][l][i][2*n]>=shiftsPair[2*m])&&(fArray[h][l][i][2*n]<shiftsPair[2*m+1])){
                                     if (fArray[h][l][i][2*n+1]>=shiftsPair[2*m+1]) {tempTime.push(fArray[h][l][i][2*n], shiftsPair[2*m+1])}
@@ -185,20 +183,18 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
             // and index 5 6 is to verify all players that actually played in lines from index 0 1 reason for that is PHI lines where #11 played on 2 lines leaving one partner behind...
             // currently lines 210-288 or so final goal is to create F lines
             for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<linesArray7[h][i].length/5;j++) {finalLineup2[h][i].push(linesArray7[h][i][5*j+2], linesArray7[h][i][5*j+3], linesArray7[h][i][5*j+4])}}}
-            for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<finalLineup2[h][i].length;j++) {for (k=j+1;k<finalLineup2[h][i].length;k++) {
-              if (finalLineup2[h][i][j]===finalLineup2[h][i][k]) { if (finalLineup2[h+2][i].includes(finalLineup2[h][i][j])) {}
+            for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<finalLineup2[h][i].length;j++) {for (k=j+1;k<finalLineup2[h][i].length;k++) {if (finalLineup2[h][i][j]===finalLineup2[h][i][k]) { if (finalLineup2[h+2][i].includes(finalLineup2[h][i][j])) {}
             else {finalLineup2[h+2][i].push(finalLineup2[h][i][j])}}
           }}
           // next 2 lines of code determines if there are unique lines if finalLineup2[h+2] is not empty if it is, lines are pushed to finalLineup2[h+4]
           for (j=0;j<finalLineup2[h][i].length/3;j++) {if ((finalLineup2[h+2][i].includes(finalLineup2[h][i][3*j]))||(finalLineup2[h+2][i].includes(finalLineup2[h][i][3*j+1]))||(finalLineup2[h+2][i].includes(finalLineup2[h][i][3*j+2]))){}
           else {finalLineup2[h+4][i].push(finalLineup2[h][i][3*j], finalLineup2[h][i][3*j+1], finalLineup2[h][i][3*j+2])}}
           if (finalLineup2[h+4][i].length===12) {}
-          else if (finalLineup2[h+4][i].length===9) {for (j=0;j<tempArray3[h];j++){
-            if (finalLineup2[h][i].includes(j)){}
+          else if (finalLineup2[h+4][i].length===9) {for (j=0;j<tempArray3[h];j++){if (finalLineup2[h][i].includes(j)){}
           else finalLineup2[h+4][i].push(j)}}
-          else if (finalLineup2[h+4][i].length===6) { linesArray4 = [[[],[],[]],[[],[],[]]];
+          else if (finalLineup2[h+4][i].length===6) { linesArray4=[[[],[],[]],[[],[],[]]];
           for (j=3*h;j<3+3*h;j++) {for (k=0;k<linesArray[j].length/5;k++) { if((finalLineup2[h+4][i].includes(linesArray[j][5*k+2]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+3]))||(finalLineup2[h+4][i].includes(linesArray[j][5*k+4]))) {}
-            else {linesArray4[h][i].push(linesArray[j][5*k], linesArray[j][5*k+1], linesArray[j][5*k+2], linesArray[j][5*k+3], linesArray[j][5*k+4])}
+            else {linesArray4[h][i].push(linesArray[j][5*k],linesArray[j][5*k+1],linesArray[j][5*k+2],linesArray[j][5*k+3],linesArray[j][5*k+4])}
             }}
           tempIndex6 = linesArray4[h][i].indexOf(Math.max(...linesArray4[h][i])); tempIndex2 = tempIndex6%(linesArray4[h][i].length/3);
           finalLineup2[h+4][i].push(linesArray4[h][i][tempIndex6+2], linesArray4[h][i][tempIndex6+3], linesArray4[h][i][tempIndex6+4]);
@@ -285,7 +281,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     }} // end first m,l loop
                     // start second l,m loop
                     for (l=0;l<shiftsLine2[6+n].length/2;l++) { // console.log('fArray', fArray);
-                       if (fArray[1].length>=12 ) {
+                       if (fArray[1].length>=12) {
                       for (m=0;m<fArray[1][v][n].length/2;m++) { // console.log('error', fArray[1], 'l=', l, 'm=', m, 'n=', n);
                       if ((fArray[1][v][n][2*m]>=shiftsLine2[6+n][2*l])&&(fArray[1][v][n][2*m]<=shiftsLine2[6+n][2*l+1]))
                     {if (fArray[1][v][n][2*m+1]>=shiftsLine2[6+n][2*l+1]) {shiftsLine2[9+n].push(fArray[1][v][n][2*m], shiftsLine2[6+n][2*l+1]) }
@@ -357,15 +353,16 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                       if (fArray[h][s][n][2*m+1]>=shiftsLine3[n][2*l+1]) { shiftsLine3[n+3].push(shiftsLine3[n][2*l], shiftsLine3[n][2*l+1]) }
                       else {shiftsLine3[n+3].push(shiftsLine3[n][2*l], fArray[h][s][n][2*m+1])}}
                     }} // end second m,l loop 
-                    for (l=0;l<fArray[1-h][t][n].length/2;l++) { console.log(fArray[1-h]);
-                      for (m=0;m<fArray[1-h][u][n].length/2;m++) { 
+                    for (l=0;l<fArray[1-h][t][n].length/2;l++) {console.log(fArray[1-h]);
+                      if (fArray[1-h].length>=12) {
+                      for (m=0;m<fArray[1-h][u][n].length/2;m++) {
                       if ((fArray[1-h][u][n][2*m]>=fArray[1-h][t][n][2*l])&&(fArray[1-h][u][n][2*m]<=fArray[1-h][t][n][2*l+1]))
                     {if (fArray[1-h][u][n][2*m+1]>=fArray[1-h][t][n][2*l+1]) {shiftsLine3[6+n].push(fArray[1-h][u][n][2*m], fArray[1-h][t][n][2*l+1]) }
                     else { shiftsLine3[6+n].push(fArray[1-h][u][n][2*m], fArray[1-h][u][n][2*m+1]) }}
                     else if ((fArray[1-h][u][n][2*m]<=fArray[1-h][t][n][2*l])&&(fArray[1-h][u][n][2*m+1]>=fArray[1-h][t][n][2*l])) {
                     if (fArray[1-h][u][n][2*m+1]>=fArray[1-h][t][n][2*l+1]) { shiftsLine3[6+n].push(fArray[1-h][t][n][2*l], fArray[1-h][t][n][2*l+1]) }
                      else {shiftsLine3[6+n].push(fArray[1-h][t][n][2*l], fArray[1-h][u][n][2*m+1])}}
-                    }} // end first m,l loop
+                    }}} // end first m,l loop
                     
                     // shiftsLine2[11+n] is when a qrs line [n+3] played when both teams were 5x5
                     for (l=0;l<shiftsLine3[3+n].length/2;l++) {for (m=0;m<fiveOnFive6[n].length/2;m++) {if ((fiveOnFive6[n][2*m]>=shiftsLine3[3+n][2*l])&&(fiveOnFive6[n][2*m]<=shiftsLine3[3+n][2*l+1])){
