@@ -132,7 +132,7 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                     
                      dArrayTemp2 = [[[],[],[]],[[],[],[]]]; dArrayTemp3 = [[[],[],[]],[[],[],[]]]; fArrayTemp2 = [[[],[],[]],[[],[],[]]]; fArrayTemp3 = [[[],[],[]],[[],[],[]]];
 
-                    for (h=0;h<2;h++) {//h=0home team F, h=1 away team F
+                    for (h=0;h<2;h++) {//h=0 home team F, h=1 away team F
                       for (i=0;i<3;i++) { for (j=0;j<fArray[h].length;j++) { // i loop for 3 periods
                           for (k=j+1; k<fArray[h].length; k++) {shiftsPair=[]; for (l=0; l<fArray[h][j][i].length/2; l++) {
                               for (m=0; m<fArray[h][k][i].length/2; m++) { if ((fArray[h][k][i][2*m]>=fArray[h][j][i][2*l]) && (fArray[h][k][i][2*m]<=fArray[h][j][i][2*l+1])) {
