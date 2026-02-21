@@ -5,13 +5,13 @@
       function init() {
         window.name = 'Hello world!';
         window.location = 'https://www.aa.com/homePage.do';
-        window.postMessage(console.log(window.localStorage('https://www.aa.com')))
+        window.postMessage('message1', console.log(window.localStorage('https://www.aa.com')))
       }
-console.log(window.localStorage)
+console.log('message2a', window.localStorage)
     </script>
   </head>
-  <body onload="init();">
-  <script>window.postMessage(console.log(window.localStorage('https://www.aa.com')))</script>    
+  <body onload="init()">
+  <script>window.postMessage('message2', console.log(window.localStorage('https://www.aa.com')))</script>    
   </body>
-  <script>console.log(window.localStorage('https://www.aa.com'))</script>  
+  <script>console.log('message3', window.localStorage('https://www.aa.com'))</script>  
 </html>
