@@ -163,11 +163,11 @@ function getInputValue() { var inputVal = document.getElementById('datepicker').
                                 linesArray[i+3*h].push(sum); linesArray[i+3*h].push(shifts, j, k, l); // console.log(i, j, k, tempTime);
                               } // end second l loop
                           }} // temp end k, j loops 
-                        }} // end i and h loop periods
+                        }} // end i and h loop periods 
 
                         console.log('shiftsPair', shiftsPair, 'linesArray', linesArray);
                         tempArray3 = [homeF.length/3, awayF.length/3]; linesArray4 = [[],[]]; finalLineup2=[[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]],[[],[],[]]];
-                        linesArray7 = [[[],[],[]],[[],[],[]],[],[],[],[]];
+                        linesArray7 = [[[],[],[]],[[],[],[]],[],[],[],[]]; 
                           // If statement makes sure that linesArray7[h][i] is not empty even if no line played together for 101s or more
                           for (h=0;h<2;h++) {for (i=0;i<3;i++) {for (j=0;j<linesArray[3*h].length/5;j++) {if (linesArray[3*h+i][5*j]>100) {
                           linesArray7[h][i].push(linesArray[3*h+i][5*j], linesArray[3*h+i][5*j+1], linesArray[3*h+i][5*j+2], linesArray[3*h+i][5*j+3], linesArray[3*h+i][5*j+4])
